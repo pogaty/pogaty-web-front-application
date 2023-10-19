@@ -1,0 +1,52 @@
+h3, p {
+    text-align: center;
+    color: white;
+}
+
+.text-content {
+    margin-top: 75px;
+}
+
+.d-flex {
+    justify-content: center;
+}
+
+.social-content {
+    margin-top: 15px;
+}
+.social-media {
+    justify-content: center;
+}
+
+.social-media button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+
+    border-radius: 100%;
+    border: 3px solid white;
+}
+
+.copyright {
+    margin-top: 100px;
+    background-color: #1C1C1C;
+}
+
+.btn {
+    transition: 0.3s
+}
+
+.btn:hover {
+    border: none;
+    background-color: white;
+    transition: 0.3s
+}
+
+.btn:hover i {
+    color: var(--bg-nav) !important;
+    transition: 0.3s
+}
