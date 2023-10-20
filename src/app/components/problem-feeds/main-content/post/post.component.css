@@ -1,0 +1,44 @@
+input {
+    padding: 15px;
+    width: 100%;
+    border: none;
+
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+}
+
+i {
+    padding: 0 15px;
+}
+
+.post-content {
+    margin: 15px 0;
+    padding: 2px;
+    border-radius: 15px;
+
+    background-color: white;
+}
+
+.user-profile {
+    width: 45px;
+    height: 45px;
+
+    background-image: url('../../../../../assets/images/user-profile-samples/profile-1.png');
+    background-size: cover;
+    border-radius: 8px;
+
+    transition: filter 0.3s;
+}
+
+.user-profile:hover {
+    filter: brightness(1.2);
+    transition: 0.3s;
+}
+
+.post {
+    width: 100%;
+    align-items: center;
+}
