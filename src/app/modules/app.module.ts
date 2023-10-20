@@ -3,16 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from '../components/application/app.component';
 import { SharedModule } from './shared.module';
+import { HomeComponent } from '../components/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    SharedModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, SharedModule, HomeComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
