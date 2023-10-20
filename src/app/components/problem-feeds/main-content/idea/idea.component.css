@@ -1,0 +1,126 @@
+span {
+    margin: 0 10px;
+    color: #d2d1cd;
+}
+
+p {
+    margin: 0;
+}
+
+.idea-content {
+    padding: 8px;
+    background-color: var(--bg-nav);
+}
+
+.management {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.tools div {
+    padding: 15px;
+}
+
+.left button {
+    margin: 0 5px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.right button {
+    margin: 0 5px;
+    border: 2px solid var(--bg-red);
+    transition: 0.3s;
+}
+
+.left button:hover {
+    border: 2px solid var(--bg-red);
+}
+
+.right button:hover {
+    border: 2px solid transparent;
+    background-color: var(--bg-red);
+}
+
+.right button:hover i {
+    color: white !important;
+}
+
+.right {
+    justify-content: right;
+}
+
+.idea-list {
+    margin-top: 8px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.idea-list div {
+    padding: 15px;
+}
+
+.profile-participant button {
+    margin: 0 2px;
+    width: 25px;
+    height: 25px;
+
+    background-image: url('../../../../../assets/images/user-profile-samples/profile-1.png');
+    background-size: cover;
+    border: none;
+
+    transition: filter 0.3s;
+}
+
+.profile-participant button:hover {
+    filter: brightness(1.2);
+    transition: 0.3s;
+}
+
+.function {
+    padding: 0;
+}
+
+.describe {
+    padding: 0 !important;
+}
+
+.describe div {
+    padding: 15px;
+}
+
+.agreement {
+    padding: 0 !important;
+    justify-content: center;
+}
+
+.agree-content {
+    padding: 0 !important;
+    margin: auto 0;
+}
+
+.join {
+    width: 100%;
+    padding: 10px;
+
+    background: linear-gradient(90deg, rgba(207,10,10,1) 0%, rgba(207,10,10,1) 48%, rgba(255,124,29,1) 100%);
+    color: white;
+    border: 2px solid transparent;
+
+    transition: 0.3s;
+}
+
+.join:active {
+    color: white;
+}
+
+.join:hover {
+    color: var(--bg-red);
+    background: white;
+    border: 2px solid var(--bg-red);
+}
+@media only screen and (max-width: 576px) {
+    .right, .left {
+        justify-content: center;
+    }
+}

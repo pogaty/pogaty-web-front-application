@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./feeds.component.css']
 })
 export class FeedsComponent {
+  showIdeas = false
 
+  toggleIdeas(): void {
+    this.showIdeas = !this.showIdeas
+    console.log(`[feeds] showIdeas = ${this.showIdeas}`)
+  }
 }
