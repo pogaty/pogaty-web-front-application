@@ -12,6 +12,11 @@ import { Content3Component } from '../components/home/content3/content3.componen
     Content2Component,
     Content3Component,
   ],
-  exports: [HomeComponent, Content1Component, Content2Component],
+  exports: [
+    HomeComponent,
+    Content1Component,
+    Content2Component,
+    Content3Component,
+  ],
 })
 export class HomeModule {}
