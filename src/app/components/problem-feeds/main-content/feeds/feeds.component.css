@@ -58,3 +58,7 @@ p {
 
     transition: 0.3s;
 }
+
+.problem {
+    padding: 0 10px;
+}
