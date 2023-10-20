@@ -6,6 +6,7 @@
 
 h2{
     color: #CF0A0A;
+    font-weight: 600;
 }
 
 .picture1{
@@ -24,6 +25,7 @@ img{
 
 button {
     background-image: linear-gradient(to bottom right, #CF0A0A, #FF7C1D);
+    width: 150px;
     color: white;
     border: none;
     border-radius: 30px;
