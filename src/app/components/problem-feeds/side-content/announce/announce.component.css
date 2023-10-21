@@ -1,0 +1,40 @@
+h5, p { color: white; }
+
+button {
+    padding: 15px;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    text-decoration:  underline;
+    transition: 0.3s;
+}
+
+.announce-content {
+    position: relative;
+    margin: 15px 0;
+    padding: 0;
+
+    border-radius: 15px;
+    background-color: var(--bg-nav);
+}
+
+.d-flex div {
+    padding: 15px 15px 0 15px;
+}
+
+.scholar p {
+    padding: 10px;
+    text-align: center;
+
+    background-color: var(--bg-red);
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .announce-content {
+        display: none;
+    }
+}
