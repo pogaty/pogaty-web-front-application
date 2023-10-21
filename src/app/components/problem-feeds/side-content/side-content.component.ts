@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-side-content',
-  templateUrl: './side-content.component.html',
+  template: `
+    <div class="container-fluid">
+      <app-profile></app-profile>
+    </div>
+  `,
   styleUrls: ['./side-content.component.css']
 })
 export class SideContentComponent {
