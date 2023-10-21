@@ -1,0 +1,58 @@
+div.col-lg-6 p {
+    font-size: 14px;
+    margin: 0;
+}
+
+div.order-md-2, div.order-md-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 0px;
+}
+
+.row div {
+    padding: 15px;
+}
+.recommend-content {
+    position: relative;
+    margin: 50px 0;
+    padding: 0;
+
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+.user-profile {
+    width: 40px;
+    height: 40px;
+    
+    background-image: url('../../../../../assets/images/user-profile-samples/profile-2.png');
+    background-size: cover;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 992px) {
+    h5 {
+        text-align: center;
+    }
+    .order-md-3 {
+        text-align: center;
+    }
+
+    .order-md-1 {
+        justify-content: right !important;
+    }
+
+    .order-md-2 {
+        justify-content: left !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .recommend-content {
+        display: none;
+    }
+}
