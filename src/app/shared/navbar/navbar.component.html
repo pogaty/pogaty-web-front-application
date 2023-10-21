@@ -36,9 +36,12 @@
 
             <div class="d-flex">
                 <div class="px-0">
-                    <button class="btn">
-                        <img src="../../../assets/images/user-profile-samples/profile-1.png"
-                            class="user-profile-adjust">
+                    <button class="btn user-not" *ngIf="!isLogin">
+                        <i class="fa-solid fa-arrow-right-to-bracket fa-sm" style="color: #ffffff;"></i>
+                    </button>
+
+                    <button class="btn" *ngIf="isLogin">
+                        <img src="../../../assets/images/user-profile-samples/profile-1.png" class="user-profile-adjust">
                     </button>
                 </div>
                 <div class="d-flex px-0">
