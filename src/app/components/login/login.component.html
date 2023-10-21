@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="container-fluid background">
+    <div class="home">
+        <button class="btn">
+            <i class="fa-solid fa-house fa-xl" style="color: #ff5a5a;"></i>
+        </button>
+    </div>
+
+    <div class="container-lg content row">
+        <div class="col-lg left">
+            <div class="d-flex flex-column">
+                <div class="icon">
+                    <img src="../../../assets/icons/icon.png" width="100px" height="100px">
+                </div>
+                <div class="description">
+                    <p>Login from your social media to get a quick access in our site!</p>
+                </div>
+                <div class="d-flex flex-column buttons">
+                    <button class="btn google">
+                        <i class="fa-brands fa-google fa-2xl" style="color: #ffffff;"></i>
+                        <span>Signin with Google</span>
+                    </button>
+                    <button class="btn facebook">
+                        <i class="fa-brands fa-facebook-f fa-2xl" style="color: #ffffff;"></i>
+                        <span>Signin with Google</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ng-template [ngIf]="isRegistered" #login>
+            <div class="col-lg right">
+                <div class="d-flex flex-column">
+                    <div class="text">
+                        <h3>Login to your account</h3>
+                        <p>if you don't have account yet. you can create new one here. 
+                            <button class="btn sign" (click)="toggleRegistered()">Sign up</button> 
+                            without any charge.
+                        </p>
+                    </div>
+                    <div class="form d-flex flex-column">
+                        <input id="email" type="text" placeholder="Email Address.">
+                        <input id="password" type="password" placeholder="Password.">
+                        <button class="btn" type="submit">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="!isRegistered" #register>
+            <div class="col-lg right">
+                <div class="d-flex flex-column">
+                    <div class="text">
+                        <h3>Register new account</h3>
+                        <p>if you already have an accounts, you can 
+                            <button class="btn sign" (click)="toggleRegistered()">Login</button> 
+                            to our website by
+                        </p>
+                    </div>
+                    <div class="form d-flex flex-column">
+                        <input id="username" type="text" placeholder="Username">
+                        <input id="email" type="text" placeholder="Email Address.">
+                        <input id="password" type="password" placeholder="Password.">
+                        <button class="btn" type="submit">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

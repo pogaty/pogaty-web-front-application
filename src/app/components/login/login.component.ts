@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isRegistered = true
 
+  toggleRegistered(): void {
+    this.isRegistered = !this.isRegistered
+    console.log(this.isRegistered)
+  }
 }
