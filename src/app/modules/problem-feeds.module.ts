@@ -15,7 +15,6 @@ import { SideContentModule } from "./side-content.module";
     ],
     exports: [
         ProblemFeedsComponent,
-        ToolsComponent
     ]
 })
 
