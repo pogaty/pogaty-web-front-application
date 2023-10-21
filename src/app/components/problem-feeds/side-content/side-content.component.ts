@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     <div class="container-fluid">
       <app-profile></app-profile>
       <app-announce></app-announce>
+      <app-recommend></app-recommend>
     </div>
   `,
   styleUrls: ['./side-content.component.css']
