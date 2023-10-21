@@ -19,3 +19,15 @@
 .username{
     text-align: center;
 }
+
+.icon{
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon img{
+    border-radius: 15px;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
