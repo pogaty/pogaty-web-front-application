@@ -6,10 +6,12 @@ import { SharedModule } from './shared.module';
 import { ProblemFeedsModule } from './problem-feeds.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login.module';
+import { AppLayoutComponent } from '../components/application/app-layout/app-layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, 
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,
