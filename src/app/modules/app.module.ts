@@ -7,6 +7,7 @@ import { ProblemFeedsModule } from './problem-feeds.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login.module';
 import { AppLayoutComponent } from '../components/application/app-layout/app-layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,8 @@ import { AppLayoutComponent } from '../components/application/app-layout/app-lay
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    
     SharedModule,
     ProblemFeedsModule,
     AppRoutingModule,
