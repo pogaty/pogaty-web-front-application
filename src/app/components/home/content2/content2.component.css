@@ -4,3 +4,12 @@ h3{
 p{
     color: #FF3D3D;
 }
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    font-weight: bold;
+}
