@@ -1,31 +1,55 @@
-<div class="container-md feeds-content">
-    <div class="container-md d-flex flex-column">
-        <div class="row">
-            <div class="col-9 d-flex" style="align-items: center;">
-                <div class="user-profile">
-                </div>
-                <div class="user-text">
-                    <p style="font-weight: 500;">Sample Username</p>
-                    <p style="color: #BCBCBC;">10 hour ago.</p>
+<div *ngIf="isLoading; else content">
+    <div class="card feeds-content" aria-hidden="true">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 d-flex" style="align-items: center;">
+                    <div class="user-loading"></div>
+                    <div class="user-text placeholder-glow">
+                        <span class="placeholder">asdasdaasdasdad</span>
+                    </div>
                 </div>
             </div>
-            <div class="col-3" style="text-align: right;">
-                <span>14.3k</span>
-                <i class="fa-solid fa-arrow-up" style="color: #5af8ac;"></i>
-            </div>
+            <p class="card-text placeholder-glow">
+                <span class="placeholder col-7"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-6"></span>
+                <span class="placeholder col-8"></span>
+            </p>
         </div>
-        <div class="d-flex flex-column">
-            <h3>2023 Facing global warming 2 times!</h3>
-            <p style="font-weight: 500;">4 Ideas offer</p>
-        </div>
-        <div style="text-align: right;">
-            <button class="more" (click)="toggleIdeas()">
-                See more.
-            </button>
-        </div>
-    </div>
-    
-    <ng-template [ngIf]="showIdeas">
-        <app-idea></app-idea>
-    </ng-template>
+      </div>
 </div>
+
+<ng-template #content>
+    <div class="container-md feeds-content" *ngFor="let problem of problems">
+        <div class="container-md d-flex flex-column">
+            <div class="row">
+                <div class="col-9 d-flex" style="align-items: center;">
+                    <div class="user-profile">
+                    </div>
+                    <div class="user-text">
+                        <p style="font-weight: 500;">{{problem.client?.username}}</p>
+                        <p style="color: #BCBCBC;">{{ problemTimeAgoMap[problem.problem_id] }}</p>
+                    </div>
+                </div>
+                <div class="col-3" style="text-align: right;">
+                    <span>14.3k</span>
+                    <i class="fa-solid fa-arrow-up" style="color: #5af8ac;"></i>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <h3>{{problem.topic}}</h3>
+                <p style="font-weight: 500;">4 Ideas offer</p>
+            </div>
+            <div style="text-align: right;">
+                <button class="more" (click)="toggleIdeas(problem)">
+                    See more.
+                </button>
+            </div>
+        </div>
+        
+        <ng-template [ngIf]="problem.idea_visible">
+            <app-idea></app-idea>
+        </ng-template>
+    </div>
+</ng-template>
