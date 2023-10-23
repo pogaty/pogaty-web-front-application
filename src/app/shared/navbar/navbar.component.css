@@ -61,6 +61,44 @@
     display: none;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.menu {
+    position: absolute;
+    list-style-type: none;
+    display: none;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+}
+
+.dropdown:hover .menu {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+.menu a, .menu button {
+    padding: 10px;
+}
+
+.menu li {
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.menu li:hover {
+    background-color: white;
+    color: var(--bg-nav);
+
+    transition: 0.3s;
+}
+
 @media only screen and (max-width: 768px) {
     ul { 
         display: flex; 
