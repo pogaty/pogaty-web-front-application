@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-tools',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./tools.component.css']
 })
 export class ToolsComponent {
+  constructor(private dataService: DataService) { }
 
+  assignCategory(category: string) {
+    this.dataService.setProblemsCategory(category)
+  }
 }

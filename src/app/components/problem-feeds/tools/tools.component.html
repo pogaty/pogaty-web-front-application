@@ -36,10 +36,15 @@
                         <i class="fa-solid fa-bell fa-xl" style="color: #d2d1cd;"></i>
                     </button>
                 </div>
-                <div>
-                    <button class="btn">
+                <div class="dropdown">
+                    <button class="btn hover">
                         <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;"></i>
                     </button>
+                    <ul class="menu">
+                        <li><a class="dropdown-item" (click)="assignCategory('global')">Global</a></li>
+                        <li><a class="dropdown-item" (click)="assignCategory('environment')">Environment</a></li>
+                        <li><a class="dropdown-item" (click)="assignCategory('innovation')">Innovation</a></li>
+                    </ul>
                 </div>
                 <div class="text">
                     <p style="font-weight: bold;">Global Community</p>
