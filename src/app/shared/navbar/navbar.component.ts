@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.isLogin)
+    console.log(`navbar -logStat ${this.isLogin}`)
     const userInfo = localStorage.getItem('userInfo')
     if (userInfo) {
       this.isLogin = true
@@ -28,6 +28,4 @@ export class NavbarComponent implements OnInit {
     this.isLogin = false
     this.router.navigate(['/login'])
   }
-
-
 }
