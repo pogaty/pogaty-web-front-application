@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Idea } from 'src/app/models/idea.model';
 import { Problem } from 'src/app/models/problem.model';
 import { DataService } from 'src/app/services/data.service';
 import { ProblemService } from 'src/app/services/problem.service';
@@ -15,6 +16,8 @@ export class FeedsComponent implements OnInit, OnDestroy {
   problems: Problem[] = []
   problemTimeAgoMap: { [key: number]: string } = {};
   private categorySubscription: Subscription | undefined
+
+  @Output() ideaData: EventEmitter<Idea[] | undefined> = new EventEmitter<Idea[] | undefined>();
 
   constructor( 
     private dataService: DataService,
@@ -43,8 +46,12 @@ export class FeedsComponent implements OnInit, OnDestroy {
   }
 
   toggleIdeas(problem: Problem): void {
-    problem.idea_visible = !problem.idea_visible;
+    problem.idea_visible = !problem.idea_visible
     console.log(`-obj feeds -recieved ${problem.topic} has ${problem.idea_visible}`)
+
+    if (problem.idea_visible) {
+      this.ideaData.emit(problem.ideas)
+    }
   }
 
   async renderProblemsByCategory(community: string | null): Promise<void> {
@@ -69,4 +76,6 @@ export class FeedsComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+
 }
