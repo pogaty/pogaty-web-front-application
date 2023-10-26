@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { LoginComponent } from "../components/login/login.component";
 import { AppLayoutComponent } from "../components/application/app-layout/app-layout.component";
 import { HomeComponent } from "../components/home/home.component";
+import { ProfilePageComponent } from "../components/profile-page/profile-page.component";
 
 const routes: Routes = [
     {
@@ -18,6 +19,13 @@ const routes: Routes = [
         component: AppLayoutComponent,
         children: [
             { path: '', component: ProblemFeedsComponent }
+        ]
+    },
+    { 
+        path: 'profile', 
+        component: AppLayoutComponent,
+        children: [
+            { path: '', component: ProfilePageComponent }
         ]
     },
     { path: 'login', component: LoginComponent },

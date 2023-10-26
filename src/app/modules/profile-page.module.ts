@@ -7,7 +7,18 @@ import { ProfileComponent } from '../components/profile-page/profile/profile.com
 import { DescriptionComponent } from '../components/profile-page/description/description.component';
 
 @NgModule({
-  declarations: [ProfilePageComponent, ExhibitionComponent, CategoryComponent,ProfileComponent,DescriptionComponent],
-  exports: [ProfilePageComponent, ExhibitionComponent, CategoryComponent,ProfileComponent,DescriptionComponent],
+  declarations: [
+    ProfilePageComponent, 
+    ExhibitionComponent, 
+    CategoryComponent,
+    ProfileComponent,
+    DescriptionComponent],
+  exports: [
+    ProfilePageComponent, 
+    ExhibitionComponent, 
+    CategoryComponent,
+    ProfileComponent,
+    DescriptionComponent
+  ],
 })
 export class ProfilePageModule {}
