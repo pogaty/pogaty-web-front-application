@@ -9,6 +9,7 @@ import { LoginModule } from './login.module';
 import { AppLayoutComponent } from '../components/application/app-layout/app-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home.module';
+import { ProfilePageModule } from './profile-page.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeModule } from './home.module';
     
     SharedModule,
     HomeModule,
+    ProfilePageModule,
     ProblemFeedsModule,
     AppRoutingModule,
     LoginModule

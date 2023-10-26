@@ -1,0 +1,11 @@
+h5{
+    color: #CF0A0A;
+}
+
+.content{
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100px;
+    padding: 10px;
+}
