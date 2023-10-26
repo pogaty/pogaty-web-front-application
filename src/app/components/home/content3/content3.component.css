@@ -1,0 +1,43 @@
+.content{
+    background-color: white;
+    border-radius: 30px 0 30px 0;
+    padding: 20px 0 20px 0;
+}
+
+.picture img{
+    width: 400px;
+}
+
+.successful-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.successful{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
+
+.successful img{
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.successful-box{
+    width: 280px;
+    height: 170px;
+    transform: translateY(-60px);
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.successful-box a{
+    text-decoration: none;
+    color: #009F23;
+}

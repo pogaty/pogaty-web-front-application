@@ -1,0 +1,15 @@
+h3{
+    color: white;
+}
+p{
+    color: #FF3D3D;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    font-weight: bold;
+}

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login.module';
 import { AppLayoutComponent } from '../components/application/app-layout/app-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     
     SharedModule,
+    HomeModule,
     ProblemFeedsModule,
     AppRoutingModule,
     LoginModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
