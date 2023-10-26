@@ -1,4 +1,5 @@
 import { Client } from "./client.model";
+import { Idea } from "./idea.model";
 
 export interface Problem {
     problem_id: number,
@@ -7,5 +8,6 @@ export interface Problem {
     rating?: string,
     idea_visible?: boolean,
     date?: string,
-    client?: Client
+    client?: Client,
+    ideas?: Idea[]
 }
