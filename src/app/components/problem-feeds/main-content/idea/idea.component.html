@@ -26,29 +26,26 @@
         <div class="d-flex flex-column idea-list">
             <div>
                 <h5>{{idea.ideaHeader}}</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and ...</p>
+                <p>{{idea.key}} ...</p>
             </div>
             <div class="profile-participant">
-                <button class="btn"></button>
-                <button class="btn"></button>
-                <button class="btn"></button>
-                <button class="btn"></button>
+                <button class="btn" *ngFor="let participant of idea.participants"></button>
             </div>
             <div class="row describe">
-                <div class="col-lg-6 col-md-4 col-6 px-4">4 participants</div>
+                <div class="col-lg-6 col-md-4 col-6 px-4">{{idea.participants.length}} participants</div>
                 <div class="col-lg-4 col-md-5 col-6 agree-content">
                     <div class="d-flex agreement">
                         <div>
-                            <button class="btn">
+                            <button class="btn" (click)="agreeBtn(idea.idea_id)">
                                 <i class="fa-regular fa-thumbs-up fa-xl" style="color: #64a2ff;"></i>
                             </button>
-                            <span>10</span>
+                            <span>{{agreeMap[idea.idea_id]}}</span>
                         </div>
                         <div>
-                            <button class="btn">
+                            <button class="btn" (click)="disagreeBtn(idea.idea_id)">
                                 <i class="fa-regular fa-thumbs-down fa-xl" style="color: #ff5a5a;"></i>
                             </button>
-                            <span>4</span>
+                            <span>{{disagreeMap[idea.idea_id]}}</span>
                         </div>
                     </div>
                 </div>
