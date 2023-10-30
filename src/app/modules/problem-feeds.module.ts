@@ -3,6 +3,8 @@ import { ProblemFeedsComponent } from "../components/problem-feeds/problem-feeds
 import { ToolsComponent } from "../components/problem-feeds/tools/tools.component";
 import { MainContentModule } from "./main-content.module";
 import { SideContentModule } from "./side-content.module";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @NgModule ({
     declarations: [
@@ -11,7 +13,9 @@ import { SideContentModule } from "./side-content.module";
     ],
     imports: [
         MainContentModule,
-        SideContentModule
+        SideContentModule,
+        CommonModule,
+        FormsModule
     ],
     exports: [
         ProblemFeedsComponent,
