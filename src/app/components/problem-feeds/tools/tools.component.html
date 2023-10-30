@@ -3,18 +3,18 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-6 order-md-1 order-sm-1 order-1">
             <div class="d-flex flex-center">
                 <div>
-                    <button class="btn">
-                        <i class="fa-solid fa-boxes-stacked fa-xl" style="color: #d2d1cd;"></i>
+                    <button class="btn" (click)="setPage('feeds')">
+                        <i class="fa-solid fa-boxes-stacked fa-xl" style="color: #d2d1cd;" alt="feeds"></i>
                     </button>
                 </div>
                 <div>
-                    <button class="btn">
-                        <i class="fa-regular fa-note-sticky fa-xl" style="color: #d2d1cd;"></i>
+                    <button class="btn" (click)="setPage('my_problems')">
+                        <i class="fa-regular fa-note-sticky fa-xl" style="color: #d2d1cd;" alt="my problems"></i>
                     </button>
                 </div>
                 <div>
-                    <button class="btn">
-                        <i class="fa-regular fa-heart fa-xl" style="color: #ff2566;"></i>
+                    <button class="btn" (click)="setPage('mark_problems')">
+                        <i class="fa-regular fa-bookmark fa-xl" style="color: #ff2566;" alt="mark problems"></i>
                     </button>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div>
                     <i class="fa-solid fa-magnifying-glass" style="color: #d2d1cd;"></i>
                 </div>
-                <input class="form" type="search" placeholder="Search ...">
+                <input class="form" type="search" placeholder="Search ..." (input)="setProblemFilter(searchFilter)" [(ngModel)]="searchFilter">
             </div>
             
             
@@ -38,7 +38,9 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn hover">
-                        <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;"></i>
+                        <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;" *ngIf="category == 'global'"></i>
+                        <i class="fa-solid fa-seedling fa-xl" style="color: #32cd75;" *ngIf="category == 'environment'"></i>
+                        <i class="fa-solid fa-lightbulb fa-xl" style="color: #ffb029;" *ngIf="category == 'innovation'"></i>
                     </button>
                     <ul class="menu">
                         <li><a class="dropdown-item" (click)="assignCategory('global')">Global</a></li>
@@ -46,9 +48,20 @@
                         <li><a class="dropdown-item" (click)="assignCategory('innovation')">Innovation</a></li>
                     </ul>
                 </div>
-                <div class="text">
+                
+                <div class="text" *ngIf="category == 'global'">
                     <p style="font-weight: bold;">Global Community</p>
                     <p>Discovery around the world.</p>
+                </div>
+
+                <div class="text" *ngIf="category == 'environment'">
+                    <p style="font-weight: bold;">Environment Community</p>
+                    <p>environment topics</p>
+                </div>
+
+                <div class="text" *ngIf="category == 'innovation'">
+                    <p style="font-weight: bold;">Innovation Community</p>
+                    <p>innovation topics</p>
                 </div>
             </div>
         </div>

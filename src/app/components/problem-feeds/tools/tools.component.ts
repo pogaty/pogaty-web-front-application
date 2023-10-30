@@ -7,9 +7,28 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./tools.component.css']
 })
 export class ToolsComponent {
-  constructor(private dataService: DataService) { }
+  category: string = 'global'
+  searchFilter = ''
+
+  constructor(private dataService: DataService) { 
+    console.log(this.category)
+  }
 
   assignCategory(category: string) {
     this.dataService.setProblemsCategory(category)
+    this.category = category
   }
+
+  setPage(page: string) {
+    this.dataService.setCurrentPage(page)
+  }
+
+  setProblemFilter(filter: string | null) {
+    (filter) ? this.dataService.setFilterProblems(filter) : this.dataService.setProblemsCategory(this.category)
+  }
+
+  // setPageFeed() {
+  //   this.dataService.setCurrentPage('feed')
+  //   window.location.reload()
+  // }
 }
