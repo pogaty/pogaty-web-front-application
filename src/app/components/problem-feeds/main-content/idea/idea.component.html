@@ -6,10 +6,17 @@
                     <i class="fa-regular fa-lightbulb fa-xl" style="color: #ff4155;"></i>
                     <span>Idea offers</span>
                 </button>
-                <button class="btn">
-                    <i class="fa-solid fa-map-pin fa-xl" style="color: #ff4155;"></i>
-                    <span>Pin</span>
+                <button class="btn" *ngIf="!isMark(problem?.problem_id || 0) else nonMark" (click)="addMark(problem?.problem_id || 0)">
+                    <i class="fa-regular fa-bookmark fa-xl" style="color: #ff2566;"></i>
+                    <span>Mark</span>
                 </button>
+
+                <ng-template #nonMark>
+                    <button class="btn" (click)="removeMark(problem?.problem_id || 0)">
+                        <i class="fa-solid fa-bookmark fa-xl" style="color: #ff2566;"></i>
+                        <span>Mark</span>
+                    </button>
+                </ng-template>
             </div>
             <div class="col-sm-4 order-1 order-sm-2 d-flex right">
                 <button class="btn">

@@ -1,4 +1,4 @@
-<div *ngIf="isLoading; else content">
+<div *ngIf="isLoading">
     <div class="card feeds-content" aria-hidden="true">
         <div class="card-body">
             <div class="row">
@@ -20,7 +20,7 @@
       </div>
 </div>
 
-<ng-template #content>
+<div *ngIf="!isLoading">
     <div class="container-md feeds-content" *ngFor="let problem of problems">
         <div class="container-md d-flex flex-column">
             <div class="row">
@@ -49,7 +49,7 @@
         </div>
         
         <ng-template [ngIf]="problem.idea_visible">
-            <app-idea [ideas]="problem.ideas"></app-idea>
+            <app-idea [ideas]="problem.ideas" [problem]="problem"></app-idea>
         </ng-template>
     </div>
-</ng-template>
+</div>
