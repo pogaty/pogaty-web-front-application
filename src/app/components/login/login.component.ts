@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/client.service.';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent {
 
   constructor(
     private clientService: ClientService,
+    private dataService: DataService,
     private router: Router,
   ) { }
 
@@ -34,5 +36,9 @@ export class LoginComponent {
   toggleRegistered(): void {
     this.isRegistered = !this.isRegistered
     console.log(this.isRegistered)
+  }
+
+  refreshDash() {
+    this.dataService.setCurrentPage("feeds")
   }
 }
