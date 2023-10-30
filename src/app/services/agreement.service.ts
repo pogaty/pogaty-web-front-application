@@ -28,8 +28,8 @@ export class AgreementService {
         return []
     }
 
-    updateAgreed(idea_id: number, client_id: number, agreement: Agreement) {
-        fetch(`${API_URLS.ideas}/${idea_id}/reaction_by/${client_id}`,
+    async updateAgreed(idea_id: number, client_id: number, agreement: Agreement) {
+        return fetch(`${API_URLS.ideas}/${idea_id}/reaction_by/${client_id}`,
         {
             method: 'PUT',
             headers: {
