@@ -82,6 +82,11 @@ export class ProblemService {
         return res.text()
     }
 
+    async loadTimedAgo(): Promise<string> {
+      const res = await fetch(`${API_URLS.problems}/timed`)
+      return res.text()
+  }
+
     async createNewPost(client_id: number, problem: any): Promise<void> {
       await fetch(`${API_URLS.problems}/by/${client_id}`, 
       {
