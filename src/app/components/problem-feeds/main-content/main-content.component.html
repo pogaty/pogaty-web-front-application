@@ -4,6 +4,11 @@
         <app-feeds></app-feeds>
     </div>
 
+    <div *ngIf="getPage() == 'my_problems'">
+        <app-post></app-post>
+        <app-feeds></app-feeds>
+    </div>
+
     <div *ngIf="getPage() == 'mark_problems'">
         <div style="margin: 15px 0;"></div>
         <app-feeds></app-feeds>

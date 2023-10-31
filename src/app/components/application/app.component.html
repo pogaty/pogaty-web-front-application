@@ -1,1 +1,43 @@
+<div class="popup" *ngIf="isProblemOpen" (click)="closePopup($event)">
+    <div class="container-sm content">
+        
+        <div class="container">
+            <button class="btn exist" (click)="closePopup($event)">
+                <i class="fa-solid fa-square-xmark" style="color: #FF4155;"></i>
+            </button>
+        </div>
+        
+        <div class="inform">
+            <input type="text" placeholder="the topic of your problem." value="{{contentProblem}}" #header>
+            <textarea class="description" type="text" placeholder="here is some of your description of your problem ..." value="{{descriptionProblem}}" #description></textarea>
+            <div>
+                <p *ngIf="errorlog" style="text-align: center; color: var(--bg-red);">{{errorlog}}</p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 container">
+                        <div class="d-flex flex-wrap">
+                            <button class="btn" [ngClass]="{'active': category === 'global'}">
+                                <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;" (click)="setCategory('global')"> Global</i>
+                            </button>
+    
+                            <button class="btn" [ngClass]="{'active': category === 'environment'}">
+                                <i class="fa-solid fa-seedling fa-xl" style="color: #32cd75;" (click)="setCategory('environment')"> Environment</i>
+                            </button>
+    
+                            <button class="btn" [ngClass]="{'active': category === 'innovation'}">
+                                <i class="fa-solid fa-lightbulb fa-xl" style="color: #ffb029;" (click)="setCategory('innovation')"> Innovation</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-custom" 
+                            (click)="createPost(header.value, description.value)"
+                        >Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <router-outlet></router-outlet>

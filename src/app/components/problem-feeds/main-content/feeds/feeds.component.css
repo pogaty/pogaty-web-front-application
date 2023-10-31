@@ -71,3 +71,12 @@ p {
 .problem {
     padding: 0 10px;
 }
+
+.editor {
+    width: fit-content;
+    float: right;
+}
+
+.edit {
+    justify-content: right;
+}

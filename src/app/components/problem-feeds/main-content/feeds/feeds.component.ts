@@ -56,16 +56,18 @@ export class FeedsComponent implements OnInit, OnDestroy {
       this.renderFilterFactor(this.selectedFilter)
     })
 
-  
+    this.dataService.getOnTrack().subscribe(() => {
+      this.renderProblemsByCategory(this.selectedCategory)
+    })
 
-    if (this.data) {
-      this.problemService.loadProblemByMark(JSON.parse(this.data).client_id).then(data => {
-        this.dataService.setMarkProblems(data)
-        console.log(this.dataService.getMarkProblems())
-      }).catch(() => {
-        this.dataService.setMarkProblems([])
-      })
-    }
+    // if (this.data) {
+    //   this.problemService.loadProblemByMark(JSON.parse(this.data).client_id).then(data => {
+    //     this.dataService.setMarkProblems(data)
+    //     console.log(this.dataService.getMarkProblems())
+    //   }).catch(() => {
+    //     this.dataService.setMarkProblems([])
+    //   })
+    // }
   }
 
   ngOnDestroy(): void {
@@ -82,6 +84,23 @@ export class FeedsComponent implements OnInit, OnDestroy {
     return this.dataService.getCurrentPage()
   }
 
+  openEditor(id: number, topic: string | undefined, description: string | undefined) {
+      const myPackage = {
+        id: id,
+        topic: topic,
+        description: description
+      }
+      
+      this.dataService.setProblemOpen(true)
+      this.dataService.setUpdateProblem(myPackage)
+      console.log("asdasd")
+  }
+
+  truncate(id: number) {
+    this.problemService.deletePost(id)
+    this.dataService.setOnTrack(1)
+  }
+
   toggleIdeas(problem: Problem): void {
     problem.idea_visible = !problem.idea_visible
     console.log(`-obj feeds -recieved ${problem.topic} has ${problem.idea_visible}`)
@@ -95,24 +114,37 @@ export class FeedsComponent implements OnInit, OnDestroy {
   async renderProblemsByCategory(community: string | null): Promise<void> {
     try {
       this.isLoading = true
-        if (this.getPage() == 'feeds') {
-          if (community) {
-            this.problems = await this.problemService.loadProblemsByCategory(community)
-          } else {
-            this.problems = await this.problemService.loadProblems()
+      console.log(this.getPage())
+        switch(this.getPage()) {
+          case 'feeds': {
+            if (community) {
+              this.problems = await this.problemService.loadProblemsByCategory(community)
+              .catch(() => { return []})
+            } else {
+              this.problems = await this.problemService.loadProblems()
+              .catch(() => { return []})
+            }
+            break;
           }
-        }
-
-        else if (this.getPage() == 'mark_problems') {
-          const data = localStorage.getItem("userInfo");
-          if (!data) {
-            this.router.navigate(['/login'])
-          } else {
-            this.problems = await this.problemService.loadProblemByMark(JSON.parse(data).client_id)
+          case 'mark_problems': {
+            if (!this.data) {
+              this.router.navigate(['/login'])
+            } else {
+              this.problems = await this.problemService.loadProblemByMark(JSON.parse(this.data).client_id)
+              .catch(() => { return []})
+            }
+            break;
+          }
+          case 'my_problems': {
+            if (!this.data) {
+              this.router.navigate(['/login'])
+            } else {
+              this.problems = await this.problemService.loadProblemByClient(JSON.parse(this.data).client_id)
+              .catch(() => { return []})
+            }
           }
         }
         
-      
       this.filtered_problems = this.problems
       console.log(this.problems)
     } finally {
@@ -127,8 +159,6 @@ export class FeedsComponent implements OnInit, OnDestroy {
         return problem.topic?.toLowerCase().includes(filter.toLowerCase())
       })
     }
-    
-    
   }
 
   renderTimedAgo(problem: Problem) {
