@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { ExhibitionComponent } from '../components/profile-page/exhibition/exhibition.component';
@@ -8,17 +10,19 @@ import { DescriptionComponent } from '../components/profile-page/description/des
 
 @NgModule({
   declarations: [
-    ProfilePageComponent, 
-    ExhibitionComponent, 
+    ProfilePageComponent,
+    ExhibitionComponent,
     CategoryComponent,
     ProfileComponent,
-    DescriptionComponent],
-  exports: [
-    ProfilePageComponent, 
-    ExhibitionComponent, 
-    CategoryComponent,
-    ProfileComponent,
-    DescriptionComponent
+    DescriptionComponent,
   ],
+  exports: [
+    ProfilePageComponent,
+    ExhibitionComponent,
+    CategoryComponent,
+    ProfileComponent,
+    DescriptionComponent,
+  ],
+  imports: [CommonModule, FormsModule],
 })
 export class ProfilePageModule {}
