@@ -16,7 +16,7 @@ export class DescriptionComponent implements OnInit {
   isEdit = false;
   isShow = true;
 
-  modifiedDescription = '';
+  modifiedDescription: string | undefined = '';
 
   userData: Client | null;
 
@@ -31,12 +31,14 @@ export class DescriptionComponent implements OnInit {
 
       this.clientService.loadUsers(username).then((data) => {
         this.userData = data;
-        this.modifiedDescription = userInfo.description;
       });
     }
   }
 
-  private updateUser(client_id: number | undefined, description: string) {
+  private updateUser(
+    client_id: number | undefined,
+    description: string | undefined
+  ) {
     if (this.data && this.userData) {
       const userInfo = JSON.parse(this.data);
       const client_id = userInfo.client_id;
@@ -52,6 +54,7 @@ export class DescriptionComponent implements OnInit {
   }
 
   onClickEdit() {
+    this.modifiedDescription = this.userData?.description;
     this.isEdit = true;
     this.isShow = false;
   }
