@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs';
 import { Problem } from 'src/app/models/problem.model';
 import { DataService } from 'src/app/services/data.service';
 import { ProblemService } from 'src/app/services/problem.service';
@@ -9,7 +10,7 @@ import { ProblemService } from 'src/app/services/problem.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  data = localStorage.getItem('userInfo')
+  
   title = 'Pogaty';
   contentProblem: string = ''
   descriptionProblem: string = ''
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isEditor = false
     this.dataService.getProblemOpen().subscribe(data => {
       this.isProblemOpen = data
     })
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit {
       this.contentProblem = data
     })
 
-    this.dataService.getUpdateProblem().subscribe(data => {
+    this.dataService.getUpdateProblem().pipe(filter(data => data)).subscribe(data => {
       this.isEditor = true
       this.myPackage = data
       this.contentProblem = data.topic || null
@@ -60,8 +62,9 @@ export class AppComponent implements OnInit {
     if (!topic || !description) {
       this.errorlog = "The problem must contain the fields request." 
     } else {
-      if (this.data) {
-        const client_id = JSON.parse(this.data).client_id
+      const data = localStorage.getItem('userInfo')
+      if (data) {
+        const client_id = JSON.parse(data).client_id
         const problem = {
           topic: topic,
           description: description,
