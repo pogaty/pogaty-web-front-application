@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 import { BehaviorSubject } from "rxjs"
 import { Problem } from "../models/problem.model"
+import { Trend } from "../models/trend.model"
 
 @Injectable({
     providedIn: 'root'
@@ -12,14 +13,18 @@ export class DataService {
     private ontrack = new BehaviorSubject<any>(null)
     private shareCategory = new BehaviorSubject<any>(null)
     private shareFilter = new BehaviorSubject<any>(null)
+    private shareTrend = new BehaviorSubject<any>(null)
+
     private contentProblemOpen = new BehaviorSubject<any>(null)
     private updateProblem = new BehaviorSubject<any>(null)
     private isProblemOpen = new BehaviorSubject<boolean>(false)
     
 
     private currentPage: string = 'feeds'
+    private tmpProblemId: number = 0
     private mark_problems: Problem[] = []
     private my_problems: Problem[] = []
+    private trendMap: { [key: number]: string } = {};
 
     setOnTrack(data: number) {
         this.ontrack.next(data)
@@ -28,7 +33,7 @@ export class DataService {
     getOnTrack() {
         return this.ontrack.asObservable()
     }
-    
+
     setProblemsCategory(data: string) {
         this.shareCategory.next(data)
     }
@@ -43,6 +48,14 @@ export class DataService {
 
     getFilterProblems() {
         return this.shareFilter.asObservable()
+    }
+
+    setShareTrend(data: any) {
+        this.shareTrend.next(data)
+    }
+
+    getShareTrend() {
+        return this.shareTrend.asObservable()
     }
    
     setProblemOpen(data: boolean) {
@@ -93,4 +106,19 @@ export class DataService {
         this.my_problems = problems
     }
 
+    setTrendMap(problem_id: number, data: string) {
+        this.trendMap[problem_id] = data
+    }
+
+    getTrendMap() {
+        return this.trendMap
+    }
+
+    setTmpProblemId(id: number) {
+        this.tmpProblemId = id
+    }
+
+    getTmpProblemId() {
+        return this.tmpProblemId
+    }
 }
