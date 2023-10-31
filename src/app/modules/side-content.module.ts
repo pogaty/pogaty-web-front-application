@@ -3,6 +3,7 @@ import { SideContentComponent } from "../components/problem-feeds/side-content/s
 import { ProfileComponent } from "../components/problem-feeds/side-content/profile/profile.component";
 import { AnnounceComponent } from "../components/problem-feeds/side-content/announce/announce.component";
 import { RecommendComponent } from "../components/problem-feeds/side-content/recommend/recommend.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule ({
     declarations: [
@@ -10,6 +11,9 @@ import { RecommendComponent } from "../components/problem-feeds/side-content/rec
         ProfileComponent,
         AnnounceComponent,
         RecommendComponent
+    ],
+    imports: [
+        CommonModule
     ],
     exports: [
         SideContentComponent,
