@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { Agreement } from 'src/app/models/agreement.model';
 import { Idea } from 'src/app/models/idea.model';
 import { Problem } from 'src/app/models/problem.model';
+import { Trend } from 'src/app/models/trend.model';
 import { AgreementService } from 'src/app/services/agreement.service';
 import { DataService } from 'src/app/services/data.service';
 import { ProblemService } from 'src/app/services/problem.service';
+import { TrendService } from 'src/app/services/trend.service';
 
 @Component({
   selector: 'app-idea',
@@ -24,6 +26,7 @@ export class IdeaComponent implements OnInit, OnChanges {
   constructor(
     private dataService: DataService,
     private agreementService: AgreementService,
+    private trendService: TrendService,
     private problemService: ProblemService,
     private router: Router
   ) {}
@@ -102,14 +105,29 @@ export class IdeaComponent implements OnInit, OnChanges {
       const client_id = JSON.parse(this.data).client_id;
       const agreement: Agreement = {
         agreed: agreed,
-      };
+      }
   
       this.agreementService.updateAgreed(ideaId, client_id, agreement).then(() => {
         // After updating the agreement, reload the counts of agree and disagree reactions
         this.reloadAgreeDisagreeCounts(ideaId);
-      });
+      })
     } else {
       this.router.navigate(['/login'])
+    }
+  }
+
+  updateTrend(problem_id: number, newTrend: boolean) {
+    if (this.data) {
+      const trend: Trend = {
+        trend: newTrend,
+      }
+
+      const packet = {problem_id, trend}
+      this.dataService.setShareTrend(packet)
+
+      // this.trendService.updateTrend(problemId, client_id, trend).then(() => {
+      //   this.reloadTrendRates(problemId)
+      // })
     }
   }
   

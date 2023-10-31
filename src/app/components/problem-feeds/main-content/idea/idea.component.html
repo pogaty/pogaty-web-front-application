@@ -20,10 +20,12 @@
             </div>
             <div class="col-sm-4 order-1 order-sm-2 d-flex right">
                 <button class="btn">
-                    <i class="fa-solid fa-heart fa-xl" style="color: #ff4155;"></i>
+                    <i class="fa-solid fa-heart fa-xl" style="color: #ff4155;" 
+                    (click)="updateTrend(problem?.problem_id || 0, true)"></i>
                 </button>
                 <button class="btn">
-                    <i class="fa-solid fa-share-nodes fa-xl" style="color: #ff4155;"></i>
+                    <i class="fa-solid fa-share-nodes fa-xl" style="color: #ff4155;"
+                    (click)="updateTrend(problem?.problem_id || 0, false)"></i>
                 </button>
             </div>
         </div>

@@ -33,8 +33,15 @@
                     </div>
                 </div>
                 <div class="col-3" style="text-align: right;" *ngIf="getPage() != 'my_problems'">
-                    <span>14.3k</span>
-                    <i class="fa-solid fa-arrow-up" style="color: #5af8ac;"></i>
+                    <span>{{trendRatesMap[problem.problem_id][0]}}</span>
+                    <i class="fa-solid fa-arrow-up" style="color: #5af8ac;"
+                    *ngIf="trendRatesMap[problem.problem_id][1] == 2"></i>
+
+                    <i class="fa-solid fa-grip-lines" style="color: #ff8d5c;"
+                    *ngIf="trendRatesMap[problem.problem_id][1] == 1"></i>
+                    
+                    <i class="fa-solid fa-arrow-down" style="color: #ec4141;"
+                    *ngIf="trendRatesMap[problem.problem_id][1] == 0"></i>
                 </div>
                 <div class="col-3 d-flex edit" *ngIf="getPage() == 'my_problems'">
                     <div class="truncate">

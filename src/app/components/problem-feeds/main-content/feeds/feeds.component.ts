@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { Idea } from 'src/app/models/idea.model';
 import { Problem } from 'src/app/models/problem.model';
 import { DataService } from 'src/app/services/data.service';
 import { ProblemService } from 'src/app/services/problem.service';
+import { TrendService } from 'src/app/services/trend.service';
 
 @Component({
   selector: 'app-feeds',
@@ -23,7 +24,9 @@ export class FeedsComponent implements OnInit, OnDestroy {
 
   problems: Problem[] = []
   filtered_problems: Problem[] = []
+
   problemTimeAgoMap: { [key: number]: string } = {}
+  trendRatesMap: { [key: number]: number[] } = {}
 
   @Output() ideaData: EventEmitter<Idea[] | undefined> = new EventEmitter<Idea[] | undefined>()
   @Output() problemData: EventEmitter<Problem> = new EventEmitter<Problem>()
@@ -31,6 +34,7 @@ export class FeedsComponent implements OnInit, OnDestroy {
   constructor( 
     private dataService: DataService,
     private problemService: ProblemService,
+    private trendService: TrendService,
     private router: Router
   ) { }
 
@@ -40,24 +44,36 @@ export class FeedsComponent implements OnInit, OnDestroy {
         (data == 'global') ? this.selectedCategory = null : this.selectedCategory = data
         console.log(`-dts tools -category ${this.selectedCategory}`)
 
-        this.renderProblemsByCategory(this.selectedCategory).then(() => {
-          this.problems.forEach((problem) => {
-            this.renderTimedAgo(problem)
-          })
-        })
+        this.renderProblemsByCategory(this.selectedCategory)
+        this.renderTrendRates()
+        this.renderTimedAgo()
       }
     )
 
     this.filterSubscription = this.dataService.getFilterProblems()
-    .subscribe((data) => {
+    .pipe(filter(data => !!data)).subscribe((data) => {
       this.selectedFilter = data
       console.log(`-dts tools -filter ${this.selectedFilter}`)
 
       this.renderFilterFactor(this.selectedFilter)
     })
 
-    this.dataService.getOnTrack().subscribe(() => {
+    this.dataService.getOnTrack().pipe(filter(data => !!data))
+    .subscribe(() => {
       this.renderProblemsByCategory(this.selectedCategory)
+    })
+
+    this.dataService.getShareTrend().pipe(filter(data => !!data))
+    .subscribe(data => {
+      const problem_id = data.problem_id
+      console.log(problem_id + ' asdadssdas')
+
+      if (this.data) {
+        this.trendService.updateTrend(problem_id, JSON.parse(this.data).client_id, data.trend)
+          .then(() => {
+            this.renderTrendRates()
+          })
+      }
     })
 
     // if (this.data) {
@@ -98,7 +114,7 @@ export class FeedsComponent implements OnInit, OnDestroy {
 
   truncate(id: number) {
     this.problemService.deletePost(id)
-    this.dataService.setOnTrack(1)
+    this.renderProblemsByCategory(this.selectedCategory)
   }
 
   toggleIdeas(problem: Problem): void {
@@ -161,13 +177,18 @@ export class FeedsComponent implements OnInit, OnDestroy {
     }
   }
 
-  renderTimedAgo(problem: Problem) {
-    this.problemService.loadTimedAgoByProblemId(problem.problem_id)
-      .then((time) => {
-        this.problemTimeAgoMap[problem.problem_id] = time
-      }
-    )
+  renderTimedAgo() {
+    this.problemService.loadTimedAgo().then((time) => {
+      const timeJson = JSON.parse(time)
+      this.problemTimeAgoMap = timeJson
+    })
   }
 
-
+  renderTrendRates() {
+    this.trendService.loadTrendsRate().then(trend => {
+      const trendJson = JSON.parse(trend)
+      console.log(trendJson)
+      this.trendRatesMap = trendJson
+    })
+  }
 }
