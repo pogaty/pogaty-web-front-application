@@ -16,18 +16,23 @@ export class ClientService {
     return null;
   }
 
-  updateUser(client_id: number) {
+  updateUser(client_id: number, client: Client | null) {
     fetch(`${API_URLS.clients}/${client_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((res) => {
-      if (res.ok) {
-        console.log('update successfully.');
-      } else {
-        console.log('failed to update resource.');
-      }
-    });
+      body: JSON.stringify(client), // Send the client data as the request body
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log('Update successful.');
+        } else {
+          console.log('Failed to update resource.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 }
