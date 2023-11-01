@@ -121,9 +121,10 @@ export class AppComponent implements OnInit {
 
   resetData() {
     this.isProblemOpen = false
-        this.category = 'global'
-        this.errorlog = ''
-        this.dataService.setOnTrack(1)
+    this.isIdeaOpen = false
+    this.category = 'global'
+    this.errorlog = ''
+    this.dataService.setOnTrack(1)
   }
 }
 
