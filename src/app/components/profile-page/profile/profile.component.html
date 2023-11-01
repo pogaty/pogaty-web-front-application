@@ -11,7 +11,7 @@
     <h3>{{ userData?.firstname }}&nbsp;{{ userData?.lastname }}</h3>
     <p>@{{ userData?.username }}</p>
   </div>
-  <div class="col-md-7 mt-4 edit">
+  <div class="col-md-8 mt-4 edit">
     <button
       class="btn btn-outline-secondary btn-sm"
       [routerLink]="['/edit-profile']"
@@ -19,9 +19,11 @@
       edit profile
     </button>
   </div>
-  <div class="col-md-2 mt-4 icon">
-    <img src="./assets/images/profile-page/facebook.png" />
-    <img src="./assets/images/profile-page/mail.png" />
-    <img src="./assets/images/profile-page/linkedin.png" />
+  <div class="col-auto mt-4 ms-auto">
+    <a [href]="'mailto:' + (userData?.mail || '')">
+      <button class="btn btn-danger">
+        <i class="fa-regular fa-envelope"></i>
+      </button>
+    </a>
   </div>
 </div>
