@@ -18,19 +18,22 @@ export class ClientService {
     }
 
     async createClient(client: Client): Promise<void> {
-        await fetch(`${API_URLS.clients}`, 
-        {
+      return new Promise<void>((resolve, reject) => {
+        fetch(`${API_URLS.clients}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(client)
-        }).then(res => {
-          if (res.ok) {
-            console.log("created client.")
-          } else {
-            console.log("failed to update resource.")
-          }
         })
-      }
+          .then((res) => {
+            if (res.ok) {
+              console.log("created client.")
+              resolve()
+            } else {
+              reject("User duplicated on database!")
+            }
+          })
+      });
+    }
 }

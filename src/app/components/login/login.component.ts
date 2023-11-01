@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service.';
 import { DataService } from 'src/app/services/data.service';
 
@@ -10,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class LoginComponent {
   isRegistered = true
+  errorlog = ''
 
   constructor(
     private clientService: ClientService,
@@ -23,14 +25,34 @@ export class LoginComponent {
       if (info != null) {
         if (info.password == password) {
           localStorage.setItem('userInfo', JSON.stringify(info))
+          this.errorlog = ''
           this.router.navigate(['/problem'])
         } else {
-          console.log('password is incorrect!')
+          this.errorlog = 'password is incorrect!'
         }
       } else {
-        console.log('username is invalidated.')
+        this.errorlog = 'username is invalidated!'
       }
     })
+  }
+
+  registerClient(username: string, email: string, password: string) {
+    if (!username || !email || !password) {
+      this.errorlog = "Every fields must contain the require content."
+    } else {
+      const client: Client = {
+        username: username,
+        password: password,
+        mail: email
+      }
+  
+      this.clientService.createClient(client).then(() => {
+        this.errorlog = ''
+        this.isRegistered = true
+      }).catch((error) => {
+        this.errorlog = error
+      })
+    }
   }
 
   toggleRegistered(): void {
@@ -41,4 +63,6 @@ export class LoginComponent {
   refreshDash() {
     this.dataService.setCurrentPage("feeds")
   }
+
+
 }
