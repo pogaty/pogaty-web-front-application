@@ -23,7 +23,7 @@ export class ProblemService {
             } catch (error) {
               reject(error)
             }
-          }, 1000)
+          }, 500)
         })
       }
 
@@ -37,7 +37,7 @@ export class ProblemService {
               } else {
                 reject(console.log("can't find data."))
               }
-            }, 1000)
+            }, 500)
         })
     }
 
@@ -55,7 +55,7 @@ export class ProblemService {
             } catch (error) {
                 reject(error)
             }
-        }, 1000)
+        }, 500)
       })
     }
 
@@ -73,7 +73,7 @@ export class ProblemService {
             } catch (error) {
                 reject(error)
             }
-        }, 1000)
+        }, 500)
       })
     }
 
