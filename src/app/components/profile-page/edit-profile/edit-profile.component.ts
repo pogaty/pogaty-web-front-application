@@ -19,6 +19,10 @@ export class EditProfileComponent implements OnInit {
   modifiedUsername: string | undefined = '';
   modifiedFname: string | undefined = '';
   modifiedLname: string | undefined = '';
+  modifiedGender: string | undefined = '';
+  modifiedMail: string | undefined = '';
+  modifiedTel: string | undefined = '';
+  modifiedAddress: string | undefined = '';
 
   userData: Client | null;
 
@@ -44,7 +48,11 @@ export class EditProfileComponent implements OnInit {
   private updateUser(
     username: string | undefined,
     fname: string | undefined,
-    lname: string | undefined
+    lname: string | undefined,
+    tel: string | undefined,
+    mail: string | undefined,
+    gender: string | undefined,
+    address: string | undefined
   ) {
     if (this.data && this.userData) {
       const userInfo = JSON.parse(this.data);
@@ -54,6 +62,10 @@ export class EditProfileComponent implements OnInit {
       this.userData.username = username;
       this.userData.firstname = fname;
       this.userData.lastname = lname;
+      this.userData.phoneNumber = tel;
+      this.userData.mail = mail;
+      this.userData.gender = gender;
+      this.userData.address = address;
 
       // Call the update method
       this.clientService.updateUser(client_id, this.userData);
@@ -64,7 +76,11 @@ export class EditProfileComponent implements OnInit {
     this.updateUser(
       this.modifiedUsername,
       this.modifiedFname,
-      this.modifiedLname
+      this.modifiedLname,
+      this.modifiedTel,
+      this.modifiedMail,
+      this.modifiedGender,
+      this.modifiedAddress
     );
     this.isShow = true;
     this.editInfo = false;
@@ -77,6 +93,10 @@ export class EditProfileComponent implements OnInit {
     this.modifiedUsername = this.userData?.username;
     this.modifiedFname = this.userData?.firstname;
     this.modifiedLname = this.userData?.lastname;
+    this.modifiedTel = this.userData?.phoneNumber;
+    this.modifiedMail = this.userData?.mail;
+    this.modifiedGender = this.userData?.gender;
+    this.modifiedAddress = this.userData?.address;
     this.isShow = false;
     this.editInfo = true;
   }
