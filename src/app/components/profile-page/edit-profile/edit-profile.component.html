@@ -1,0 +1,54 @@
+<div class="main">
+  <div class="container-lg content row">
+    <div class="col-lg left">
+      <div class="d-flex flex-column" style="background-color: lightblue">
+        Left
+      </div>
+    </div>
+    <div class="col-lg left">
+      <form class="row gy-2 gx-3 align-items-center">
+        <div class="d-flex flex-column" style="background-color: lightpink">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <div class="col-auto">
+              <label class="visually-hidden" for="autoSizingInputGroup"
+                >Username</label
+              >
+              <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="modifiedUsername"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="modifiedFname"
+              />
+            </div>
+            <div class="col">
+              <label class="form-label">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="modifiedLname"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary" (click)="onClickSave()">
+            save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

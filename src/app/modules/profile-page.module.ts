@@ -7,6 +7,7 @@ import { ExhibitionComponent } from '../components/profile-page/exhibition/exhib
 import { CategoryComponent } from '../components/profile-page/category/category.component';
 import { ProfileComponent } from '../components/profile-page/profile/profile.component';
 import { DescriptionComponent } from '../components/profile-page/description/description.component';
+import { EditProfileComponent } from '../components/profile-page/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DescriptionComponent } from '../components/profile-page/description/des
     CategoryComponent,
     ProfileComponent,
     DescriptionComponent,
+    EditProfileComponent,
   ],
   exports: [
     ProfilePageComponent,
@@ -22,6 +24,7 @@ import { DescriptionComponent } from '../components/profile-page/description/des
     CategoryComponent,
     ProfileComponent,
     DescriptionComponent,
+    EditProfileComponent,
   ],
   imports: [CommonModule, FormsModule],
 })
