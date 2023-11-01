@@ -2,7 +2,7 @@
   <div class="col-sm-11">
     <h5>Description</h5>
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-1 d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-secondary btn-sm mb-2" (click)="onClickEdit()">
       <i class="fa-regular fa-pen-to-square"></i>
     </button>
@@ -13,7 +13,7 @@
   <div class="col-sm-10">
     <h5>Description</h5>
   </div>
-  <div class="col-sm-2" style="display: flex; justify-content: space-around">
+  <div class="col-sm-2 d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-success btn-sm mb-2" (click)="onClickSave()">
       <i class="fa-regular fa-floppy-disk"></i>
     </button>
@@ -29,7 +29,7 @@
       <div class="form-group">
         <textarea
           rows="3"
-          class="col-12"
+          class="col-12 p-1"
           name="description"
           [(ngModel)]="modifiedDescription"
         ></textarea>
