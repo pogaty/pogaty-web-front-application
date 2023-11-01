@@ -1,113 +1,119 @@
-<div class="main">
-  <div class="container-lg content row">
-    <div class="col-lg left">
-      <div class="d-flex flex-column">Left</div>
+<div class="container-fluid main">
+  <div class="container-lg row py-5">
+    <!-- Back -->
+    <div class="row mb-3" [routerLink]="['/profile']">
+      <a>BACK ◀︎</a>
     </div>
-    <div class="col-lg right">
-      <!-- Edit data -->
-      <ng-template [ngIf]="editInfo" [ngIfElse]="isShow"
-        ><div class="row mb-4">
-          <label>Username</label>
-          <form>
-            <div class="input-group">
-              <div class="input-group-text">@</div>
-              <input
-                type="text"
-                class="form-control"
-                name="Username"
-                [(ngModel)]="modifiedUsername"
-                disabled
-              />
-            </div>
-          </form>
-        </div>
-        <div class="row mb-4">
-          <div class="col-auto">
-            <label>Firstname</label>
-            <form>
-              <input
-                type="text"
-                class="form-control"
-                name="Firstname"
-                [(ngModel)]="modifiedFname"
-              />
-            </form>
-          </div>
-          <div class="col">
-            <label>Lastname</label>
-            <form>
-              <input
-                type="text"
-                class="form-control"
-                name="Lastname"
-                [(ngModel)]="modifiedLname"
-              />
-            </form>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-2">
-            <button class="btn btn-success" (click)="onClickSave()">
-              save
-            </button>
+    <!-- content for edit data -->
+    <div class="row">
+      <div class="col-lg left">Left</div>
+      <div class="col-lg right">
+        <!-- Edit data -->
+        <ng-template [ngIf]="editInfo" [ngIfElse]="isShow"
+          ><div class="row mb-4">
+            <label>Username</label>
+            <form>
+              <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Username"
+                  [(ngModel)]="modifiedUsername"
+                  disabled
+                />
+              </div>
+            </form>
           </div>
-        </div>
-      </ng-template>
-
-      <!-- Show data  -->
-      <ng-template #isShow>
-        <div class="row mb-4">
-          <label>Username</label>
-          <form>
-            <div class="input-group">
-              <div class="input-group-text">@</div>
-              <input
-                type="text"
-                class="form-control"
-                name="Username"
-                aria-label="Disabled input example"
-                [(ngModel)]="modifiedUsername"
-                disabled
-              />
+          <div class="row mb-4">
+            <div class="col-auto">
+              <label>Firstname</label>
+              <form>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Firstname"
+                  [(ngModel)]="modifiedFname"
+                />
+              </form>
             </div>
-          </form>
-        </div>
-        <div class="row mb-4">
-          <div class="col-auto">
-            <label>Firstname</label>
+            <div class="col">
+              <label>Lastname</label>
+              <form>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Lastname"
+                  [(ngModel)]="modifiedLname"
+                />
+              </form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <button class="btn btn-success" (click)="onClickSave()">
+                save
+              </button>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- Show data  -->
+        <ng-template #isShow>
+          <div class="row mb-4">
+            <label>Username</label>
             <form>
-              <input
-                type="text"
-                class="form-control"
-                name="Firstname"
-                aria-label="Disabled input example"
-                [(ngModel)]="modifiedFname"
-                disabled
-              />
+              <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Username"
+                  aria-label="Disabled input example"
+                  [(ngModel)]="modifiedUsername"
+                  disabled
+                />
+              </div>
             </form>
           </div>
-          <div class="col">
-            <label>Lastname</label>
-            <form>
-              <input
-                type="text"
-                class="form-control"
-                name="Lastname"
-                [(ngModel)]="modifiedLname"
-                disabled
-              />
-            </form>
+          <div class="row mb-4">
+            <div class="col-auto">
+              <label>Firstname</label>
+              <form>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Firstname"
+                  aria-label="Disabled input example"
+                  [(ngModel)]="modifiedFname"
+                  disabled
+                />
+              </form>
+            </div>
+            <div class="col">
+              <label>Lastname</label>
+              <form>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Lastname"
+                  [(ngModel)]="modifiedLname"
+                  disabled
+                />
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <button class="btn btn-primary" (click)="onClickEditname()">
-              edit
-            </button>
+          <div class="row">
+            <div class="col-md-2">
+              <button class="btn btn-primary" (click)="onClickEditname()">
+                edit
+              </button>
+            </div>
           </div>
-        </div>
-      </ng-template>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
