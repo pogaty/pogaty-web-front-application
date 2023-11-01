@@ -10,6 +10,7 @@ import { AppLayoutComponent } from '../components/application/app-layout/app-lay
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home.module';
 import { ProfilePageModule } from './profile-page.module';
+import { IdeaPageModule } from './idea-page.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfilePageModule } from './profile-page.module';
     ProfilePageModule,
     ProblemFeedsModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    IdeaPageModule
   ],
   providers: [],
   bootstrap: [AppComponent],
