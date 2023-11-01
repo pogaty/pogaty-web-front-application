@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { ExhibitionComponent } from '../components/profile-page/exhibition/exhibition.component';
@@ -26,6 +27,6 @@ import { EditProfileComponent } from '../components/profile-page/edit-profile/ed
     DescriptionComponent,
     EditProfileComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class ProfilePageModule {}

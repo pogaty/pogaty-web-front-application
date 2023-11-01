@@ -12,7 +12,12 @@
     <p>@{{ userData?.username }}</p>
   </div>
   <div class="col-md-7 mt-4 edit">
-    <button class="btn btn-outline-secondary btn-sm">edit profile</button>
+    <button
+      class="btn btn-outline-secondary btn-sm"
+      [routerLink]="['/edit-profile']"
+    >
+      edit profile
+    </button>
   </div>
   <div class="col-md-2 mt-4 icon">
     <img src="./assets/images/profile-page/facebook.png" />
