@@ -21,6 +21,8 @@ export class FeedsComponent implements OnInit, OnDestroy {
 
   categorySubscription: Subscription | undefined
   filterSubscription: Subscription | undefined
+  onTrackSubscription: Subscription | undefined
+  trendSubscription: Subscription | undefined
 
   problems: Problem[] = []
   filtered_problems: Problem[] = []
@@ -46,7 +48,6 @@ export class FeedsComponent implements OnInit, OnDestroy {
 
         this.renderProblemsByCategory(this.selectedCategory)
         this.renderTrendRates()
-        this.renderTimedAgo()
       }
     )
 
@@ -58,21 +59,20 @@ export class FeedsComponent implements OnInit, OnDestroy {
       this.renderFilterFactor(this.selectedFilter)
     })
 
-    this.dataService.getOnTrack().pipe(filter(data => !!data))
-    .subscribe(() => {
+    this.onTrackSubscription = this.dataService.getOnTrack()
+    .pipe(filter(data => !!data)).subscribe(() => {
       this.renderProblemsByCategory(this.selectedCategory)
     })
 
-    this.dataService.getShareTrend().pipe(filter(data => !!data))
-    .subscribe(data => {
+    this.trendSubscription = this.dataService.getShareTrend()
+    .pipe(filter(data => !!data)).subscribe(data => {
       const problem_id = data.problem_id
-      console.log(problem_id + ' asdadssdas')
 
       if (this.data) {
         this.trendService.updateTrend(problem_id, JSON.parse(this.data).client_id, data.trend)
-          .then(() => {
-            this.renderTrendRates()
-          })
+          // .then(() => {
+          //   this.trendRatesMap[problem_id] = [0, 0]
+          // })
       }
     })
 
@@ -94,6 +94,14 @@ export class FeedsComponent implements OnInit, OnDestroy {
     if (this.filterSubscription) {
       this.filterSubscription.unsubscribe()
     }
+
+    if (this.onTrackSubscription) {
+      this.onTrackSubscription.unsubscribe()
+    }
+
+    if (this.trendSubscription) {
+      this.trendSubscription.unsubscribe()
+    }
   }
 
   getPage() {
@@ -109,12 +117,14 @@ export class FeedsComponent implements OnInit, OnDestroy {
       
       this.dataService.setProblemOpen(true)
       this.dataService.setUpdateProblem(myPackage)
-      console.log("asdasd")
   }
 
   truncate(id: number) {
-    this.problemService.deletePost(id)
-    this.renderProblemsByCategory(this.selectedCategory)
+    this.problemService.deletePost(id); // Assuming this works correctly
+    const index = this.problems.findIndex(problem => problem.problem_id === id);
+    if (index !== -1) {
+      this.problems.splice(index, 1);
+    }
   }
 
   toggleIdeas(problem: Problem): void {
@@ -162,6 +172,7 @@ export class FeedsComponent implements OnInit, OnDestroy {
         }
         
       this.filtered_problems = this.problems
+      this.renderTimedAgo()
       console.log(this.problems)
     } finally {
       this.isLoading = false
@@ -181,14 +192,31 @@ export class FeedsComponent implements OnInit, OnDestroy {
     this.problemService.loadTimedAgo().then((time) => {
       const timeJson = JSON.parse(time)
       this.problemTimeAgoMap = timeJson
+    }).catch(() => {
+      this.problemTimeAgoMap = []
     })
   }
 
   renderTrendRates() {
     this.trendService.loadTrendsRate().then(trend => {
       const trendJson = JSON.parse(trend)
-      console.log(trendJson)
       this.trendRatesMap = trendJson
     })
   }
+
+  getTrendCount(problem_id: number): number {
+    return (this.trendRatesMap[problem_id]) ? this.trendRatesMap[problem_id][0] : 0
+  }
+
+  getTrendRate(problem_id: number): number {
+    return (this.trendRatesMap[problem_id]) ? this.trendRatesMap[problem_id][1] : 0
+  }
+
+  // trendCount(problem_id: number) {
+  //   return (Object.keys(this.trendRatesMap).length === 0) ? 0 : this.trendRatesMap[problem_id][0]
+  // }
+
+  // trendRate(problem_id: number) {
+  //   return (Object.keys(this.trendRatesMap).length === 0) ? 0 : this.trendRatesMap[problem_id][1]
+  // }
 }

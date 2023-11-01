@@ -2,7 +2,7 @@
     <div class="container-md management">
         <div class="row tools">
             <div class="col-sm-8 order-2 order-sm-1 d-flex left">
-                <button class="btn">
+                <button class="btn" (click)="ideaOffer(problem?.problem_id || 0)">
                     <i class="fa-regular fa-lightbulb fa-xl" style="color: #ff4155;"></i>
                     <span>Idea offers</span>
                 </button>
@@ -20,11 +20,11 @@
             </div>
             <div class="col-sm-4 order-1 order-sm-2 d-flex right">
                 <button class="btn">
-                    <i class="fa-solid fa-heart fa-xl" style="color: #ff4155;" 
+                    <i class="fa-solid fa-face-smile fa-xl" style="color: #fa4155;"
                     (click)="updateTrend(problem?.problem_id || 0, true)"></i>
                 </button>
                 <button class="btn">
-                    <i class="fa-solid fa-share-nodes fa-xl" style="color: #ff4155;"
+                    <i class="fa-solid fa-face-angry fa-xl" style="color: #fa4155;"
                     (click)="updateTrend(problem?.problem_id || 0, false)"></i>
                 </button>
             </div>
@@ -41,20 +41,20 @@
                 <button class="btn" *ngFor="let participant of idea.participants"></button>
             </div>
             <div class="row describe">
-                <div class="col-lg-6 col-md-4 col-6 px-4">{{idea.participants.length}} participants</div>
+                <div class="col-lg-6 col-md-4 col-6 px-4">{{getParticipantCount(idea.participants)}} participants</div>
                 <div class="col-lg-4 col-md-5 col-6 agree-content">
                     <div class="d-flex agreement">
                         <div>
                             <button class="btn" (click)="agreeBtn(idea.idea_id)">
                                 <i class="fa-regular fa-thumbs-up fa-xl" style="color: #64a2ff;"></i>
                             </button>
-                            <span>{{agreeMap[idea.idea_id]}}</span>
+                            <span>{{agreeMap[idea.idea_id] || 0}}</span>
                         </div>
                         <div>
                             <button class="btn" (click)="disagreeBtn(idea.idea_id)">
                                 <i class="fa-regular fa-thumbs-down fa-xl" style="color: #ff5a5a;"></i>
                             </button>
-                            <span>{{disagreeMap[idea.idea_id]}}</span>
+                            <span>{{disagreeMap[idea.idea_id] || 0}}</span>
                         </div>
                     </div>
                 </div>

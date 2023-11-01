@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { dtsIdea } from 'src/app/components/application/app.component';
 import { Agreement } from 'src/app/models/agreement.model';
 import { Idea } from 'src/app/models/idea.model';
+import { Participant } from 'src/app/models/participant.model';
 import { Problem } from 'src/app/models/problem.model';
 import { Trend } from 'src/app/models/trend.model';
 import { AgreementService } from 'src/app/services/agreement.service';
@@ -38,16 +40,20 @@ export class IdeaComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.ideas) {
       this.ideas.forEach(idea => {
+        const idea_id = idea.idea_id
 
-        //agree rendering logic.
-        this.agreementService.loadAgreeReactions(idea.idea_id).then(data => {
-          this.agreeMap[idea.idea_id] = data.length
-        })
+        if (idea_id) {
+          //agree rendering logic.
+          this.agreementService.loadAgreeReactions(idea_id).then(data => {
+            this.agreeMap[idea_id] = data.length
+          })
 
-        //disagree rendering logic.
-        this.agreementService.loadDisagreeReactions(idea.idea_id).then(data => {
-          this.disagreeMap[idea.idea_id] = data.length
-        })
+          //disagree rendering logic.
+          this.agreementService.loadDisagreeReactions(idea_id).then(data => {
+            this.disagreeMap[idea_id] = data.length
+          })
+        }
+        
       })
     }
 
@@ -99,6 +105,20 @@ export class IdeaComponent implements OnInit, OnChanges {
   disagreeBtn(ideaId: number) {
     this.updateAgreement(ideaId, false);
   }
+
+  ideaOffer(problem_id: number) {
+    if (this.data) {
+      const data:dtsIdea = {
+        bool: true, 
+        id: problem_id
+      }
+  
+      this.dataService.setIdeaOpen(data)
+    } else {
+      this.router.navigate(['/login'])
+    }
+    
+  }
   
   updateAgreement(ideaId: number, agreed: boolean) {
     if (this.data) {
@@ -128,6 +148,8 @@ export class IdeaComponent implements OnInit, OnChanges {
       // this.trendService.updateTrend(problemId, client_id, trend).then(() => {
       //   this.reloadTrendRates(problemId)
       // })
+    } else {
+      this.router.navigate(['/login'])
     }
   }
   
@@ -140,5 +162,9 @@ export class IdeaComponent implements OnInit, OnChanges {
     this.agreementService.loadDisagreeReactions(idea_id).then(data => {
       this.disagreeMap[idea_id] = data.length
     })
+  }
+
+  getParticipantCount(participant: Participant[]| undefined) {
+    return (participant) ? participant.length : 0
   }
 }

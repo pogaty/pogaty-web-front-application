@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs';
+import { Idea } from 'src/app/models/idea.model';
 import { Problem } from 'src/app/models/problem.model';
 import { DataService } from 'src/app/services/data.service';
+import { IdeaService } from 'src/app/services/idea.service';
 import { ProblemService } from 'src/app/services/problem.service';
 
 @Component({
@@ -12,24 +14,36 @@ import { ProblemService } from 'src/app/services/problem.service';
 export class AppComponent implements OnInit {
   
   title = 'Pogaty';
+  data = localStorage.getItem('userInfo')
+
   contentProblem: string = ''
   descriptionProblem: string = ''
   myPackage: any
   category: string = 'global'
   errorlog = ''
+  problem_id = 0
 
   isProblemOpen = false
+  isIdeaOpen = false
   isEditor = false
+  isPrivate = false
   
   constructor (
     private dataService: DataService,
-    private problemService: ProblemService
+    private problemService: ProblemService,
+    private ideaService: IdeaService
   ) { }
 
   ngOnInit(): void {
     this.isEditor = false
     this.dataService.getProblemOpen().subscribe(data => {
       this.isProblemOpen = data
+    })
+
+    this.dataService.getIdeaOpen().subscribe(data => {
+      this.isIdeaOpen = data.bool
+      this.problem_id = data.id
+      console.log(data)
     })
 
     this.dataService.getProblemContent().subscribe(data => {
@@ -47,8 +61,9 @@ export class AppComponent implements OnInit {
 
   closePopup(event: Event): void {
     if (event.target === event.currentTarget) {
-      this.isProblemOpen = false;
-      this.isEditor = false;
+      this.isProblemOpen = false
+      this.isIdeaOpen = false
+      this.isEditor = false
       this.category = 'global'
       this.errorlog = ''  
     }
@@ -76,13 +91,43 @@ export class AppComponent implements OnInit {
         } else {
           this.problemService.updateNewPost(this.myPackage.id, problem)
           this.isEditor = false
+          this.descriptionProblem = ''
         }
         
-        this.isProblemOpen = false
-        this.category = 'global'
-        this.errorlog = ''
-        this.dataService.setOnTrack(1)
+        this.resetData()
       }
     }
   }
+
+  createIdea(ideaHeader: string, key: string, privacy: boolean) {
+    if (!ideaHeader || !key) {
+      this.errorlog = "The idea must contain the fields request." 
+    } else {
+      const data = localStorage.getItem('userInfo')
+      if (data) {
+        const client_id = JSON.parse(data).client_id
+        console.log(client_id)
+        const idea = {
+          ideaHeader: ideaHeader,
+          key: key,
+          publicState: privacy
+        }
+
+        this.ideaService.createIdea(this.problem_id, client_id, idea)
+        this.resetData()
+      }
+    }
+  }
+
+  resetData() {
+    this.isProblemOpen = false
+        this.category = 'global'
+        this.errorlog = ''
+        this.dataService.setOnTrack(1)
+  }
+}
+
+export interface dtsIdea {
+  bool: boolean,
+  id: number
 }

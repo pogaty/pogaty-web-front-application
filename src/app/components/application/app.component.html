@@ -9,7 +9,7 @@
         
         <div class="inform">
             <input type="text" placeholder="the topic of your problem." value="{{contentProblem}}" #header>
-            <textarea class="description" type="text" placeholder="here is some of your description of your problem ..." value="{{descriptionProblem}}" #description></textarea>
+            <textarea class="description form-control" type="text" placeholder="here is some of your description of your problem ..." value="{{descriptionProblem}}" #description></textarea>
             <div>
                 <p *ngIf="errorlog" style="text-align: center; color: var(--bg-red);">{{errorlog}}</p>
             </div>
@@ -37,6 +37,41 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup" *ngIf="isIdeaOpen" (click)="closePopup($event)">
+    <div class="container-sm content">
+
+        <div class="container">
+            <button class="btn exist" (click)="closePopup($event)">
+                <i class="fa-solid fa-square-xmark" style="color: #FF4155;"></i>
+            </button>
+        </div>
+
+        <div class="inform">
+            <input type="text" placeholder="the header of idea ..." value="" #idea>
+            <textarea class="key" type="text" placeholder="key word of your idea to tell other what the thing you want to do ..." value="" #key></textarea>
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <p *ngIf="errorlog" style="text-align: center; color: var(--bg-red);">{{errorlog}}</p>
+                    </div>
+                    <div class="col-lg">
+                        <div class="form-check form-switch d-flex">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="isPrivate">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Do you want the share on public?</label>
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <div class="d-flex idea-create">
+                            <button class="btn" (click)="createIdea(idea.value, key.value, isPrivate)">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

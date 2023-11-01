@@ -1,5 +1,6 @@
 import { LocalizedString } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
@@ -11,15 +12,21 @@ import { DataService } from 'src/app/services/data.service';
 export class PostComponent {
 
     constructor(
-      private dataService: DataService
+      private dataService: DataService,
+      private router: Router
     ) {}
     
     content: string = ''
 
     onKeyDown(content: string) {
+      const data = localStorage.getItem("userInfo")
+      if (data) {
         if (content) {
           this.dataService.setProblemOpen(true)
           this.dataService.setProblemContent(content)
         }    
+      } else {
+        this.router.navigate(['/login'])
+      }
     }
 }

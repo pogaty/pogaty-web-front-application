@@ -8,6 +8,6 @@ export interface Idea {
     board?: string,
     agreement?: number,
     publicState?: boolean,
-    participants: Participant[],
-    agreements: Agreement[]
+    participants?: Participant[],
+    agreements?: Agreement[]
 }

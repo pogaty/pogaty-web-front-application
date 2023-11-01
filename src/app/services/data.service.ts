@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core"
 import { BehaviorSubject } from "rxjs"
 import { Problem } from "../models/problem.model"
 import { Trend } from "../models/trend.model"
+import { dtsIdea } from "../components/application/app.component"
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,9 @@ export class DataService {
 
     private contentProblemOpen = new BehaviorSubject<any>(null)
     private updateProblem = new BehaviorSubject<any>(null)
+
     private isProblemOpen = new BehaviorSubject<boolean>(false)
-    
+    private isIdeaOpen = new BehaviorSubject<dtsIdea>({bool:false, id: 0})
 
     private currentPage: string = 'feeds'
     private tmpProblemId: number = 0
@@ -64,6 +66,14 @@ export class DataService {
 
     getProblemOpen() {
         return this.isProblemOpen.asObservable()
+    }
+
+    setIdeaOpen(data: dtsIdea) {
+        this.isIdeaOpen.next(data)
+    }
+
+    getIdeaOpen() {
+        return this.isIdeaOpen.asObservable()
     }
 
     setProblemContent(data: string) {

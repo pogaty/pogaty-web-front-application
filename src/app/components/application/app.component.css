@@ -24,7 +24,7 @@ button:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 15;
+    z-index: 100;
 
     min-width: 400px;
     width: 70%;
@@ -46,6 +46,11 @@ button:focus {
 .description {
     resize: none;
     height: 150px;
+}
+
+.key {
+    resize: none;
+    height: 250px;
 }
 
 .btn {
@@ -92,14 +97,47 @@ button:focus {
 .active i {
     color: white !important;
 }
+.form-check-input {
+    width: 50px !important;
+    margin-right: 15px !important;
+}
+
+.form-check, .form-switch {
+    padding: 0 !important;
+}
+
+.form-check {
+    justify-content: center;
+    align-items: center;
+}
+
+.idea-create {
+    justify-content: right;
+}
+
+.idea-create button {
+    width: 100px;
+    border: 2px solid var(--bg-red);
+    color: var(--bg-red);
+    transition: .3s;
+}
+
+.idea-create button:hover {
+    transition: .3s;
+    background-color: var(--bg-red);
+    color: white;
+    border: 2px solid transparent;
+}
 
 @media only screen and (max-width: 768px) {
     .btn-custom {
         margin-top: 10px;
     }
 }
-/* 
-div {
-    border: 2px solid red;
 
-} */
+@media only screen and (max-width: 992px) {
+    .idea-create {
+        justify-content: center;
+        align-items: center;
+    }
+}

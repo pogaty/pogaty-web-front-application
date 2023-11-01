@@ -10,6 +10,7 @@ import { AppLayoutComponent } from '../components/application/app-layout/app-lay
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home.module';
 import { ProfilePageModule } from './profile-page.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProfilePageModule } from './profile-page.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     
     SharedModule,
     HomeModule,
