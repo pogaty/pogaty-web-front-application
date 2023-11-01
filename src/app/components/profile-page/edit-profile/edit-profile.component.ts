@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service.';
 
@@ -9,7 +11,10 @@ import { ClientService } from 'src/app/services/client.service.';
 })
 export class EditProfileComponent implements OnInit {
   data = localStorage.getItem('userInfo');
-  isLoading: boolean = false;
+
+  editInfo = false;
+  editPicture = false;
+  isShow = true;
 
   modifiedUsername: string | undefined = '';
   modifiedFname: string | undefined = '';
@@ -29,14 +34,14 @@ export class EditProfileComponent implements OnInit {
       this.clientService.loadUsers(username).then((data) => {
         this.userData = data;
       });
-    }
 
-    this.modifiedUsername = this.userData?.username;
-    console.log(this.modifiedUsername);
+      this.modifiedUsername = this.userData?.username;
+      this.modifiedFname = this.userData?.firstname;
+      this.modifiedLname = this.userData?.lastname;
+    }
   }
 
   private updateUser(
-    client_id: number | undefined,
     username: string | undefined,
     fname: string | undefined,
     lname: string | undefined
@@ -45,24 +50,34 @@ export class EditProfileComponent implements OnInit {
       const userInfo = JSON.parse(this.data);
       const client_id = userInfo.client_id;
 
+      // Update the description of the userData
       this.userData.username = username;
       this.userData.firstname = fname;
       this.userData.lastname = lname;
 
+      // Call the update method
       this.clientService.updateUser(client_id, this.userData);
-
-      this.modifiedUsername = userInfo.username;
-      this.modifiedFname = userInfo.firstname;
-      this.modifiedLname = userInfo.lastname;
     }
   }
 
   onClickSave() {
     this.updateUser(
-      this.userData?.client_id,
       this.modifiedUsername,
       this.modifiedFname,
       this.modifiedLname
     );
+    this.isShow = true;
+    this.editInfo = false;
+    this.editPicture = false;
+  }
+
+  onClickEditPic() {}
+
+  onClickEditname() {
+    this.modifiedUsername = this.userData?.username;
+    this.modifiedFname = this.userData?.firstname;
+    this.modifiedLname = this.userData?.lastname;
+    this.isShow = false;
+    this.editInfo = true;
   }
 }

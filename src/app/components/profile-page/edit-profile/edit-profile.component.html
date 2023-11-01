@@ -1,54 +1,113 @@
 <div class="main">
   <div class="container-lg content row">
     <div class="col-lg left">
-      <div class="d-flex flex-column" style="background-color: lightblue">
-        Left
-      </div>
+      <div class="d-flex flex-column">Left</div>
     </div>
-    <div class="col-lg left">
-      <form class="row gy-2 gx-3 align-items-center">
-        <div class="d-flex flex-column" style="background-color: lightpink">
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <div class="col-auto">
-              <label class="visually-hidden" for="autoSizingInputGroup"
-                >Username</label
-              >
-              <div class="input-group">
-                <div class="input-group-text">@</div>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="modifiedUsername"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label class="form-label">First name</label>
+    <div class="col-lg right">
+      <!-- Edit data -->
+      <ng-template [ngIf]="editInfo" [ngIfElse]="isShow"
+        ><div class="row mb-4">
+          <label>Username</label>
+          <form>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
               <input
                 type="text"
                 class="form-control"
+                name="Username"
+                [(ngModel)]="modifiedUsername"
+                disabled
+              />
+            </div>
+          </form>
+        </div>
+        <div class="row mb-4">
+          <div class="col-auto">
+            <label>Firstname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Firstname"
                 [(ngModel)]="modifiedFname"
               />
-            </div>
-            <div class="col">
-              <label class="form-label">Last name</label>
+            </form>
+          </div>
+          <div class="col">
+            <label>Lastname</label>
+            <form>
               <input
                 type="text"
                 class="form-control"
+                name="Lastname"
                 [(ngModel)]="modifiedLname"
               />
-            </div>
+            </form>
           </div>
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary" (click)="onClickSave()">
-            save
-          </button>
+
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success" (click)="onClickSave()">
+              save
+            </button>
+          </div>
         </div>
-      </form>
+      </ng-template>
+
+      <!-- Show data  -->
+      <ng-template #isShow>
+        <div class="row mb-4">
+          <label>Username</label>
+          <form>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input
+                type="text"
+                class="form-control"
+                name="Username"
+                aria-label="Disabled input example"
+                [(ngModel)]="modifiedUsername"
+                disabled
+              />
+            </div>
+          </form>
+        </div>
+        <div class="row mb-4">
+          <div class="col-auto">
+            <label>Firstname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Firstname"
+                aria-label="Disabled input example"
+                [(ngModel)]="modifiedFname"
+                disabled
+              />
+            </form>
+          </div>
+          <div class="col">
+            <label>Lastname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Lastname"
+                [(ngModel)]="modifiedLname"
+                disabled
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-primary" (click)="onClickEditname()">
+              edit
+            </button>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
