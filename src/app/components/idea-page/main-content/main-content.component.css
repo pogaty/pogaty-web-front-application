@@ -1,0 +1,197 @@
+h3 {
+    margin-bottom: 20px;
+}
+.custom-div {
+    border-top-left-radius: 30px;
+    height: 100%;
+    background-color: white;
+}
+
+.header-content {
+    position: relative;
+    padding: 30px 100px;
+
+    border-top-left-radius: 30px;
+    height: fit-content;
+    background-image: url('../../../../assets/images/idea-background/sample-idea.jpg');
+    background-size: cover;
+}
+
+.normal-content {
+    padding: 30px 0 30px 100px;
+}
+
+.parti, .board {
+    padding: 0 115px 0 0;
+}
+
+.normal-content .container-lg div {
+    margin-bottom: 20px;
+}
+
+.concept-board {
+    min-height: 400px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: -3px 5px 24px -10px rgba(0,0,0,0.22);
+}
+
+.profile-content {
+    height: 45px;
+    width: 45px;
+    margin-right: 8px;
+
+    background-image: url('../../../../assets/images/user-profile-samples/profile-1.png');
+    background-size: cover;
+    border-radius: 15px;
+}
+
+.header-content::before {
+    content: '';
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha (0.5) for the desired darkness */
+}
+
+.header-content div {
+    position: relative;
+    z-index: 50;
+    margin-bottom: 25px;
+}
+
+.back button span {
+    padding-left: 10px;
+    color: white;
+}
+
+.header h1 {
+    width: 60%;
+    font-weight: bolder;
+    color: white;
+}
+
+.key-content div {
+    margin: 5px 0;
+}
+
+.key-detail {
+    position: relative;
+    padding: 0;
+    background-color: white;
+    height: fit-content;
+    border-radius: 15px;
+}
+
+.stick {
+    background-color: #DC5F00;
+    margin: 0 !important;
+    width: 15px;
+    flex: 0 0 auto; /* The .stick element won't grow or shrink, maintaining its height */
+
+    border-radius: 15px 0 0 15px;
+}
+
+
+.key-area {
+    padding: 25px;
+}
+
+.icon span {
+    padding-left: 10px;
+    color: #64A2FF;
+}
+
+.wrapper {
+    display: flex;
+    grid-gap: 1rem;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-snap-type: x;
+    cursor: grab;
+    scroll-behavior: smooth;
+}
+
+.slider {
+    width: fit-content;
+    min-width: calc(50% - 1.5rem);
+    height: 200px;
+    
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 16px;
+    scroll-snap-align: start;
+    user-select: none;
+
+    background: white;
+    color: black;
+    border: 3px solid #48AC7C;
+}
+
+.any-file {
+    padding: 30px;
+    background-color: #2E2C39;
+    border: 3px solid #2E2C39;
+}
+
+.image {
+    padding: 30px;
+    background-color: #64A2FF;
+    border: 3px solid #64A2FF;
+}
+
+.any-file i, .image i {
+    margin: 15px;
+    font-size: 75px;
+}
+
+.text {
+    padding: 15px;
+    color: white;
+    margin: 0 !important;
+}
+
+.text h4, .text p {
+    margin: 0;
+}
+
+
+
+
+@media only screen and (max-width: 992px) {
+    .any-file i, .image i {
+        display: none;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .header-content, .normal-content {
+        padding: 20px 50px;
+    }
+
+    .board, .parti {
+        padding: 0 15px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .header-content, .normal-content {
+        padding: 20px 0px;
+    }
+
+    .ref {
+        display: none;
+    }
+}
+
+/* div {
+    border: 2px solid red;
+} */

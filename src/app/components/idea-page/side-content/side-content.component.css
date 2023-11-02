@@ -1,0 +1,68 @@
+.side-content {
+    position: relative;
+    height: 100%;
+    background-image: url('../../../../assets/images/idea-background/side-content.jpg');
+    background-size: cover;
+    border-radius: 0 0 30px 0;
+}
+
+.side-content::before {
+    content: '';
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 30px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha (0.5) for the desired darkness */
+}
+
+.side-content div {
+    position: relative;
+    z-index: 15;
+}
+
+.function-box {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 5px 0px 5px;
+    border-radius: 15px;
+}
+
+.content-creator {
+    background-color: white;
+    margin: 10px 5px 0px 5px;
+    border-radius: 15px;
+}
+
+.on-text p {
+   margin: 0; 
+}
+
+.iconf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconf i {
+    font-size: 30px;
+}
+
+.head {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 15px;
+    background-color: var(--bg-red);
+    border-radius: 15px 15px 0 0;
+    color: white;
+}
+
+.flex-con {
+    justify-content: center;
+    align-items: center;
+}
