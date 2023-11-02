@@ -1,0 +1,51 @@
+.content{
+    background-color: white;
+    border-radius: 30px 0 0 0;
+    padding: 20px 0 20px 0;
+}
+
+.content img{
+    width: 200px;
+}
+
+.content b{
+    color: #DC5F00;
+}
+
+h2{
+    color: #CF0A0A;
+}
+
+h3{
+    color: #CF0A0A;
+    font-weight: bold;
+}
+
+.service{
+    background-color: #F4F4F4;
+    padding: 40px 0 40px 0;
+    border-radius: 0 0 30px 0;
+}
+
+.service-box{
+    background-color: white;
+    border-radius: 15px;
+    width: 200px;
+    height: 200px;
+}
+
+.setting-box{
+    background-color: #2E2C39;
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.add-box{
+    background-color: #2E2C39;
+    border-radius: 15px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
