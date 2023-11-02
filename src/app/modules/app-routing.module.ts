@@ -5,7 +5,7 @@ import { LoginComponent } from "../components/login/login.component";
 import { AppLayoutComponent } from "../components/application/app-layout/app-layout.component";
 import { HomeComponent } from "../components/home/home.component";
 import { ProfilePageComponent } from "../components/profile-page/profile-page.component";
-import { LoginCollabrationComponent } from "../components/login-collabration/login-collabration.component";
+import { LoginCollaboratorComponent } from "../components/login-collaborator/login-collaborator.component";
 
 const routes: Routes = [
     {
@@ -30,7 +30,13 @@ const routes: Routes = [
         ]
     },
     { path: 'login', component: LoginComponent },
-    { path: 'login-collabration', component: LoginCollabrationComponent },
+    { 
+        path: 'login-collaborator', 
+        component: AppLayoutComponent,
+        children: [
+            { path: '', component: LoginCollaboratorComponent }
+        ]
+    },
     { path: '', redirectTo: 'home', pathMatch: 'full' } // Redirect empty path to /home
 ]
 

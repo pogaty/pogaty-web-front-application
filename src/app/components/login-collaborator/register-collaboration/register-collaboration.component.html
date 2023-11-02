@@ -1,0 +1,22 @@
+<div class="popup" *ngIf="isOpen">
+    <div class="register">
+        <div class="col-lg ">
+            <div class="d-flex flex-column">
+                <div class="text">
+                    <h3>Register new account</h3>
+                    <p>if you already have an accounts, you can 
+                        <button class="btn sign" (click)="close()">Login</button> 
+                        to our website by
+                    </p>
+                </div>
+                <div class="form d-flex flex-column">
+                    <input id="name" type="text" placeholder="Name Collaborator">
+                    <input id="email" type="text" placeholder="Email Address.">
+                    <input id="password" type="password" placeholder="Password.">
+                    <button class="btn" type="submit">LOGIN</button>
+                </div>
+            </div>
+        </div>
+        <button class="btn" (click)="close()">Close Popup</button>
+    </div>
+</div>
