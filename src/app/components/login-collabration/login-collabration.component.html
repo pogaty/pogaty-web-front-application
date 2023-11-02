@@ -1,1 +1,35 @@
-<app-application></app-application>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <img >
+        </div>
+        <div class="col-4">
+            <ng-template [ngIf]="isRegistered" #Goto Space>
+                    <div class="d-flex flex-column">
+                        <div class="text">
+                            <h3>Connect
+                                Your Business</h3>
+                            <p>authorize your business account
+                                and manage or configuration your functions.  
+                            </p>
+                        </div>
+                        <div class="form d-flex flex-column">
+                            <div>
+                                <h2>Account email</h2>
+                                <input id="email" type="text" placeholder="Account email." #username>
+                            </div>
+                            <div>
+                                <h2>Password</h2>
+                                <input id="password" type="password" placeholder="Password." #password>
+                            </div>
+                            <button class="btn" type="submit" (click)="authorization(username.value, password.value)">Goto Space</button>
+                        </div>
+                        <p>If you’re new to our collab space
+                            you must sign up first</p>
+                        <button class="btn sign" (click)="toggleRegistered()">Sign up</button> 
+                                without any charge.
+                    </div>  
+            </ng-template>
+        </div>
+    </div>
+</div>
