@@ -201,6 +201,8 @@ export class FeedsComponent implements OnInit, OnDestroy {
     this.trendService.loadTrendsRate().then(trend => {
       const trendJson = JSON.parse(trend)
       this.trendRatesMap = trendJson
+    }).catch(() => {
+      this.trendRatesMap = {}
     })
   }
 
