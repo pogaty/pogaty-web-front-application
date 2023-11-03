@@ -1,5 +1,5 @@
 .bg-custom {
-    background-color: var(--bg-white-sub);
+    background-color: white;
     border-radius: 30px 0 30px 0;
     padding: 20px;
     display: flex;
@@ -34,6 +34,7 @@ h3,p,h5{
     background-color: #2E2C39;
 }
 .main-login{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     margin: 5rem 0;
     color: #ffffff;
 }
