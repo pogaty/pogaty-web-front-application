@@ -60,14 +60,15 @@
                             </div>
                             <div class="form d-flex flex-column">
                                 <h6 style="font-size: 1.25rem;">Account email</h6>
-                                <input id="email" type="text" placeholder="Email Address." #username>
+                                <input id="email" type="text" placeholder="Email Address." #email>
                                 <h6 style="margin-top: 6px; font-size: 1.25rem;">Password</h6>
                                 <input id="password" type="password" placeholder="Password." #password>
-                                <button class="btn" type="submit" (click)="authorization(username.value, password.value)" style="background-color: #CF0A0A; color: #FFFFFF; margin-top: 20px ; width: 80%;">Goto Space</button>
+                                <button class="btn" type="submit" (click)="authorization(email.value, password.value)" style="background-color: #CF0A0A; color: #FFFFFF; margin-top: 20px ; width: 80%;">Goto Space</button>
                             </div>
                             <p style="font-size: 1rem;">If you’re new to our collab space
                                 you must sign up first</p>
-                            <button class="btn sign" (click)="togglePopup()" style="background-color: #FFFFFF; color: #CF0A0A;width: 80%; margin-bottom: 20px;">Create Account</button>
+                                <button class="btn sign" (click)="togglePopup()" style="background-color: #FFFFFF; color: #CF0A0A; width: 80%; margin-bottom: 20px;">Create Account</button>
+                                <app-register-collaboration *ngIf="isPopupOpen" (closePopup)="togglePopup()"></app-register-collaboration>
                         </div>  
                     </div>
                 </div>
@@ -75,7 +76,7 @@
  
             
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
             <h3>We’re act as gateway</h3>
             <p>To help increasing the success of your business and encourage more individuals to utilize your services.
                  We'll act as a conduit to introduce your company to the appropriate client. </p>
@@ -88,4 +89,4 @@
     </div>
     </div>
 </div>
-<app-register-collaboration *ngIf="isPopupOpen" (closePopup)="togglePopup()"></app-register-collaboration>
+
