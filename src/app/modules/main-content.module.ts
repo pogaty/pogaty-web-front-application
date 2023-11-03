@@ -13,7 +13,7 @@ import { CommonModule } from "@angular/common";
         MainContentComponent,
         PostComponent,
         FeedsComponent,
-        IdeaComponent
+        IdeaComponent,
     ],
     exports: [
         MainContentComponent,

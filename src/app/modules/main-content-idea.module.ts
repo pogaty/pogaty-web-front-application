@@ -1,8 +1,13 @@
 import { NgModule } from "@angular/core";
 import { MainContentIdeaComponent } from "../components/idea-page/main-content/main-content.component";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @NgModule ({
-    imports: [],
+    imports: [
+        CommonModule,
+        FormsModule
+    ],
     declarations: [
         MainContentIdeaComponent
     ],
