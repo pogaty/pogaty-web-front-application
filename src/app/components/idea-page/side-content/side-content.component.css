@@ -28,6 +28,28 @@
     padding: 15px;
     margin: 10px 5px 0px 5px;
     border-radius: 15px;
+    border: 5px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.confirm {
+    background-color: #48AC7C !important;
+    color: white !important;
+}
+
+.reject {
+    background-color: #FA4155 !important;
+    color: white !important;
+}
+
+.confirm:hover, .reject:hover {
+    border: 5px solid white !important;
+}
+
+.function-box:hover {
+    border: 5px solid #FA4155;
+    transition: 0.3s;
 }
 
 .content-creator {

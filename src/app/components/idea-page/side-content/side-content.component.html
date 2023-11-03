@@ -1,6 +1,6 @@
 <div class="container-fluid side-content">
     <div class="container d-flex flex-column">
-        <div class="function-box row">
+        <div class="function-box row" *ngIf="ideaPrivacy" (click)="privacy(false)">
             <div class="col-2 iconf">
                 <i class="fa-solid fa-shield-halved" style="color: #5c8dff;"></i>
             </div>
@@ -9,6 +9,17 @@
                 <p>now your idea on public.</p>
             </div>
         </div>
+
+        <div class="function-box row" *ngIf="!ideaPrivacy" (click)="privacy(true)">
+            <div class="col-2 iconf">
+                <i class="fa-solid fa-shield-halved" style="color: #5f5f5f;"></i>
+            </div>
+            <div class="col-10 on-text">
+                <p style="font-weight: bolder">Privacy</p>
+                <p>now your idea on private</p>
+            </div>
+        </div>
+
         <div class="function-box row">
             <div class="col-2 iconf">
                 <i class="fa-regular fa-address-book" style="color: #fa4155;"></i>
@@ -18,7 +29,7 @@
                 <p>manage your teammate.</p>
             </div>
         </div>
-        <div class="function-box row">
+        <div class="function-box row" *ngIf="!isEditorMode" (click)="editorMode()">
             <div class="col-2 iconf">
                 <i class="fa-solid fa-pen-to-square" style="color: #fa4155;"></i>
             </div>
@@ -27,7 +38,7 @@
                 <p>Change some idea details.</p>
             </div>
         </div>
-        <div class="function-box row">
+        <div class="function-box row" (click)="truncate()">
             <div class="col-2 iconf">
                 <i class="fa-solid fa-trash-can" style="color: #fa4155;"></i>
             </div>
@@ -36,8 +47,26 @@
                 <p>delete this idea</p>
             </div>
         </div>
+        <div class="function-box confirm row" *ngIf="isEditorMode" (click)="confirmEditor()">
+            <div class="col-2 iconf">
+                <i class="fa-solid fa-circle-check" style="color: #ffffff;"></i>
+            </div>
+            <div class="col-10 on-text">
+                <p style="font-weight: bolder">Confirm</p>
+                <p>keep the change to update.</p>
+            </div>
+        </div>
+        <div class="function-box reject row" *ngIf="isEditorMode" (click)="cancelEditor()">
+            <div class="col-2 iconf">
+                <i class="fa-solid fa-circle-xmark" style="color: #ffffff;"></i>
+            </div>
+            <div class="col-10 on-text">
+                <p style="font-weight: bolder">Cancel</p>
+                <p>nothing to change on this.</p>
+            </div>
+        </div>
 
-        <div class="content-creator row">
+        <!-- <div class="content-creator row">
             <div class="col-12 head">
                 <p>Create     12-03-2024</p>
                 <p>By         Samples</p>
@@ -47,7 +76,7 @@
                     <div class="col p-1 d-flex flex-con">
                         <div>
                             <i class="fa-regular fa-thumbs-up fa-xl" style="color: #64a2ff;"></i>
-                            <span style="margin-left: 10px;">10</span>
+                            <span style="margin-left: 10px;">{{idea?.a}}</span>
                         </div>
                     </div>
                     <div class="col p-1 d-flex flex-con">
@@ -58,6 +87,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
