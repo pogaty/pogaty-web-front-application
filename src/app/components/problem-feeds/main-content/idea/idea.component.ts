@@ -8,8 +8,10 @@ import { Problem } from 'src/app/models/problem.model';
 import { Trend } from 'src/app/models/trend.model';
 import { AgreementService } from 'src/app/services/agreement.service';
 import { DataService } from 'src/app/services/data.service';
+import { ParticipantService } from 'src/app/services/participant.service';
 import { ProblemService } from 'src/app/services/problem.service';
 import { TrendService } from 'src/app/services/trend.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-idea',
@@ -30,6 +32,7 @@ export class IdeaComponent implements OnInit, OnChanges {
     private agreementService: AgreementService,
     private trendService: TrendService,
     private problemService: ProblemService,
+    private participantService: ParticipantService,
     private router: Router
   ) {}
 
@@ -156,15 +159,47 @@ export class IdeaComponent implements OnInit, OnChanges {
   reloadAgreeDisagreeCounts(idea_id: number) {
     this.agreementService.loadAgreeReactions(idea_id).then(data => {
       this.agreeMap[idea_id] = data.length
+    }).catch(() => {
+      this.agreeMap = []
     })
 
     //disagree rendering logic.
     this.agreementService.loadDisagreeReactions(idea_id).then(data => {
       this.disagreeMap[idea_id] = data.length
+    }).catch(() => {
+      this.agreeMap = []
     })
   }
 
   getParticipantCount(participant: Participant[]| undefined) {
     return (participant) ? participant.length : 0
   }
+
+  ideaPage(idea: Idea) {
+      if (idea.publicState == false) {
+        if (this.data) {
+          this.participantService.getParticipantClient(idea.idea_id, JSON.parse(this.data).client_id)
+          .then(() => { this.router.navigate(['/idea', idea.idea_id]) })
+          .catch(() => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              footer: '<a href="">Why do I have this issue?</a>',
+              html:
+              `
+                <div>This idea is an private you must be a participant to see the details and description of it.</div>
+              `
+            })
+          })
+        } else {
+          this.router.navigate(['/login'])
+        }
+      } else {
+        this.router.navigate(['/idea', idea.idea_id])
+      }
+  }
+
+  profileSample() {
+  }
+  
 }

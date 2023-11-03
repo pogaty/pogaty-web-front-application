@@ -23,7 +23,7 @@ const routes: Routes = [
         ]
     },
     { 
-        path: 'idea', 
+        path: 'idea/:ideaId', 
         component: AppLayoutComponent,
         children: [
             { path: '', component: IdeaPageComponent }

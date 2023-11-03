@@ -38,7 +38,12 @@
                 <p>{{idea.key}} ...</p>
             </div>
             <div class="profile-participant">
-                <button class="btn" *ngFor="let participant of idea.participants"></button>
+                <button 
+                    class="btn" 
+                    *ngFor="let participant of idea.participants"
+                    (click)="profileSample()"
+                >
+                </button>
             </div>
             <div class="row describe">
                 <div class="col-lg-6 col-md-4 col-6 px-4">{{getParticipantCount(idea.participants)}} participants</div>
@@ -59,7 +64,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm" style="text-align: right;">
-                    <button class="btn join">Look</button>
+                    <button class="btn join" (click)="ideaPage(idea)">Look</button>
                 </div>
             </div>
         </div>
