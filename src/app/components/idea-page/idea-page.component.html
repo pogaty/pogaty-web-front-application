@@ -1,10 +1,13 @@
 <div class="container-fluid bg-custom">
         <div class="row">
-            <div class="col-md-9 col-12 p-0">
-                <app-main-content></app-main-content>
+            <div class="col-md-9 col-12 p-0" *ngIf="isCreator">
+                <app-main-content [idea]="idea"></app-main-content>
             </div>
-            <div class="col-md-3 col-12 p-0">
-                <app-side-content></app-side-content>
+            <div class="col-md-12 col-12 p-0"  *ngIf="!isCreator">
+                <app-main-content [idea]="idea"></app-main-content>
+            </div>
+            <div class="col-md-3 col-12 p-0" *ngIf="isCreator">
+                <app-side-content [idea]="idea"></app-side-content>
             </div>
         </div>
 </div>
