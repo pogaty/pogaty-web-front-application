@@ -16,11 +16,12 @@
 h3,p,h5{
     text-align: center;
 }
-.col-3{
+.col-2{
+    margin: 0 4%;
     padding: 10px;
     align-items: center;
     text-align: center;
-    border: 1px solid #FF5A5A;
+    border: 2px solid #FF5A5A;
     border-radius: 4%;
     color: #FF5A5A;
 }
