@@ -5,220 +5,237 @@
       <a>BACK ◀︎</a>
     </div>
 
-    <!-- content for edit data -->
-    <div class="row">
-      <div class="col-lg left">Left</div>
-      <div class="col-lg right">
-        <!-- Edit data -->
-        <ng-template [ngIf]="editInfo" [ngIfElse]="isShow"
-          ><div class="row mb-4">
-            <label>Username</label>
-            <form>
-              <div class="input-group">
-                <div class="input-group-text">@</div>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Username"
-                  [(ngModel)]="modifiedUsername"
-                  disabled
-                />
-              </div>
-            </form>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Firstname</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Firstname"
-                  [(ngModel)]="modifiedFname"
-                  required
-                />
-              </form>
-            </div>
-            <div class="col">
-              <label>Lastname</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Lastname"
-                  [(ngModel)]="modifiedLname"
-                  required
-                />
-              </form>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Gender</label>
-              <select
-                class="col-auto form-select"
-                aria-label="Default select example"
-                name="gender"
-                [(ngModel)]="modifiedGender"
-              >
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-auto">
-              <label>Telephon Number</label>
-              <form>
-                <input
-                  type="tel"
-                  class="form-control"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  name="phoneNumber"
-                  [(ngModel)]="modifiedTel"
-                />
-              </form>
-            </div>
-            <div class="col">
-              <label>Mail</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="mail"
-                  [(ngModel)]="modifiedMail"
-                />
-              </form>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Address</label>
-              <textarea
-                rows="3"
-                class="form-control p-1"
-                name="description"
-                [(ngModel)]="modifiedAddress"
-              ></textarea>
-            </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="col-md-1">
-              <button class="btn btn-success" (click)="onClickSave()">
-                save
-              </button>
-            </div>
-          </div>
-        </ng-template>
-
-        <!-- Show data  -->
-        <ng-template #isShow>
-          <div class="row mb-4">
-            <label>Username</label>
-            <form>
-              <div class="input-group">
-                <div class="input-group-text">@</div>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Username"
-                  aria-label="Disabled input example"
-                  [(ngModel)]="modifiedUsername"
-                  disabled
-                />
-              </div>
-            </form>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Firstname</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Firstname"
-                  [(ngModel)]="modifiedFname"
-                  disabled
-                />
-              </form>
-            </div>
-            <div class="col">
-              <label>Lastname</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="Lastname"
-                  [(ngModel)]="modifiedLname"
-                  disabled
-                />
-              </form>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Gender</label>
-              <select
-                class="col-auto form-select"
-                aria-label="Default select example"
-                name="Gender"
-                disabled
-              >
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-auto">
-              <label>Telephon Number</label>
-              <form>
-                <input
-                  type="tel"
-                  class="form-control"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  name="phoneNumber"
-                  [(ngModel)]="modifiedTel"
-                  disabled=""
-                />
-              </form>
-            </div>
-            <div class="col">
-              <label>Mail</label>
-              <form>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="mail"
-                  [(ngModel)]="modifiedMail"
-                  disabled
-                />
-              </form>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label>Address</label>
-              <textarea
-                rows="3"
-                class="form-control p-1"
-                name="description"
-                [(ngModel)]="modifiedAddress"
-                disabled
-              ></textarea>
-            </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="col-md-1 justify-content-end">
-              <button class="btn btn-primary" (click)="onClickEditname()">
-                edit
-              </button>
-            </div>
-          </div>
-        </ng-template>
+    <!-- edit data -->
+    <ng-template [ngIf]="editInfo" [ngIfElse]="isShow">
+      <div class="col-lg-6 left profile-container">
+        <div class="cover-pic">
+          <img src="./assets/images/profile-page/profile-background.png" />
+        </div>
+        <div class="profile-pic">
+          <img src="./assets/images/user-profile-samples/profile-1.png" />
+        </div>
       </div>
-    </div>
+      <div class="col-lg right">
+        <div class="row mb-4">
+          <label>Username</label>
+          <form>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input
+                type="text"
+                class="form-control"
+                name="Username"
+                [(ngModel)]="modifiedUsername"
+                disabled
+              />
+            </div>
+          </form>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Firstname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Firstname"
+                [(ngModel)]="modifiedFname"
+                required
+              />
+            </form>
+          </div>
+          <div class="col">
+            <label>Lastname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Lastname"
+                [(ngModel)]="modifiedLname"
+                required
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Gender</label>
+            <select
+              class="col-auto form-select"
+              aria-label="Default select example"
+              name="gender"
+              [(ngModel)]="modifiedGender"
+            >
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-auto">
+            <label>Telephon Number</label>
+            <form>
+              <input
+                type="tel"
+                class="form-control"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                name="phoneNumber"
+                [(ngModel)]="modifiedTel"
+              />
+            </form>
+          </div>
+          <div class="col">
+            <label>Mail</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="mail"
+                [(ngModel)]="modifiedMail"
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Address</label>
+            <textarea
+              rows="3"
+              class="form-control p-1"
+              name="description"
+              [(ngModel)]="modifiedAddress"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-md-1">
+            <button class="btn btn-success" (click)="onClickSave()">
+              save
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- end edit data -->
+
+    <!-- show data -->
+    <ng-template #isShow>
+      <div class="col-lg-6 left profile-container">
+        <div class="cover-pic">
+          <img src="./assets/images/profile-page/profile-background.png" />
+        </div>
+        <div class="profile-pic">
+          <img src="./assets/images/user-profile-samples/profile-1.png" />
+        </div>
+      </div>
+      <div class="col-lg-6 right">
+        <div class="row mb-4">
+          <label>Username</label>
+          <form>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input
+                type="text"
+                class="form-control"
+                name="Username"
+                aria-label="Disabled input example"
+                [(ngModel)]="modifiedUsername"
+                disabled
+              />
+            </div>
+          </form>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Firstname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Firstname"
+                [(ngModel)]="modifiedFname"
+                disabled
+              />
+            </form>
+          </div>
+          <div class="col">
+            <label>Lastname</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="Lastname"
+                [(ngModel)]="modifiedLname"
+                disabled
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Gender</label>
+            <select
+              class="col-auto form-select"
+              aria-label="Default select example"
+              name="Gender"
+              disabled
+            >
+              <option selected>Open this select menu</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-auto">
+            <label>Telephon Number</label>
+            <form>
+              <input
+                type="tel"
+                class="form-control"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                name="phoneNumber"
+                [(ngModel)]="modifiedTel"
+                disabled=""
+              />
+            </form>
+          </div>
+          <div class="col">
+            <label>Mail</label>
+            <form>
+              <input
+                type="text"
+                class="form-control"
+                name="mail"
+                [(ngModel)]="modifiedMail"
+                disabled
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <label>Address</label>
+            <textarea
+              rows="3"
+              class="form-control p-1"
+              name="description"
+              [(ngModel)]="modifiedAddress"
+              disabled
+            ></textarea>
+          </div>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-md-1 justify-content-end">
+            <button class="btn btn-primary" (click)="onClickEditname()">
+              edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- end show data -->
   </div>
 </div>
