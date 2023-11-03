@@ -7,6 +7,12 @@ import { Idea } from "../models/idea.model";
   })
 
 export class IdeaService {
+
+    async getIdeaById(idea_id: number) {
+        const res = await fetch(`${API_URLS.ideas}/${idea_id}`)
+        return res.json()
+    }
+
         async createIdea(problem_id: number, client_id: number, idea: any) {
             await fetch(`${API_URLS.problems}/idea/${problem_id}/by/${client_id}`, 
             {
@@ -23,4 +29,42 @@ export class IdeaService {
             }
             })
         }
+
+        async updateIdea(idea_id: number, idea: any): Promise<Idea> {
+            return new Promise(async (resolve, reject) => {
+                const res = await fetch(`${API_URLS.ideas}/${idea_id}`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(idea)
+                })
+
+                if (res.ok) {
+                    const data = res.json()
+                    resolve(data)
+                } else {
+                    reject(new Error('Request failed'))
+                }
+            })
+        }
+
+        async deleteIdea(idea_id: number) {
+            await fetch(`${API_URLS.ideas}/${idea_id}`, 
+            {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(res => {
+            if (res.ok) {
+                console.log("deleted idea successfully.")
+            } else {
+                console.log("failed to update resource.")
+            }
+            })
+        }
+
+
 }

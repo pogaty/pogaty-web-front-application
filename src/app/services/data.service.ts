@@ -3,6 +3,7 @@ import { BehaviorSubject } from "rxjs"
 import { Problem } from "../models/problem.model"
 import { Trend } from "../models/trend.model"
 import { dtsIdea } from "../components/application/app.component"
+import { Idea } from "../models/idea.model"
 
 @Injectable({
     providedIn: 'root'
@@ -15,11 +16,14 @@ export class DataService {
     private shareCategory = new BehaviorSubject<any>(null)
     private shareFilter = new BehaviorSubject<any>(null)
     private shareTrend = new BehaviorSubject<any>(null)
+    private shareIdea = new BehaviorSubject<any>(null)
 
     private contentProblemOpen = new BehaviorSubject<any>(null)
     private updateProblem = new BehaviorSubject<any>(null)
+    private updateIdea = new BehaviorSubject<any>(null)
 
     private isProblemOpen = new BehaviorSubject<boolean>(false)
+    private isEditorMode = new BehaviorSubject<boolean>(false)
     private isIdeaOpen = new BehaviorSubject<dtsIdea>({bool:false, id: 0})
 
     private currentPage: string = 'feeds'
@@ -27,6 +31,8 @@ export class DataService {
     private mark_problems: Problem[] = []
     private my_problems: Problem[] = []
     private trendMap: { [key: number]: string } = {};
+
+    private recieveIdea: string[] = []
 
     setOnTrack(data: number) {
         this.ontrack.next(data)
@@ -92,6 +98,30 @@ export class DataService {
         return this.updateProblem.asObservable()
     }
 
+    setShareIdea(data: Idea) {
+        this.shareIdea.next(data)
+    }
+
+    getShareIdea() {
+        return this.shareIdea.asObservable()
+    }
+
+    setEditorMode(bool: boolean) {
+        this.isEditorMode.next(bool)
+    }
+
+    getEditorMode() {
+        return this.isEditorMode.asObservable()
+    }
+
+    setUpdateIdea(idea: Idea) {
+        this.updateIdea.next(idea)
+    }
+
+    getUpdateIdea() {
+        return this.updateIdea.asObservable()
+    }
+
     setCurrentPage(page: string) {
         this.currentPage = page
     }
@@ -130,5 +160,13 @@ export class DataService {
 
     getTmpProblemId() {
         return this.tmpProblemId
+    }
+
+    setRecieveIdea(idea: string[]) {
+        this.recieveIdea = idea
+    }
+
+    getRecieveIdea() {
+        return this.recieveIdea
     }
 }
