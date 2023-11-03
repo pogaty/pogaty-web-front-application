@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CollaboratorService } from 'src/app/services/collaborator.service';
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 
 @Component({
   selector: 'app-login-collaborator',
@@ -9,13 +11,16 @@ import { CollaboratorService } from 'src/app/services/collaborator.service';
 })
 export class LoginCollaboratorComponent {
   isRegistered = true
-  isPopupOpen: boolean = false;
+
   
   constructor(
     private CollaboratorService: CollaboratorService,
     private router: Router,
+    private dialog: MatDialog
   ) { }
 
+  
+  
   authorization(email: string, password: string) {
     this.CollaboratorService.loadUsers(email).then((info) => {
       console.log(info)
@@ -29,9 +34,16 @@ export class LoginCollaboratorComponent {
       } 
     })
   }
-  
 
-  togglePopup(): void {
-    this.isPopupOpen = !this.isPopupOpen;
+  openCreateAccountPopup() {
+    const dialogRef = this.dialog.open(RegisterDialogComponent, {
+      width: '600px',height:'600'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Perform actions after dialog is closed if needed
+    });
   }
+
 }

@@ -1,0 +1,19 @@
+.description {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .registration-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .cancel-button {
+    margin-right: 10px;
+  }

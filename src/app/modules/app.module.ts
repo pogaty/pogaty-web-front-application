@@ -27,7 +27,7 @@ import { LoginCollaboratorModule } from './login-collaborator.module';
     ProblemFeedsModule,
     AppRoutingModule,
     LoginModule,
-    LoginCollaboratorModule
+    LoginCollaboratorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
