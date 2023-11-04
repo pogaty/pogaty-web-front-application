@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service.';
@@ -25,11 +25,20 @@ export class EditProfileComponent implements OnInit {
   modifiedAddress: string | undefined = '';
 
   defaultImage = './assets/images/user-profile-samples/profile-1.png';
+  selectedFile: File | null = null;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string = '';
+  imageName: any;
 
   userData: Client | null;
   variable = '';
 
-  constructor(private clientService: ClientService) {
+  constructor(
+    private clientService: ClientService,
+    private location: Location
+  ) {
     this.userData = null;
   }
 
@@ -56,17 +65,12 @@ export class EditProfileComponent implements OnInit {
           }
 
           console.log(this.userData.fileImage);
-
-          this.modifiedUsername = this.userData.username;
-          this.modifiedFname = this.userData.firstname;
-          this.modifiedLname = this.userData.lastname;
         }
       });
     }
   }
 
   private updateUser(
-    username: string | undefined,
     fname: string | undefined,
     lname: string | undefined,
     tel: string | undefined,
@@ -79,7 +83,6 @@ export class EditProfileComponent implements OnInit {
       const client_id = userInfo.client_id;
 
       // Update the description of the userData
-      this.userData.username = username;
       this.userData.firstname = fname;
       this.userData.lastname = lname;
       this.userData.phoneNumber = tel;
@@ -93,15 +96,38 @@ export class EditProfileComponent implements OnInit {
   }
 
   handleFileInput(event: any) {
-    const selectedFile = event.target.files[0];
+    // Retrieve the selected file from the input event
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
 
-    // Process the selected file, e.g., upload it to the server or display it.
-    // You can access the selected file using 'selectedFile'.
+  uploadFile(): void {
+    if (this.data && this.userData) {
+      const userInfo = JSON.parse(this.data);
+      const client_id = userInfo.client_id;
+      if (this.selectedFile) {
+        this.clientService
+          .updateClientImage(client_id, this.selectedFile)
+          .subscribe(
+            (response) => {
+              this.retrieveResonse = response;
+              this.message = 'Image uploaded successfully';
+              this.retrieveResonse = response;
+              this.base64Data = this.retrieveResonse.picByte;
+              this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+            },
+            (error) => {
+              console.error(error);
+              this.message = 'Could not upload the image';
+            }
+          );
+      }
+      window.location.reload();
+    }
   }
 
   onClickSave() {
     this.updateUser(
-      this.modifiedUsername,
       this.modifiedFname,
       this.modifiedLname,
       this.modifiedTel,
@@ -109,12 +135,11 @@ export class EditProfileComponent implements OnInit {
       this.modifiedGender,
       this.modifiedAddress
     );
+
     this.isShow = true;
     this.editInfo = false;
     this.editPicture = false;
   }
-
-  onClickEditPic() {}
 
   onClickEditname() {
     this.modifiedUsername = this.userData?.username;

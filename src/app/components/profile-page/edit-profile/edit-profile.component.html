@@ -7,28 +7,36 @@
 
     <!-- edit data -->
     <ng-template [ngIf]="editInfo" [ngIfElse]="isShow">
-      <div class="col-lg-6 left profile-container">
-        <div class="cover-pic">
-          <img src="./assets/images/profile-page/profile-background.png" />
-        </div>
-        <div class="profile-pic-container position-relative">
-          <div class="profile-pic border border-4">
-            <img [src]="userData?.fileImage" alt="Profile Image" />
+      <div class="col-lg-6 left">
+        <div class="row profile-container">
+          <div class="cover-pic">
+            <img src="./assets/images/profile-page/profile-background.png" />
           </div>
-          <div class="position-relative bottom-0 start-50 translate-middle-x">
-            <label for="fileInput" class="edit-button">
-              <i class="fa-regular fa-pen-to-square"></i> update profile
-            </label>
+          <div class="profile-pic-container position-relative">
+            <div class="profile-pic border border-4">
+              <img [src]="userData?.fileImage" alt="Profile Image" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3">
+            <label for="formFile" class="form-label"
+              >Default file input example</label
+            >
             <input
+              class="form-control"
               type="file"
-              id="fileInput"
-              style="display: none"
               (change)="handleFileInput($event)"
-              accept="image/*"
             />
+          </div>
+          <div>
+            <button class="btn btn-primary" (click)="uploadFile()">
+              Upload
+            </button>
           </div>
         </div>
       </div>
+
       <div class="col-lg right">
         <div class="row mb-4">
           <label>Username</label>

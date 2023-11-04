@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { Client } from '../models/client.model';
 import { API_URLS } from './environment';
 
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   async loadUsers(username: string): Promise<Client | null> {
     const res = await fetch(`${API_URLS.clients}/${username}`);
@@ -38,5 +41,12 @@ export class ClientService {
 
   getPicture(profilePath: string | undefined) {
     return `${API_URLS.clients}/image/${profilePath}`;
+  }
+
+  updateClientImage(clientId: number, imageFile: File) {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    return this.http.put(`${API_URLS.clients}/${clientId}/image`, formData);
   }
 }
