@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Client } from 'src/app/models/client.model';
@@ -25,16 +25,23 @@ export class AppComponent implements OnInit, OnDestroy {
   category: string = 'global'
   errorlog = ''
   problem_id = 0
+  idea_id = 0
 
   clientSubscription: Subscription | undefined
+  manageSubscription: Subscription | undefined
   client: Client | undefined
+
   ideas: Idea[] = []
+  clients: Client[] = []
+  filtered_clients: Client[] = []
+  participate_clients: Client[] = []
 
   isProblemOpen = false
   isIdeaOpen = false
   isProfileOpen = false
   isEditor = false
   isPrivate = false
+  isManagement = false
   
   constructor (
     private dataService: DataService,
@@ -42,12 +49,18 @@ export class AppComponent implements OnInit, OnDestroy {
     private clientService: ClientService,
     private participantService: ParticipantService,
     private ideaService: IdeaService,
+    private renderer: Renderer2, 
+    private el: ElementRef,
     private router: Router
   ) { }
 
   ngOnDestroy(): void {
     if (this.clientSubscription) {
       this.clientSubscription.unsubscribe()
+    }
+
+    if (this.manageSubscription) {
+      this.manageSubscription.unsubscribe()
     }
   }
 
@@ -61,6 +74,30 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isIdeaOpen = data.bool
       this.problem_id = data.id
       console.log(data)
+    })
+
+    this.manageSubscription = this.dataService.getManagement().subscribe(data => {
+      this.isManagement = data.bool
+      this.idea_id = data.id
+      const client_id = localStorage.getItem("userInfo")
+
+      if (client_id) {
+        this.clientService.loadWithoutParticipantAndSelf(JSON.parse(client_id).client_id, data.id)
+        .then(data => {
+          this.clients = data
+          this.filtered_clients = data
+        }).catch(() => {
+          this.clients = []
+          this.filtered_clients = []
+        })
+
+        this.ideaService.getIdeaParticipator(data.id, JSON.parse(client_id).client_id).then(data => {
+          this.participate_clients = data
+        }).catch(() => {
+          this.participate_clients = []
+        })
+      }
+      
     })
 
     this.clientSubscription = this.dataService.getProfileOpen().subscribe(data => {
@@ -89,12 +126,46 @@ export class AppComponent implements OnInit, OnDestroy {
     })
   }
 
+  clientFilter(filter: string) {
+    if (filter) {
+      console.log(filter)
+      this.clients = this.filtered_clients.filter((client) => {
+        return client.username?.toLowerCase().includes(filter.toLowerCase())
+      })
+    }
+  }
+
+  addParticipant(client: Client) {
+    if(client.client_id) {
+      const index = this.clients.indexOf(client);
+      if (index !== -1) {
+        this.clients.splice(index, 1);
+      }
+
+      this.participate_clients.push(client)
+      this.participantService.addParticipant(this.idea_id ,client.client_id)
+    }
+  }
+
+  removeParticipant(client: Client) {
+    if (client.client_id) {
+      const index = this.participate_clients.indexOf(client);
+      if (index !== -1) {
+        this.participate_clients.splice(index, 1);
+      }
+
+      this.clients.push(client)
+      this.participantService.removeParticipant(this.idea_id ,client.client_id)
+    }
+  }
+
   closePopup(event: Event): void {
     if (event.target === event.currentTarget) {
       this.isProblemOpen = false
       this.isIdeaOpen = false
       this.isProfileOpen = false
       this.isEditor = false
+      this.isManagement = false
       this.category = 'global'
       this.errorlog = ''  
     }
@@ -159,8 +230,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   sliceKey(key: string) {
-    if (key) key.slice(0,50)
-    return key
+    return (key) ? key.slice(0,200) : key
   }
 
   ideaPage(idea: Idea) {

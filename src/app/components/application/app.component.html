@@ -61,7 +61,7 @@
                     <div class="col-lg">
                         <div class="form-check form-switch d-flex">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="isPrivate">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to private idea?</label>
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to public idea?</label>
                         </div>
                     </div>
                     <div class="col-lg">
@@ -115,7 +115,7 @@
                     <div class="row p-1" *ngFor="let idea of ideas">
                         <div class="col-10">
                             <p class="m-0" style="font-weight: bold;">{{idea.ideaHeader}}</p>
-                            <p class="m-0">{{sliceKey(idea.key || '')}}...</p>
+                            <p class="m-0">{{sliceKey(idea.key || '')}} ...</p>
                         </div>
                         <div class="col-2 corn-flex">
                             <button class="btn more" (click)="ideaPage(idea)">more details</button>
@@ -126,6 +126,51 @@
 
             <div class="container corn-flex">
                 <button class="btn close" (click)="closePopup($event)">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup"  *ngIf="isManagement" (click)="closePopup($event)">
+    <div class="container-sm content">
+        <div class="d-flex flex-column">
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass" style="color: #d2d1cd;"></i>
+                <input type="search" class="search-p mx-2" placeholder="Search a new participants..." (input)="clientFilter(search.value)" #search>
+            </div>
+
+            <div class="container">
+                <div class="parti-board row">
+                    <div class="col-lg">
+                        <div class="p-0 m-0 mb-2 left" *ngFor="let client of clients">
+                            <div class="profile-background small-h p-0 m-0">
+                                <div class="profile-image m-0"></div>
+                                <div class="m-0 p-1 profile-detail">
+                                    <p>{{client.username}}</p>
+                                    <p>@demo00{{client.client_id}}</p>
+                                </div>
+                            </div>
+                            <button class="btn add" (click)="addParticipant(client)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg">
+                        <div class="p-0 m-0 mb-2 right" *ngFor="let client of participate_clients">
+                            <div class="profile-background small-h p-0 m-0">
+                                <div class="profile-image m-0"></div>
+                                <div class="m-0 p-1 profile-detail">
+                                    <p>{{client.username}}</p>
+                                    <p>@demo00{{client.client_id}}</p>
+                                </div>
+                            </div>
+                            <button class="btn remove" (click)="removeParticipant(client)">-</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container corn-flex mt-2">
+                    <button class="btn close" (click)="closePopup($event)">Close</button>
+                </div>
             </div>
         </div>
     </div>

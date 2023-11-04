@@ -80,6 +80,11 @@ export class SideContentIdeaComponent implements OnInit {
     }
   }
 
+  management() {
+    if (this.idea?.idea_id)
+    this.dataService.setManagement({bool: true, id: this.idea?.idea_id})
+  }
+
   confirmEditor() {
     const form = this.dataService.getRecieveIdea()
     const idea = {
