@@ -1,4 +1,3 @@
-import { Image } from './image.model';
 import { Problem } from './problem.model';
 
 export interface Client {
@@ -14,5 +13,5 @@ export interface Client {
   description?: string;
   rating?: number;
   problem?: Problem;
-  fileImage?: Image;
+  fileImage: string;
 }
