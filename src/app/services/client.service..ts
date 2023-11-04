@@ -35,4 +35,8 @@ export class ClientService {
         console.error('Error:', error);
       });
   }
+
+  getPicture(profilePath: string | undefined) {
+    return `${API_URLS.clients}/image/${profilePath}`;
+  }
 }

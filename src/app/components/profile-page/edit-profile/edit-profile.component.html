@@ -11,8 +11,22 @@
         <div class="cover-pic">
           <img src="./assets/images/profile-page/profile-background.png" />
         </div>
-        <div class="profile-pic">
-          <img src="./assets/images/user-profile-samples/profile-1.png" />
+        <div class="profile-pic-container position-relative">
+          <div class="profile-pic border border-4">
+            <img [src]="userData?.fileImage" alt="Profile Image" />
+          </div>
+          <div class="position-relative bottom-0 start-50 translate-middle-x">
+            <label for="fileInput" class="edit-button">
+              <i class="fa-regular fa-pen-to-square"></i> update profile
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              style="display: none"
+              (change)="handleFileInput($event)"
+              accept="image/*"
+            />
+          </div>
         </div>
       </div>
       <div class="col-lg right">
@@ -126,7 +140,7 @@
           <img src="./assets/images/profile-page/profile-background.png" />
         </div>
         <div class="profile-pic">
-          <img src="./assets/images/user-profile-samples/profile-1.png" />
+          <img [src]="userData?.fileImage" alt="Profile Image" />
         </div>
       </div>
       <div class="col-lg-6 right">

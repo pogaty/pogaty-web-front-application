@@ -24,7 +24,10 @@ export class EditProfileComponent implements OnInit {
   modifiedTel: string | undefined = '';
   modifiedAddress: string | undefined = '';
 
+  defaultImage = './assets/images/user-profile-samples/profile-1.png';
+
   userData: Client | null;
+  variable = '';
 
   constructor(private clientService: ClientService) {
     this.userData = null;
@@ -37,11 +40,28 @@ export class EditProfileComponent implements OnInit {
 
       this.clientService.loadUsers(username).then((data) => {
         this.userData = data;
-      });
 
-      this.modifiedUsername = this.userData?.username;
-      this.modifiedFname = this.userData?.firstname;
-      this.modifiedLname = this.userData?.lastname;
+        if (this.userData) {
+          // Check if userData is not null
+          this.variable = this.clientService.getPicture(
+            this.userData.fileImage
+          );
+
+          if (this.userData.fileImage == null) {
+            console.log('this method work');
+            this.userData.fileImage = this.defaultImage;
+          } else if (this.variable) {
+            // Check if variable is not null
+            this.userData.fileImage = this.variable;
+          }
+
+          console.log(this.userData.fileImage);
+
+          this.modifiedUsername = this.userData.username;
+          this.modifiedFname = this.userData.firstname;
+          this.modifiedLname = this.userData.lastname;
+        }
+      });
     }
   }
 
@@ -70,6 +90,13 @@ export class EditProfileComponent implements OnInit {
       // Call the update method
       this.clientService.updateUser(client_id, this.userData);
     }
+  }
+
+  handleFileInput(event: any) {
+    const selectedFile = event.target.files[0];
+
+    // Process the selected file, e.g., upload it to the server or display it.
+    // You can access the selected file using 'selectedFile'.
   }
 
   onClickSave() {

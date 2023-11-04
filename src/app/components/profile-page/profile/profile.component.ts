@@ -13,6 +13,9 @@ export class ProfileComponent implements OnInit {
   isLoading: boolean = false;
   userData: Client | null;
 
+  defaultImage = './assets/images/user-profile-samples/profile-1.png';
+  variable = '';
+
   constructor(private clientService: ClientService) {
     this.userData = null;
   }
@@ -24,6 +27,21 @@ export class ProfileComponent implements OnInit {
 
       this.clientService.loadUsers(username).then((data) => {
         this.userData = data;
+
+        if (this.userData) {
+          // Check if userData is not null
+          this.variable = this.clientService.getPicture(
+            this.userData.fileImage
+          );
+
+          if (this.userData.fileImage == null) {
+            console.log('this method work');
+            this.userData.fileImage = this.defaultImage;
+          } else if (this.variable) {
+            // Check if variable is not null
+            this.userData.fileImage = this.variable;
+          }
+        }
       });
     }
   }
