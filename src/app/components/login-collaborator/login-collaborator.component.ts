@@ -37,7 +37,7 @@ export class LoginCollaboratorComponent {
 
   openCreateAccountPopup() {
     const dialogRef = this.dialog.open(RegisterDialogComponent, {
-      width: '600px',height:'600'
+      width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
