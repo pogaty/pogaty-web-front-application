@@ -18,6 +18,16 @@ export class ClientService {
         return undefined
     }
 
+    async loadRandomUsers(): Promise<Client[]> {
+      const res = await fetch(`${API_URLS.clients}/rand`)
+      return res.json()
+    }
+
+    async loadWithoutParticipantAndSelf(client_id: number, idea_id: number): Promise<Client[]> {
+      const res = await fetch(`${API_URLS.clients}/without/${client_id}/on_idea/${idea_id}`)
+      return res.json()
+    }
+
     async createClient(client: Client): Promise<void> {
       return new Promise<void>((resolve, reject) => {
         fetch(`${API_URLS.clients}`, {

@@ -13,6 +13,11 @@ export class IdeaService {
         return res.json()
     }
 
+    async getIdeaParticipator(idea_id: number, client_id: number) {
+        const res = await fetch(`${API_URLS.ideas}/participator/${idea_id}/except/${client_id}`)
+        return res.json()
+    }
+
         async createIdea(problem_id: number, client_id: number, idea: any) {
             await fetch(`${API_URLS.problems}/idea/${problem_id}/by/${client_id}`, 
             {

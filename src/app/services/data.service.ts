@@ -24,6 +24,7 @@ export class DataService {
 
     private isProblemOpen = new BehaviorSubject<boolean>(false)
     private isEditorMode = new BehaviorSubject<boolean>(false)
+    private isManagement = new BehaviorSubject<dtsIdea>({bool: false, id: 0})
     private isIdeaOpen = new BehaviorSubject<dtsIdea>({bool:false, id: 0})
     private isProfileOpen = new BehaviorSubject<dtsClient>({bool: false, username: ''})
 
@@ -73,6 +74,14 @@ export class DataService {
 
     getProblemOpen() {
         return this.isProblemOpen.asObservable()
+    }
+
+    setManagement(data: dtsIdea) {
+        this.isManagement.next(data)
+    }
+
+    getManagement() {
+        return this.isManagement.asObservable()
     }
 
     setIdeaOpen(data: dtsIdea) {

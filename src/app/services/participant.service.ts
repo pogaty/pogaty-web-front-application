@@ -16,4 +16,38 @@ export class ParticipantService {
         const res = await fetch(`${API_URLS.participants}/idea_by/${client_username}`)
         return res.json()
     }
+
+    async addParticipant(idea_id: number, client_id: number) {
+        await fetch(`${API_URLS.participants}/on_idea/${idea_id}/by/${client_id}`, 
+        {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({role: "member"})
+        }).then(res => {
+        if (res.ok) {
+            console.log("add participant successfully.")
+        } else {
+            console.log("failed to update resource.")
+        }
+        })
+    }
+
+    async removeParticipant(idea_id: number, client_id: number) {
+        await fetch(`${API_URLS.participants}/on_idea/${idea_id}/by/${client_id}`, 
+        {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        }).then(res => {
+        if (res.ok) {
+            console.log("delete participant successfully.")
+        } else {
+            console.log("failed to update resource.")
+        }
+        })
+    }
+
 }
