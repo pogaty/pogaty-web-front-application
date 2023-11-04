@@ -16,11 +16,10 @@ export class RegisterDialogComponent {
     private registrationService: CollaboratorService,
   ) {}
 
-
-
   onClose(): void {
     this.dialogRef.close();
   }
+  
   registerCollaborator() {
     this.registrationService.createNewCollaborator(this.collaborator).subscribe(
       (response) => {
