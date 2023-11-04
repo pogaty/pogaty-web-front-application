@@ -42,7 +42,6 @@ export class LoginCollaboratorComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // Perform actions after dialog is closed if needed
     });
   }
 

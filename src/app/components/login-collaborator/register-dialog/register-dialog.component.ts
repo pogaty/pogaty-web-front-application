@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Collaborator } from 'src/app/models/collaborator.model';
+import { CollaboratorService } from 'src/app/services/collaborator.service';
 
 @Component({
   selector: 'app-register-dialog',
@@ -7,16 +9,32 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./register-dialog.component.css']
 })
 export class RegisterDialogComponent {
-  constructor(public dialogRef: MatDialogRef<RegisterDialogComponent>) { }
+  collaborator: Collaborator = {};
+
+  constructor(
+    public dialogRef: MatDialogRef<RegisterDialogComponent>,
+    private registrationService: CollaboratorService,
+  ) {}
+
+
 
   onClose(): void {
     this.dialogRef.close();
   }
-
-  submitRegistration(): void {
-    // Handle your registration logic here
-    // Access form values: this.registrationForm.value
-    // Example: this.authService.register(this.registrationForm.value)
-    this.dialogRef.close();
+  registerCollaborator() {
+    this.registrationService.createNewCollaborator(this.collaborator).subscribe(
+      (response) => {
+        // Handle success response here
+        console.log('Collaborator created:', response);
+        // You might want to add additional handling after successful registration
+      },
+      (error) => {
+        // Handle error response here
+        console.error('Error creating collaborator:', error);
+        // You might want to add error handling for failed registration
+      }
+    );
   }
+ 
+  
 }

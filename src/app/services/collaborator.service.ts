@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Collaborator } from "../models/collaborator.model";
 import { API_URLS } from "./environment";
+import { HttpClient } from "@angular/common/http"
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class CollaboratorService {
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     async loadUsers(name: string): Promise<Collaborator| null> {
         const res = await fetch(`${API_URLS.collaborators}/${name}`)
@@ -16,4 +17,8 @@ export class CollaboratorService {
         } 
         return null
     }
+
+    createNewCollaborator(collaboratorData: any) {
+        return this.http.post(API_URLS.collaborators, collaboratorData);
+      }
 }

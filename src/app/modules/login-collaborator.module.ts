@@ -20,11 +20,13 @@ import { FormsModule } from '@angular/forms';
         MatFormFieldModule,
         MatButtonModule,
         MatDialogModule,
-        FormsModule
+        FormsModule,
+      
     ],
     declarations: [
         LoginCollaboratorComponent,
-        RegisterDialogComponent
+        RegisterDialogComponent,
+        
 
     ],
     exports: [
