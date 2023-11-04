@@ -37,8 +37,6 @@ export class IdeaPageComponent implements OnInit, OnDestroy {
     this.participantService.getParticipantClient(ideaId, JSON.parse(this.data).client_id).then(data => {
       (data.role == 'creator') ? this.isCreator = true : this.isCreator = false
     })
-
-    console.log(this.idea)
     this.ideaData.emit(this.idea)
 
     this.onTrack = this.dataService.getOnTrack()

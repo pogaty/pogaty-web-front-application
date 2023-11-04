@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { BehaviorSubject } from "rxjs"
 import { Problem } from "../models/problem.model"
 import { Trend } from "../models/trend.model"
-import { dtsIdea } from "../components/application/app.component"
+import { dtsClient, dtsIdea } from "../components/application/app.component"
 import { Idea } from "../models/idea.model"
 
 @Injectable({
@@ -25,6 +25,7 @@ export class DataService {
     private isProblemOpen = new BehaviorSubject<boolean>(false)
     private isEditorMode = new BehaviorSubject<boolean>(false)
     private isIdeaOpen = new BehaviorSubject<dtsIdea>({bool:false, id: 0})
+    private isProfileOpen = new BehaviorSubject<dtsClient>({bool: false, username: ''})
 
     private currentPage: string = 'feeds'
     private tmpProblemId: number = 0
@@ -80,6 +81,14 @@ export class DataService {
 
     getIdeaOpen() {
         return this.isIdeaOpen.asObservable()
+    }
+
+    setProfileOpen(data: dtsClient) {
+        this.isProfileOpen.next(data)
+    }
+
+    getProfileOpen() {
+        return this.isProfileOpen.asObservable()
     }
 
     setProblemContent(data: string) {

@@ -199,7 +199,8 @@ export class IdeaComponent implements OnInit, OnChanges {
       }
   }
 
-  profileSample() {
+  profileSample(username: string) {
+    this.dataService.setProfileOpen({bool: true, username: username})
   }
-  
+
 }

@@ -41,6 +41,8 @@ export class SideContentIdeaComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, cancel!',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {

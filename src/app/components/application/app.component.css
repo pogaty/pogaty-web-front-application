@@ -57,6 +57,14 @@ button:focus {
     margin: auto 5px;
 }
 
+.flex-adjust {
+    padding: 20px;
+}
+
+.flex-adjust div {
+    margin-bottom: 5px;
+}
+
 .btn-custom {
     margin: 0;
     border: 2px solid var(--bg-red);
@@ -129,9 +137,99 @@ button:focus {
     border: 2px solid transparent;
 }
 
+.profile-background {
+    position: relative;
+    height: 100px;  
+    background-image: url('../../../assets/images/general-profile-background/general-p1.png');
+    border-radius: 15px;
+}
+
+.profile {
+    background-image: url('../../../assets/images/user-profile-samples/profile-1.png');
+    background-size: cover;
+    border-radius: 15px;
+    width: 100px;
+    height: 100%;
+}
+
+.profile-header {
+    padding: 10px 50px 10px 20px;
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--bg-nav);
+    border-radius: 0 15px 15px 0;
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.corn-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-content, .top {
+    font-weight: bold;
+    color: #FA4155;
+}
+
+.col-box {
+    overflow: scroll;
+    padding: 15px;
+    max-height: 160px;
+    background-color: #F2F2F2;
+    color: black;
+    font-weight: 400;
+    border-radius: 15px;
+}
+
+.exhi {
+    padding: 15px;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    overflow: scroll;
+    height: 165px;
+}
+
+.more {
+    background-color: white;
+    color: #FA4155;
+    border: 2px solid #FA4155 !important;
+    transition: 0.3s;
+}
+
+.close {
+    width: 175px;
+    background-color: #FA4155;
+    color: white;
+}
+
+.more:hover {
+    background-color: #FA4155;
+    color: white;
+    transition: 0.3s;
+}
+
+.exhi div {
+    margin: 5px 0;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.profile-header p {
+    margin: 0;
+}
+
 @media only screen and (max-width: 768px) {
     .btn-custom {
         margin-top: 10px;
+    }
+
+    .ex {
+        display: none;
     }
 }
 
@@ -141,3 +239,7 @@ button:focus {
         align-items: center;
     }
 }
+
+/* div {
+    border: 2px solid red;
+} */

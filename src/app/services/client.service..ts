@@ -9,12 +9,13 @@ import { API_URLS } from "./environment";
 export class ClientService {
     constructor() { }
 
-    async loadUsers(username: string): Promise<Client| null> {
+    async loadUsers(username: string): Promise<Client | undefined>  {
         const res = await fetch(`${API_URLS.clients}/${username}`)
         if (res.ok) {
             return res.json()
         } 
-        return null
+
+        return undefined
     }
 
     async createClient(client: Client): Promise<void> {
