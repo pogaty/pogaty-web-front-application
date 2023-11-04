@@ -9,7 +9,7 @@
 .side-content::before {
     content: '';
     position: absolute;
-    z-index: 10;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -20,7 +20,7 @@
 
 .side-content div {
     position: relative;
-    z-index: 15;
+    z-index: 2;
 }
 
 .function-box {
