@@ -7,29 +7,28 @@
 
     <!-- edit data -->
     <ng-template [ngIf]="editInfo" [ngIfElse]="isShow">
-      <div class="col-lg-6 left">
-        <div class="row profile-container">
-          <div class="cover-pic">
-            <img src="./assets/images/profile-page/profile-background.png" />
-          </div>
-          <div class="profile-pic-container position-relative">
-            <div class="profile-pic border border-4">
-              <img [src]="userData?.fileImage" alt="Profile Image" />
+      <div class="col-lg-6 position-relative">
+        <div
+          class="position-absolute top-50 start-50 translate-middle"
+          style="width: 100%"
+        >
+          <div class="profile-container">
+            <div class="cover-pic">
+              <img src="./assets/images/profile-page/profile-background.png" />
+            </div>
+            <div class="profile-pic-container position-relative">
+              <div class="profile-pic border border-4">
+                <img [src]="userData?.fileImage" alt="Profile Image" />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="mb-3">
-            <label for="formFile" class="form-label"
-              >Default file input example</label
-            >
+          <div class="input-group px-5">
             <input
               class="form-control"
               type="file"
               (change)="handleFileInput($event)"
             />
-          </div>
-          <div>
+
             <button class="btn btn-primary" (click)="uploadFile()">
               Upload
             </button>
