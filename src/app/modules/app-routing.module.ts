@@ -6,6 +6,7 @@ import { AppLayoutComponent } from "../components/application/app-layout/app-lay
 import { HomeComponent } from "../components/home/home.component";
 import { ProfilePageComponent } from "../components/profile-page/profile-page.component";
 import { IdeaPageComponent } from "../components/idea-page/idea-page.component";
+import { IdeaDashboardComponent } from "../components/idea-dashboard/idea-dashboard.component";
 
 const routes: Routes = [
     {
@@ -34,6 +35,13 @@ const routes: Routes = [
         component: AppLayoutComponent,
         children: [
             { path: '', component: ProfilePageComponent }
+        ]
+    },
+    { 
+        path: 'idea-dashboard', 
+        component: AppLayoutComponent,
+        children: [
+            { path: '', component: IdeaDashboardComponent }
         ]
     },
     { path: 'login', component: LoginComponent },

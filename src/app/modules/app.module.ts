@@ -12,6 +12,7 @@ import { HomeModule } from './home.module';
 import { ProfilePageModule } from './profile-page.module';
 import { IdeaPageModule } from './idea-page.module';
 import { FormsModule } from '@angular/forms';
+import { IdeaDashboardModule } from './idea-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     ProblemFeedsModule,
     AppRoutingModule,
     LoginModule,
-    IdeaPageModule
+    IdeaPageModule,
+    IdeaDashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

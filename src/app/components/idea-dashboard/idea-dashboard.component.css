@@ -1,0 +1,63 @@
+.bg-custom {
+    background-color: white;
+    border-radius: 30px 0 30px 0;
+}
+
+.top {
+    padding: 50px;
+    border-radius: 20px 0 0 0;
+    text-align: center;
+}
+
+.top h1 {
+    color: var(--bg-red);
+    font-weight: bolder;
+}
+
+.row.p-2 {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.board div.col-md-6 div {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+.bottom {
+    border-radius: 0 0 20px 0;
+    background-color: #F4F4F4;
+}
+
+.btn-custom {
+    padding: 15px;
+    background-color: white;
+    border: 2px solid var(--bg-nav);
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: var(--bg-nav);
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.btn-custom:hover i {
+    color: white !important;
+}
+
+.corn-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text p {
+    margin: 0;
+}
+
+/* div {
+    border: 2px solid red;
+} */

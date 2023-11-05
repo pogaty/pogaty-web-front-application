@@ -1,0 +1,31 @@
+<div class="container-fluid bg-custom p-0">
+    <div class="d-flex flex-column">
+        <div class="top">
+            <h1>Idea Participated</h1>
+            <h6>All of your ideas will be shown here, and you will be able to see and control them with your access.</h6>
+        </div>
+        <div class="bottom">
+            <div class="container-md">
+                <div class="row board">
+                    <div style="padding-top: 10px;"></div>
+
+                    <div class="col-md-6 container" *ngFor="let idea of ideas">
+                        <div class="row p-2 m-2">
+                            <div class="col-9 text">
+                                <p style="font-weight: bold">{{idea.ideaHeader}}</p>
+                                <p>{{sliceKey(idea.key || '')}} ...</p>
+                            </div>
+                            <div class="col-3 corn-flex"> 
+                                <button class="btn btn-custom" (click)="ideaPage(idea)">
+                                    <i class="fa-solid fa-door-open" style="color: #2E2C39;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
