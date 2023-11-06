@@ -13,19 +13,23 @@ export class AgreementService {
     ) { }
 
     async loadAgreeReactions(idea_id: number): Promise<Agreement[]> {
-        const res = await fetch(`${API_URLS.agreements}/on_idea/${idea_id}/agree`)
-        if (res.ok) {
-            return res.json()
-        } 
-        return []
+        const res = await fetch(`${API_URLS.agreements}/on_idea/${idea_id}/agree`);
+        if (res.status === 204) {
+            // Handle the case where the response is empty
+            return [];
+        } else {
+            return res.json();
+        }
     }
-
+    
     async loadDisagreeReactions(idea_id: number): Promise<Agreement[]> {
-        const res = await fetch(`${API_URLS.agreements}/on_idea/${idea_id}/disagree`)
-        if (res.ok) {
-            return res.json()
-        } 
-        return []
+        const res = await fetch(`${API_URLS.agreements}/on_idea/${idea_id}/disagree`);
+        if (res.status === 204) {
+            // Handle the case where the response is empty
+            return [];
+        } else {
+            return res.json();
+        }
     }
 
     async updateAgreed(idea_id: number, client_id: number, agreement: Agreement) {
