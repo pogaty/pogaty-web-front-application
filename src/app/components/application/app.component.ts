@@ -111,6 +111,8 @@ export class AppComponent implements OnInit, OnDestroy {
       this.participantService.getIdeasByClient(data.username).then((data) => {
         this.ideas = data
         console.log(this.ideas)
+      }).catch(() => {
+        this.ideas = []
       })
     })
 
