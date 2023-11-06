@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Idea } from 'src/app/models/idea.model';
 import { Participant } from 'src/app/models/participant.model';
 import { DataService } from 'src/app/services/data.service';
 import { IdeaService } from 'src/app/services/idea.service';
 import { ParticipantService } from 'src/app/services/participant.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-idea-page',
@@ -26,7 +27,8 @@ export class IdeaPageComponent implements OnInit, OnDestroy {
     private dataService: DataService,
     private ideaService: IdeaService,
     private participantService: ParticipantService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -60,12 +62,62 @@ export class IdeaPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  serviceProject() {
-    this.dataService.setProjectOpen(true)
+  async serviceProject() {
+    try {
+      const check = await this.checkUserParticipate()
+  
+      if (check) {
+        this.dataService.setProjectOpen(true)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          footer: '<a href="">Why do I have this issue?</a>',
+          html: `
+            <div>This idea is private. You must be a participant to use the function of it.</div>
+          `,
+        })
+      }
+    } catch (error) {
+      // Handle any errors that may occur during the checkUserParticipate() function.
+      console.error('Error:', error)
+    }
   }
 
-  serviceBusiness() {
-    this.dataService.setBusinessOpen(true)
+  async serviceBusiness() {
+    try {
+      const check = await this.checkUserParticipate()
+  
+      if (check) {
+        this.dataService.setBusinessOpen(true)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          footer: '<a href="">Why do I have this issue?</a>',
+          html: `
+            <div>This idea is private. You must be a participant to use the function of it.</div>
+          `,
+        })
+      }
+    } catch (error) {
+      // Handle any errors that may occur during the checkUserParticipate() function.
+      console.error('Error:', error)
+    }
+  }
+
+  async checkUserParticipate(): Promise<boolean> {
+    const user = localStorage.getItem('userInfo')
+    if (this.idea && user) {
+      try {
+        await this.participantService.getParticipantClient(this.idea.idea_id, JSON.parse(user).client_id);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
 }
