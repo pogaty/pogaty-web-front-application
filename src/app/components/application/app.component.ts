@@ -76,7 +76,8 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log(data)
     })
 
-    this.manageSubscription = this.dataService.getManagement().subscribe(data => {
+    this.manageSubscription = this.dataService.getManagement()
+    .pipe(filter(data => !!data)).subscribe(data => {
       this.isManagement = data.bool
       this.idea_id = data.id
       const client_id = localStorage.getItem("userInfo")
