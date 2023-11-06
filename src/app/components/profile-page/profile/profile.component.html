@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3 profile">
-    <img src="./assets/images/user-profile-samples/profile-1.png" />
+    <img [src]="userData?.fileImage" alt="Profile Image" />
   </div>
   <div class="col-md-9 background">
     <img src="./assets/images/profile-page/profile-background.png" />
@@ -8,12 +8,22 @@
 </div>
 <div class="row">
   <div class="col-md-3 mt-3 username">
-    <h3>Sample Username</h3>
-    <p>@sample5486</p>
+    <h3>{{ userData?.firstname }}&nbsp;{{ userData?.lastname }}</h3>
+    <p>@{{ userData?.username }}</p>
   </div>
-  <div class="col-md-2 offset-md-7 mt-4 icon">
-    <img src="./assets/images/profile-page/facebook.png" />
-    <img src="./assets/images/profile-page/mail.png" />
-    <img src="./assets/images/profile-page/linkedin.png" />
+  <div class="col-md-8 mt-4 edit">
+    <button
+      class="btn btn-outline-secondary btn-sm"
+      [routerLink]="['/edit-profile']"
+    >
+      edit profile
+    </button>
+  </div>
+  <div class="col-auto mt-4 ms-auto">
+    <a [href]="'mailto:' + (userData?.mail || '')">
+      <button class="btn btn-danger">
+        <i class="fa-regular fa-envelope"></i>
+      </button>
+    </a>
   </div>
 </div>
