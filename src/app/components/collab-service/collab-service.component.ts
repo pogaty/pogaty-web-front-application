@@ -10,7 +10,7 @@ import { Service } from 'src/app/models/service.model';
   styleUrls: ['./collab-service.component.css'],
 })
 export class CollabServiceComponent implements OnInit {
-  data = localStorage.getItem('serviceInfo');
+  data = localStorage.getItem('collabInfo');
   serviceData: Service | null;
 
   serviceName: string = '';
@@ -75,6 +75,8 @@ export class CollabServiceComponent implements OnInit {
     window.location.reload();
   }
 
+  deleteService() {}
+
   onClickAdd() {
     this.createService(
       this.serviceName,
@@ -85,4 +87,6 @@ export class CollabServiceComponent implements OnInit {
   }
 
   onClickEdit() {}
+
+  onClickDelete() {}
 }

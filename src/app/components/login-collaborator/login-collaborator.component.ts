@@ -7,42 +7,41 @@ import { RegisterDialogComponent } from './register-dialog/register-dialog.compo
 @Component({
   selector: 'app-login-collaborator',
   templateUrl: './login-collaborator.component.html',
-  styleUrls: ['./login-collaborator.component.css']
+  styleUrls: ['./login-collaborator.component.css'],
 })
 export class LoginCollaboratorComponent {
-  isRegistered = true
+  isRegistered = true;
 
-  
   constructor(
-    private CollaboratorService: CollaboratorService,
+    private collaboratorService: CollaboratorService,
     private router: Router,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
-  
-  
-  authorization(email: string, password: string) {
-    this.CollaboratorService.loadUsers(email).then((info) => {
-      console.log(info)
-      if (info != null) {
-        if (info.password == password) {
-          localStorage.setItem('userInfo', JSON.stringify(info))
-          this.router.navigate(['/service']) //service
+  authorization(name: string, password: string) {
+    this.collaboratorService.loadUsers(name).then((infomation) => {
+      console.log(infomation?.password);
+      if (infomation) {
+        console.log(infomation.password + ' ' + password);
+        if (infomation.password == password) {
+          localStorage.setItem('collabInfo', JSON.stringify(infomation));
+          this.router.navigate(['/collab-service']);
         } else {
-          console.log('password is incorrect!')
+          console.log('Password is incorrect!');
         }
-      } 
-    })
+      } else {
+        console.log('Username is invalid.');
+      }
+    });
   }
 
   openCreateAccountPopup() {
     const dialogRef = this.dialog.open(RegisterDialogComponent, {
-      width: '600px'
+      width: '600px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
-
 }
