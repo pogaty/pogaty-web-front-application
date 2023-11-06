@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { ExhibitionComponent } from '../components/profile-page/exhibition/exhibition.component';
@@ -14,7 +16,6 @@ import { EditProfileComponent } from '../components/profile-page/edit-profile/ed
   declarations: [
     ProfilePageComponent,
     ExhibitionComponent,
-    CategoryComponent,
     ProfileComponent,
     DescriptionComponent,
     EditProfileComponent,
@@ -27,6 +28,13 @@ import { EditProfileComponent } from '../components/profile-page/edit-profile/ed
     DescriptionComponent,
     EditProfileComponent,
   ],
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule, 
+    RouterModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    CategoryComponent,
+  ],
 })
 export class ProfilePageModule {}

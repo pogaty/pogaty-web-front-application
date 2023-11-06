@@ -1,2 +1,38 @@
 <h5>Category</h5>
-<div class="content"></div>
+<div class="content mt-3">
+  <form>
+    <mat-form-field class="example-chip-list">
+      <mat-chip-grid #chipGrid aria-label="Fruit selection">
+        <mat-chip-row
+          *ngFor="let category of categories"
+          (removed)="remove(category)"
+        >
+          {{ category }}
+          <button matChipRemove [attr.aria-label]="'remove ' + category">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="New Category..."
+        #fruitInput
+        [formControl]="categoryCtrl"
+        [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option
+          *ngFor="let category of filteredCategories | async"
+          [value]="category"
+        >
+          {{ category }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
