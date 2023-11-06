@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { ServiceService } from 'src/app/services/service.service';
+import { CollaboratorService } from 'src/app/services/collaborator.service';
+import { Collaborator } from 'src/app/models/collaborator.model';
 import { Service } from 'src/app/models/service.model';
 
 @Component({
@@ -11,6 +13,7 @@ import { Service } from 'src/app/models/service.model';
 })
 export class CollabServiceComponent implements OnInit {
   data = localStorage.getItem('collabInfo');
+  collabData: Collaborator | null;
   serviceData: Service | null;
 
   serviceName: string = '';
@@ -18,18 +21,21 @@ export class CollabServiceComponent implements OnInit {
   serviceType: string | undefined = '';
   serviceDescription: string | undefined = '';
 
-  constructor(private serviceService: ServiceService) {
+  constructor(
+    private serviceService: ServiceService,
+    private collabService: CollaboratorService
+  ) {
     this.serviceData = null;
+    this.collabData = null;
   }
   ngOnInit(): void {
     if (this.data) {
       const userInfo = JSON.parse(this.data);
-      const service_id = userInfo.username;
+      const collab_name = userInfo.name;
 
-      this.serviceService.loadServiceByID(service_id).then((data) => {
-        this.serviceData = data;
+      this.collabService.loadUserCollabs(collab_name).then((data) => {
+        this.collabData = data;
       });
-      console.log(this.data + '1');
     }
   }
 
@@ -39,19 +45,25 @@ export class CollabServiceComponent implements OnInit {
     serviceType: string | undefined,
     description: string | undefined
   ) {
-    if (this.serviceData) {
-      // add the data of the serviceData
-      this.serviceData.name = name;
-      this.serviceData.category = category;
-      this.serviceData.serviceType = serviceType;
-      this.serviceData.description = description;
-
-      // Call the create method
-      this.serviceService.createService(this.serviceData);
-      console.log(`create service`);
+    console.log(name);
+    if (!name) {
+      console.error('The service must be have name.');
+      return;
     }
+    if (this.data && this.collabService) {
+      // Initialize serviceData
+      const serviceData: any = {
+        name: name,
+        category: category,
+        serviceType: serviceType,
+        description: description,
+      };
+
+      this.serviceService.createService(serviceData);
+      console.log(`method1 createService worked`);
+    }
+
     console.log(`method createService worked`);
-    window.location.reload();
   }
 
   updateService(
@@ -60,22 +72,40 @@ export class CollabServiceComponent implements OnInit {
     serviceType: string | undefined,
     description: string | undefined
   ) {
-    if (this.serviceData) {
-      // add the data of the serviceData
-      this.serviceData.name = name;
-      this.serviceData.category = category;
-      this.serviceData.serviceType = serviceType;
-      this.serviceData.description = description;
-
-      // Call the create method
-
-      console.log(`update service method complete`);
+    console.log(name);
+    if (!name) {
+      console.error('The service must be have name.');
     }
-    console.log(`method updateService worked`);
+    if (this.data && this.collabService) {
+      const collabInfo = JSON.parse(this.data);
+      const service_id = collabInfo.id;
+
+      // Initialize serviceData
+      const serviceData: any = {
+        name: name,
+        category: category,
+        serviceType: serviceType,
+        description: description,
+      };
+
+      this.serviceService.updateService(service_id, serviceData);
+      console.log(`method1 createService worked`);
+    }
+    console.log(`method createService worked`);
     window.location.reload();
   }
 
-  deleteService() {}
+  deleteService() {
+    if (this.data) {
+      const collabInfo = JSON.parse(this.data);
+      const service_id = collabInfo.id;
+
+      this.serviceService.deleteServiceById(service_id);
+    }
+
+    console.log(`method deleteService worked`);
+    window.location.reload();
+  }
 
   onClickAdd() {
     this.createService(
@@ -86,7 +116,16 @@ export class CollabServiceComponent implements OnInit {
     );
   }
 
-  onClickEdit() {}
+  onClickEdit() {
+    this.updateService(
+      this.serviceName,
+      this.serviceCategory,
+      this.serviceType,
+      this.serviceDescription
+    );
+  }
 
-  onClickDelete() {}
+  onClickDelete() {
+    this.deleteService();
+  }
 }
