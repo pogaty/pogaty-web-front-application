@@ -22,6 +22,8 @@ export class DataService {
     private updateProblem = new BehaviorSubject<any>(null)
     private updateIdea = new BehaviorSubject<any>(null)
 
+    private isProjectOpen = new BehaviorSubject<boolean>(false)
+    private isBusinessOpen = new BehaviorSubject<boolean>(false)
     private isProblemOpen = new BehaviorSubject<boolean>(false)
     private isEditorMode = new BehaviorSubject<boolean>(false)
     private isManagement = new BehaviorSubject<dtsIdea>({bool: false, id: 0})
@@ -138,6 +140,22 @@ export class DataService {
 
     getUpdateIdea() {
         return this.updateIdea.asObservable()
+    }
+
+    setProjectOpen(data: boolean) {
+        this.isProjectOpen.next(data)
+    }
+
+    getProjectOpen() {
+        return this.isProjectOpen.asObservable()
+    }
+
+    setBusinessOpen(data: boolean) {
+        this.isBusinessOpen.next(data)
+    }
+
+    getBusinessOpen() {
+        return this.isBusinessOpen.asObservable()
     }
 
     setCurrentPage(page: string) {

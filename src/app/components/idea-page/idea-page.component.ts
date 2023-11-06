@@ -60,4 +60,12 @@ export class IdeaPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  serviceProject() {
+    this.dataService.setProjectOpen(true)
+  }
+
+  serviceBusiness() {
+    this.dataService.setBusinessOpen(true)
+  }
+
 }

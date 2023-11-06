@@ -1,0 +1,227 @@
+<div class="popup corn-flex-end" *ngIf="isProjectOpen">
+    <div class="container-fluid pcontent">
+        <div class="container d-flex flex-column p-3">
+            <div class="back">
+                <button class="btn" (click)="close()">
+                    <i class="fa-solid fa-chevron-left fa-xl" style="color: #ffffff;"></i>
+                    <span>Back</span>
+                    <span 
+                        style="text-align: center; margin-left: 20px; font-weight: bolder;"
+                        *ngIf="spStep == 3"
+                    >May be this is a tools you are looking for ...</span>
+                </button>
+            </div>
+            
+            <div class="container-fluid main-content corn-flex">
+                <ng-template [ngIf]="spStep == 1">
+                    <div class="d-flex flex-column">
+                        <div class="row py-2">
+                            <div class="col-md-3 col-3 px-0 corn-flex po">
+                                <div class="bot"></div>
+                            </div>
+                            <div class="col-md-9 col-9 px-0 corn-flex cleft">
+                                <h3 style="color: white; font-weight: 300">Do you have the resources or management tools which is necessary for project planning?</h3>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-3 px-0 corn-flex po">
+                                <div class="user"></div>
+                            </div>
+                            <div class="col-md-9 col-9 px-0 corn-flex cleft">
+                                <h3 
+                                    class="dropdown" 
+                                    style="color: #FACD88; font-weight: bolder; text-decoration: underline;"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                >{{pAns1[0]}}</h3>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: var(--bg-nav)" (click)="changeAns(pAns1[1])" >{{pAns1[1]}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-container *ngIf="spStep == 2">
+                    <div class="d-flex flex-column">
+                        <div class="header2">
+                            <h3 class="p-4">What kind of project is your idea paticipated to work well for?</h3>
+                        </div>
+                        <div>
+                            <ul class="wrapper" #wrapper>
+                                <li class="slider" [ngClass]="{'active': pCategory === 'any'}" (click)="setProjectCategory('any')">Any kinds</li>
+                                <li class="slider" [ngClass]="{'active': pCategory === 'research'}" (click)="setProjectCategory('research')">Research</li>
+                                <li class="slider" [ngClass]="{'active': pCategory === 'software'}" (click)="setProjectCategory('software')">Software Development</li>
+                                <li class="slider" [ngClass]="{'active': pCategory === 'science'}" (click)="setProjectCategory('science')">Science</li>
+                                <li class="slider" [ngClass]="{'active': pCategory === 'ai'}" (click)="setProjectCategory('ai')">Artificial Intelligence</li>
+                            </ul>
+
+                            <div class="wrapper2">asd</div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="spStep == 3">
+                    <div class="d-flex flex-column service-board container-fluid">
+                        <div class="row service">
+
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover">
+                                <div class="service-box container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-4 corn-flex p-0">
+                                            <div class="profile-collab">
+                                                <p class="m-0" style="font-weight: bolder">A</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 p-0 corn-flex">
+                                            <div>   
+                                                <p class="free">Free</p>
+                                                <p class="range">Range 15$ - 49.99$</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container my-2 p-0">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                                    </div>
+                                </div>  
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="container-fluid footer">
+                <div class="row">
+                    <div class="col-md-2 col-2 ref corn-flex cright">
+                        <div class="logo-template">
+                            <img src="../../../../assets/icons/icon.png" width="75px" height="75px">
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-10 text-des corn-flex ref">
+                        <span class="notice" style="font-weight: bolder">Notice:</span>
+                        <span> Now we're not support direct contact to any services.</span>
+                    </div>
+                    <div class="col-md-2 col-12 corn-flex">
+                        <button class="btn btn-choose" (click)="choose()">Choose this</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup corn-flex-end" *ngIf="isBusinessOpen">
+    <div class="container-fluid bcontent">
+        <div class="container d-flex flex-column p-3">
+            <div class="back">
+                <button class="btn" (click)="close()">
+                    <i class="fa-solid fa-chevron-left fa-xl" style="color: #ffffff;"></i>
+                    <span>Back</span>
+                    <span 
+                        style="text-align: center; margin-left: 20px; font-weight: bolder;"
+                        *ngIf="spStep == 3"
+                    >May be this is a tools you are looking for ...</span>
+                </button>
+            </div>
+            
+            <div class="container-fluid main-content corn-flex">
+                <ng-template [ngIf]="spStep == 1">
+                    <div class="d-flex flex-column">
+                        <div class="row py-2">
+                            <div class="col-md-3 col-3 px-0 corn-flex po">
+                                <div class="bot"></div>
+                            </div>
+                            <div class="col-md-9 col-9 px-0 corn-flex cleft">
+                                <h3 style="color: white; font-weight: 300">Do you want to put your idea into business planning?</h3>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-3 px-0 corn-flex po">
+                                <div class="user"></div>
+                            </div>
+                            <div class="col-md-9 col-9 px-0 corn-flex cleft">
+                                <h3 
+                                    class="dropdown" 
+                                    style="color: #FACD88; font-weight: bolder; text-decoration: underline;"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                >{{pAns1[0]}}</h3>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: var(--bg-nav)" (click)="changeAns(pAns1[1])" >{{pAns1[1]}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-container *ngIf="spStep == 2">
+                    <div class="d-flex flex-column">
+                        <div class="header2">
+                            <h3 class="p-4">Which category does your business fall under?</h3>
+                        </div>
+                        <div>
+                            <ul class="wrapper bu" #wrapper>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'any'}" (click)="setBusinessCategory('any')">New Business</li>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'technology'}" (click)="setBusinessCategory('technology')">Technology</li>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'agriculture'}" (click)="setBusinessCategory('agriculture')">Agriculture</li>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'innovation'}" (click)="setBusinessCategory('innovation')">Innovation</li>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'manufacture'}" (click)="setBusinessCategory('manufacture')">Manufacture</li>
+                                <li class="slider" [ngClass]="{'active': bCategory === 'retail'}" (click)="setBusinessCategory('retail')">Retail</li>
+                            </ul>
+
+                            <div class="wrapper2">asd</div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="spStep == 3">
+                    <div class="d-flex flex-column service-board container-fluid">
+                        <div class="row service">
+
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover">
+                                <div class="service-box container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-4 corn-flex p-0">
+                                            <div class="profile-collab">
+                                                <p class="m-0" style="font-weight: bolder">A</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 p-0 corn-flex">
+                                            <div>   
+                                                <p class="free">Free</p>
+                                                <p class="range">Range 15$ - 49.99$</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container my-2 p-0">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                                    </div>
+                                </div>  
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="container-fluid footer">
+                <div class="row">
+                    <div class="col-md-2 col-2 ref corn-flex cright">
+                        <div class="logo-template">
+                            <img src="../../../../assets/icons/icon.png" width="75px" height="75px">
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-10 text-des corn-flex ref">
+                        <span class="notice" style="font-weight: bolder">Notice:</span>
+                        <span> Now we're not support direct contact to any services.</span>
+                    </div>
+                    <div class="col-md-2 col-12 corn-flex">
+                        <button class="btn btn-choose" (click)="choose()">Choose this</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
