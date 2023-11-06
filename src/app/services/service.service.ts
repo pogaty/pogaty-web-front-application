@@ -40,7 +40,7 @@ export class ServiceService {
     );
   }
 
-  updateService(service_id: number, serviceData: any) {
+  updateService(service_id: number | undefined, serviceData: any) {
     return this.http
       .patch(`${API_URLS.service}/${service_id}`, serviceData)
       .subscribe(
