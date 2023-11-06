@@ -69,7 +69,11 @@
             </div>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#"
+                <a
+                  class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  data-bs-whatever="@mdo"
                   ><i class="fa-regular fa-pen-to-square"></i> &nbsp; edit
                   service
                 </a>
@@ -95,7 +99,12 @@
       <!-- end service box -->
 
       <!-- add service box-->
-      <div class="col-3 d-flex justify-content-center">
+      <div
+        class="col-3 d-flex justify-content-center"
+        data-bs-toggle="modal"
+        data-bs-target="#addDatamodal"
+        data-bs-whatever="@mdo"
+      >
         <div class="add-box position-relative">
           <div class="position-absolute top-50 start-50 translate-middle">
             <i class="fa-solid fa-plus fa-2xl" style="color: #ffffff"></i>
@@ -107,3 +116,163 @@
   </div>
 </div>
 <!-- end service content-->
+
+<!-- modal form : add service -->
+<div
+  class="modal fade"
+  id="addDatamodal"
+  tabindex="-1"
+  aria-labelledby="addDatamodal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add service</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="serviceName"
+              required
+            />
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">category:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="category"
+              name="category"
+              [(ngModel)]="serviceCategory"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >service type:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="serviceType"
+              name="serviceType"
+              [(ngModel)]="serviceType"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >description:</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="serviceDescription"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onClickAdd()">
+          add service
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal form : add service -->
+
+<!-- modal form : edit service -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit service</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="serviceName"
+              required
+            />
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">category:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="category"
+              name="category"
+              [(ngModel)]="serviceCategory"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >service type:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="serviceType"
+              name="serviceType"
+              [(ngModel)]="serviceType"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >description:</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="serviceDescription"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onClickEdit()">
+          edit service
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal form : edit service -->
