@@ -38,7 +38,7 @@
                         </p>
                     </div>
                     <div class="form d-flex flex-column">
-                        <input id="email" type="text" placeholder="Email Address." #username>
+                        <input id="email" type="text" placeholder="Username." #username>
                         <input id="password" type="password" placeholder="Password." #password>
                         <div>
                             <p *ngIf="errorlog" style="text-align: center; color: var(--bg-red);">{{errorlog}}</p>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form d-flex flex-column">
                         <input id="username" type="text" placeholder="Username" #regUser>
-                        <input id="email" type="text" placeholder="Email Address." #regEmail>
+                        <input id="email" type="email" placeholder="Email Address." #regEmail>
                         <input id="password" type="password" placeholder="Password." #regPass>
                         <div>
                             <p *ngIf="errorlog" style="text-align: center; color: var(--bg-red);">{{errorlog}}</p>
