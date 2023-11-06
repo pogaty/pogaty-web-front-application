@@ -18,19 +18,23 @@ export class LoginCollaboratorComponent {
     private dialog: MatDialog
   ) {}
 
-  authorization(name: string, password: string) {
-    this.collaboratorService.loadUsers(name).then((infomation) => {
-      console.log(infomation?.password);
-      if (infomation) {
-        console.log(infomation.password + ' ' + password);
-        if (infomation.password == password) {
-          localStorage.setItem('collabInfo', JSON.stringify(infomation));
+  authorization(collabName: string, password: string) {
+    this.collaboratorService.loadUserCollabs(collabName).then((info) => {
+      console.log(info); // inthis line info.password is 123456789
+      if (info != null) {
+        info.password = password;
+        info.name = collabName;
+        console.log('in if 1');
+        console.log(info.password); // but in this line info.password is undefined
+        console.log(password);
+        if (info.password == password) {
+          localStorage.setItem('collabInfo', JSON.stringify(info));
           this.router.navigate(['/collab-service']);
         } else {
-          console.log('Password is incorrect!');
+          console.log('password is incorrect!');
         }
       } else {
-        console.log('Username is invalid.');
+        console.log('username is invalidated.');
       }
     });
   }

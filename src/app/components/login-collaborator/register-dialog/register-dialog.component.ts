@@ -21,17 +21,6 @@ export class RegisterDialogComponent {
   }
 
   registerCollaborator() {
-    this.registrationService.createNewCollaborator(this.collaborator).subscribe(
-      (response) => {
-        // Handle success response here
-        console.log('Collaborator created:', response);
-        // You might want to add additional handling after successful registration
-      },
-      (error) => {
-        // Handle error response here
-        console.error('Error creating collaborator:', error);
-        // You might want to add error handling for failed registration
-      }
-    );
+    this.registrationService.createNewCollaborator(this.collaborator);
   }
 }
