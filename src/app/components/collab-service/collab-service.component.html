@@ -53,7 +53,10 @@
   <div class="container-lg mt-3">
     <div class="row px-5">
       <!-- service box -->
-      <div class="col-3 d-flex justify-content-center mb-3">
+      <div
+        class="col-3 d-flex justify-content-center mb-3"
+        *ngFor="let service of services"
+      >
         <div class="service-box position-relative">
           <!-- setting button -->
           <div class="dropdown">
@@ -88,9 +91,9 @@
           <!-- end setting button -->
           <div class="row">
             <div class="col mx-3 mt-5 pt-3">
-              <b>Sample Service</b>
+              <b>{{ service.name }}</b>
               <p class="mt-1">
-                Lorem Ipsum is simply dummy text of the printing and ...
+                {{ service.description }}
               </p>
             </div>
           </div>
@@ -149,28 +152,62 @@
               required
             />
           </div>
-          <div class="mb-3 form-group">
-            <label for="recipient-name" class="col-form-label">category:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="category"
-              name="category"
-              [(ngModel)]="serviceCategory"
-            />
-          </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >service type:</label
+              >Service Type:</label
             >
-            <input
-              type="text"
-              class="form-control"
+            <select
+              class="form-select"
+              aria-label="Default select example"
               id="serviceType"
               name="serviceType"
               [(ngModel)]="serviceType"
-            />
+            >
+              <option value="business">Business</option>
+              <option value="project">Project</option>
+            </select>
           </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">catergory:</label
+            ><ng-container
+              *ngIf="serviceType === 'business'; else selectedProject"
+            >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option selected>Open this select menu</option>
+                <option value="technology">technology</option>
+                <option value="agriculture">agriculture</option>
+                <option value="innovation">innovation</option>
+                <option value="manufacture">manufacture</option>
+                <option value="retail">retail</option>
+                <option value="any">any</option>
+              </select>
+            </ng-container>
+
+            <ng-template #selectedProject>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option selected>Open this select menu</option>
+                <option value="research">research</option>
+                <option value="software">software</option>
+                <option value="science">science</option>
+                <option value="ai">ai</option>
+                <option value="any">any</option>
+              </select>
+            </ng-template>
+          </div>
+
           <div class="mb-3">
             <label for="message-text" class="col-form-label"
               >description:</label
@@ -229,27 +266,60 @@
               required
             />
           </div>
-          <div class="mb-3 form-group">
-            <label for="recipient-name" class="col-form-label">category:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="category"
-              name="category"
-              [(ngModel)]="serviceCategory"
-            />
-          </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >service type:</label
+              >Service Type:</label
             >
-            <input
-              type="text"
-              class="form-control"
+            <select
+              class="form-select"
+              aria-label="Default select example"
               id="serviceType"
               name="serviceType"
               [(ngModel)]="serviceType"
-            />
+            >
+              <option value="business">Business</option>
+              <option value="project">Project</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">catergory:</label
+            ><ng-container
+              *ngIf="serviceType === 'business'; else selectedProject"
+            >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option selected>Open this select menu</option>
+                <option value="technology">technology</option>
+                <option value="agriculture">agriculture</option>
+                <option value="innovation">innovation</option>
+                <option value="manufacture">manufacture</option>
+                <option value="retail">retail</option>
+                <option value="any">any</option>
+              </select>
+            </ng-container>
+
+            <ng-template #selectedProject>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option selected>Open this select menu</option>
+                <option value="research">research</option>
+                <option value="software">software</option>
+                <option value="science">science</option>
+                <option value="ai">ai</option>
+                <option value="any">any</option>
+              </select>
+            </ng-template>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label"
@@ -268,9 +338,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">
-          edit service
-        </button>
+        <button type="button" class="btn btn-primary">edit service</button>
       </div>
     </div>
   </div>
