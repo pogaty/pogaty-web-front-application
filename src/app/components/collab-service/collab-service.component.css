@@ -30,8 +30,9 @@ h3{
 .service-box{
     background-color: white;
     border-radius: 15px;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
+    overflow: scroll;
 }
 
 .setting-box{
@@ -45,7 +46,7 @@ h3{
 .add-box{
     background-color: #2E2C39;
     border-radius: 15px;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     cursor: pointer;
 }
