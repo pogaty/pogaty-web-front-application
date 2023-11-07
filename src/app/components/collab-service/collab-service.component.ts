@@ -24,14 +24,15 @@ export class CollabServiceComponent implements OnInit {
   serviceType: string | undefined = 'business';
   serviceDescription: string | undefined = '';
 
-  selectedId: number;
-  selectedData: any;
+  modifiedServiceName: string | undefined = '';
+  modifiedServiceCategory: string | undefined = '';
+  modifiedServiceType: string | undefined = 'business';
+  modifiedServiceDescription: string | undefined = '';
 
   constructor(
     private serviceService: ServiceService,
     private collabService: CollaboratorService
   ) {
-    this.selectedId = 1;
     this.serviceData = null;
     this.collabData = null;
   }
@@ -124,10 +125,6 @@ export class CollabServiceComponent implements OnInit {
     window.location.reload();
   }
 
-  getDataOnSelectedId(selectedId: number) {
-    this.selectedData = this.serviceService.loadServiceByCollabId(selectedId);
-  }
-
   deleteService(service_id: number) {
     if (this.data) {
       this.serviceService.deleteService(service_id).then(() => {
@@ -147,9 +144,13 @@ export class CollabServiceComponent implements OnInit {
 
   onClickEdit(service_id: number | undefined) {
     console.log('Editing service with ID:', service_id);
-    if (service_id) {
-      let selectedData = this.getDataOnSelectedId(service_id);
-      console.log(selectedData);
+    for (let i = 0; i < this.services.length; i++) {
+      if (this.services[i].service_id == service_id) {
+        this.serviceName = this.services[i].name;
+        this.serviceType = this.services[i].serviceType;
+        this.serviceCategory = this.services[i].category;
+        this.serviceDescription = this.services[i].description;
+      }
     }
   }
 
