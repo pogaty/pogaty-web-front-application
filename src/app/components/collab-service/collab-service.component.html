@@ -1,0 +1,351 @@
+<div class="content">
+  <div class="container-lg">
+    <div class="row mt-5 mb-3">
+      <div class="col-md-6">
+        <h2>Services Management</h2>
+        <p>
+          Enhence the opportunity to matches with clients by showcasing your
+          business offering services.
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./assets/images/service-page/collab1.png" />
+            </div>
+            <div class="col-md-2 text-center"><h3 class="pt-5">1</h3></div>
+            <div class="col-md-6">
+              <div class="pt-5">
+                <b>Add Service</b>
+                <p>
+                  Just only click the add button to add your services to pages.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./assets/images/service-page/collab2.jpg" />
+            </div>
+            <div class="col-md-2 text-center"><h3 class="pt-5">2</h3></div>
+            <div class="col-md-6">
+              <div class="pt-5">
+                <b>Specific details</b>
+                <p>
+                  What can be done via this service? how can we assist them?
+                  Then select the category that relate to your ideal consumer
+                  target.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- service content-->
+<div class="service">
+  <div class="container-lg mt-3">
+    <div class="row px-5">
+      <!-- service box -->
+      <div
+        class="col-3 d-flex justify-content-center mb-3"
+        *ngFor="let service of services"
+      >
+        <div class="service-box position-relative">
+          <!-- setting button -->
+          <div class="dropdown">
+            <div
+              class="setting-box position-relative position-absolute top-0 end-0 dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i
+                class="fa-solid fa-gear fa-xl position-absolute top-50 start-50 translate-middle"
+                style="color: #ffffff"
+              ></i>
+            </div>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  data-bs-whatever="@mdo"
+                  (click)="onClickEdit(service.service_id)"
+                  ><i class="fa-regular fa-pen-to-square"></i> &nbsp; edit
+                  service
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="onClickDelete(service)"
+                  ><i class="fa-regular fa-trash-can"></i> &nbsp; delete service
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- end setting button -->
+          <div class="row">
+            <div class="col mx-3 mt-4 pt-3">
+              <b>{{ service.name }}</b>
+              <p class="mt-1">
+                {{ service.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end service box -->
+
+      <!-- add service box-->
+      <div
+        class="col-3 d-flex justify-content-center"
+        data-bs-toggle="modal"
+        data-bs-target="#addDatamodal"
+        data-bs-whatever="@mdo"
+      >
+        <div class="add-box position-relative">
+          <div class="position-absolute top-50 start-50 translate-middle">
+            <i class="fa-solid fa-plus fa-2xl" style="color: #ffffff"></i>
+          </div>
+        </div>
+      </div>
+      <!-- end add service box-->
+    </div>
+  </div>
+</div>
+<!-- end service content-->
+
+<!-- modal form : add service -->
+<div
+  class="modal fade"
+  id="addDatamodal"
+  tabindex="-1"
+  aria-labelledby="addDatamodal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add service</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="serviceName"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >Service Type:</label
+            >
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="serviceType"
+              name="serviceType"
+              [(ngModel)]="serviceType"
+            >
+              <option value="business">Business</option>
+              <option value="project">Project</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">catergory:</label
+            ><ng-container
+              *ngIf="serviceType === 'business'; else selectedProject"
+            >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option value="technology">technology</option>
+                <option value="agriculture">agriculture</option>
+                <option value="innovation">innovation</option>
+                <option value="manufacture">manufacture</option>
+                <option value="retail">retail</option>
+                <option selected value="any">any</option>
+              </select>
+            </ng-container>
+
+            <ng-template #selectedProject>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option value="research">research</option>
+                <option value="software">software</option>
+                <option value="science">science</option>
+                <option value="ai">ai</option>
+                <option selected value="any">any</option>
+              </select>
+            </ng-template>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >description:</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="serviceDescription"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onClickAdd()">
+          add service
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal form : add service -->
+
+<!-- modal form : edit service -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit service</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="serviceName"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >Service Type:</label
+            >
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="serviceType"
+              name="serviceType"
+              [(ngModel)]="serviceType"
+            >
+              <option value="business">Business</option>
+              <option value="project">Project</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">catergory:</label
+            ><ng-container
+              *ngIf="serviceType === 'business'; else selectedProject"
+            >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option value="technology">technology</option>
+                <option value="agriculture">agriculture</option>
+                <option value="innovation">innovation</option>
+                <option value="manufacture">manufacture</option>
+                <option value="retail">retail</option>
+                <option selected value="any">any</option>
+              </select>
+            </ng-container>
+
+            <ng-template #selectedProject>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="category"
+                name="category"
+                [(ngModel)]="serviceCategory"
+              >
+                <option value="research">research</option>
+                <option value="software">software</option>
+                <option value="science">science</option>
+                <option value="ai">ai</option>
+                <option selected value="any">any</option>
+              </select>
+            </ng-template>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >description:</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="serviceDescription"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onClickSave(serviceID)"
+        >
+          edit service
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal form : edit service -->

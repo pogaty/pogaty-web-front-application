@@ -6,6 +6,7 @@ import { SharedModule } from './shared.module';
 import { ProblemFeedsModule } from './problem-feeds.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login.module';
+import { CollabServiceModule } from './collab-service.module';
 import { AppLayoutComponent } from '../components/application/app-layout/app-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home.module';
@@ -13,12 +14,10 @@ import { ProfilePageModule } from './profile-page.module';
 import { IdeaPageModule } from './idea-page.module';
 import { FormsModule } from '@angular/forms';
 import { IdeaDashboardModule } from './idea-dashboard.module';
+import { LoginCollaboratorModule } from './login-collaborator.module';
 
 @NgModule({
-  declarations: [
-    AppComponent, 
-    AppLayoutComponent
-  ],
+  declarations: [AppComponent, AppLayoutComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,10 +27,12 @@ import { IdeaDashboardModule } from './idea-dashboard.module';
     HomeModule,
     ProfilePageModule,
     ProblemFeedsModule,
+    CollabServiceModule,
     AppRoutingModule,
     LoginModule,
     IdeaPageModule,
-    IdeaDashboardModule
+    IdeaDashboardModule,
+    LoginCollaboratorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

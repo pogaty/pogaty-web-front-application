@@ -1,0 +1,132 @@
+<div class="content">
+  <div class="container-lg">
+    <div class="row top-content text-center mt-5">
+      <div class="col text center">
+        <div class="row justify-content-md-center">
+          <div class="col-md-6">
+            <h2>Get involved with us</h2>
+            <p>
+              Be a part of a collaborator that offers an tools, assistance and
+              solutions to anybody looking to launch a new project or business.
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+            <div class="row collab-box-container my-2">
+              <div class="col-md-3 collab-box">
+                <div class="row"><h5>Service management</h5></div>
+                <div class="row icon my-3">
+                  <img src="assets/icons/responsibility.png" />
+                </div>
+                <div class="row">
+                  <p>
+                    Add your services, and we'll match them up with interested
+                    customers.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 collab-box">
+                <div class="row"><h5>Campaign</h5></div>
+                <div class="row icon my-3">
+                  <img src="assets/icons/advertising.png" />
+                </div>
+                <div class="row">
+                  <p>
+                    Create your campaign around a problem so that participants
+                    will be motivated to fix it.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 collab-box">
+                <div class="row"><h5>Growtht</h5></div>
+                <div class="row icon my-3">
+                  <img src="assets/icons/graph.png" />
+                </div>
+                <div class="row">
+                  <p>
+                    Increase your company's growth by interacting with the right
+                    clients.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 collab-box">
+                <div class="row"><h5>Page</h5></div>
+                <div class="row icon my-3">
+                  <img src="assets/icons/page.png" />
+                </div>
+                <div class="row">
+                  <p>
+                    Show your brief details of your business to attracted to
+                    client.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row my-5 login">
+      <div class="col-md-7">
+        <img src="assets/images/collaborators/123png.png" />
+      </div>
+      <div class="col-md-5 login-content">
+        <div class="login-detail">
+          <h2>
+            Connect <br />
+            Your Business
+          </h2>
+          <p>
+            authorize your business account and manage or configuration your
+            functions.
+          </p>
+        </div>
+        <form>
+          <div class="mail my-4">
+            <label>Account email</label>
+            <input id="email" type="text" placeholder="Email Address." #email />
+          </div>
+          <div class="password">
+            <label>Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Password."
+              #password
+            />
+          </div>
+          <div class="button mt-5 text-center">
+            <button
+              class="btn to-space"
+              type="submit"
+              (click)="authorization(email.value, password.value)"
+            >
+              Goto Space
+            </button>
+            <p style="color: red; text-align: center;">{{errorlog}}</p>
+            <p class="my-3">
+              If you're new to our collab space you must sign up first
+            </p>
+            <button class="btn create" (click)="openCreateAccountPopup()">
+              Create Account
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row buttom-content py-5">
+      <div class="col-md-6">
+        <h2>We're act as gateway</h2>
+        <p>
+          To help increasing the success of your business and encourage more
+          individuals to utilize your services. We'll act as a conduit to
+          introduce your company to the appropriate client.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img src="assets/images/collaborators/collab-login2.png" />
+      </div>
+    </div>
+  </div>
+</div>

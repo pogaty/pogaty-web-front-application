@@ -1,0 +1,20 @@
+<h2 mat-dialog-title style="text-align: center;">Create Account</h2>
+<div mat-dialog-content>
+  <p class="description">Please enter your details to create an account</p>
+  <form #registrationForm="ngForm" class="registration-form"  >
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="Name" name="name" ngModel required #name>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="Email" name="email" ngModel required email #email>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput type="password" placeholder="Password" name="password" ngModel required #pass>
+    </mat-form-field>
+  </form>
+  <p style="color: red; text-align: center;">{{errorlog}}</p>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-button" (click)="onClose()">Back to Login</button>
+  <button mat-raised-button color="primary" [disabled]="registrationForm.invalid" (click)="registerCollaborator(name.value, email.value, pass.value)">Register</button>
+</div>

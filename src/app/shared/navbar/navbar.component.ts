@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
+import { Collaborator } from 'src/app/models/collaborator.model';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +11,27 @@ import { Client } from 'src/app/models/client.model';
 export class NavbarComponent implements OnInit {
   data = localStorage.getItem("userInfo")
   isLogin = false
-  CurrentUser: Client | undefined
+  onCollab = false
+  CurrentUser: Client | Collaborator | undefined
+  
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(`navbar -logStat ${this.isLogin}`)
     const userInfo = localStorage.getItem('userInfo')
+    const collabInfo = localStorage.getItem('collabInfo')
+
     if (userInfo) {
       this.isLogin = true
+      this.onCollab = false
       this.CurrentUser == JSON.parse(userInfo)
+    }
+
+    if (collabInfo) {
+      this.isLogin = true
+      this.onCollab = true
+      this.CurrentUser = JSON.parse(collabInfo)
     }
   }
 
@@ -36,6 +48,12 @@ export class NavbarComponent implements OnInit {
     this.CurrentUser = undefined
     localStorage.clear()
     this.isLogin = false
-    this.router.navigate(['/login'])
+    
+    if (this.onCollab = true) {
+      this.onCollab = false
+      this.router.navigate(['/login-collaborator'])
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 }

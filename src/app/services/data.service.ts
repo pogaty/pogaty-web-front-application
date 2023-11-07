@@ -219,4 +219,5 @@ export class DataService {
     getClientById(data: number): string | undefined {
          return `http://localhost:8000/clients/${data}/image`
     }
+
 }
