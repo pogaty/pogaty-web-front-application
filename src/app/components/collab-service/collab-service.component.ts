@@ -14,14 +14,14 @@ import { Subscription } from 'rxjs';
 })
 export class CollabServiceComponent implements OnInit {
   data = localStorage.getItem('collabInfo');
-  services: Service[] = []
+  services: Service[] = [];
 
   collabData: Collaborator | null;
   serviceData: Service | null;
 
-  serviceName: string = '';
+  serviceName: string | undefined = '';
   serviceCategory: string | undefined = '';
-  serviceType: string | undefined = '';
+  serviceType: string | undefined = 'business';
   serviceDescription: string | undefined = '';
 
   constructor(
@@ -32,7 +32,6 @@ export class CollabServiceComponent implements OnInit {
     this.collabData = null;
   }
 
-
   ngOnInit(): void {
     if (this.data) {
       const userInfo = JSON.parse(this.data);
@@ -42,21 +41,29 @@ export class CollabServiceComponent implements OnInit {
         this.collabData = data;
       });
 
-      this.renderService()
+      this.renderService();
     }
   }
 
   renderService() {
     if (this.data)
-    this.serviceService.loadServiceByCollabId(JSON.parse(this.data).collab_id)
-    .then((data) => {
-      this.services = data
-      console.log (this.services)
-    })
+      this.serviceService
+        .loadServiceByCollabId(JSON.parse(this.data).collab_id)
+        .then((data) => {
+          this.services = data;
+          console.log(this.services);
+        });
+  }
+
+  cleardata() {
+    this.serviceName = '';
+    this.serviceType = '';
+    this.serviceCategory = '';
+    this.serviceDescription = '';
   }
 
   createService(
-    name: string,
+    name: string | undefined,
     category: string | undefined,
     serviceType: string | undefined,
     description: string | undefined
@@ -75,13 +82,18 @@ export class CollabServiceComponent implements OnInit {
         description: description,
       };
 
-      this.serviceService.createServices(JSON.parse(this.data).collab_id, serviceData);
+      this.serviceService.createServices(
+        JSON.parse(this.data).collab_id,
+        serviceData
+      );
       this.services.push(serviceData);
     }
+
+    this.cleardata();
   }
 
   updateService(
-    name: string,
+    name: string | undefined,
     category: string | undefined,
     serviceType: string | undefined,
     description: string | undefined,
@@ -100,19 +112,19 @@ export class CollabServiceComponent implements OnInit {
         description: description,
       };
 
-      this.serviceService.updateService(service_id, serviceData)
-      .then(() =>{  
-        this.renderService()
-      })
+      this.serviceService.updateService(service_id, serviceData).then(() => {
+        this.renderService();
+      });
     }
+    this.cleardata();
+    window.location.reload();
   }
 
   deleteService(service_id: number) {
     if (this.data) {
-      this.serviceService.deleteService(service_id)
-      .then(() => {
-        this.renderService()
-      })
+      this.serviceService.deleteService(service_id).then(() => {
+        this.renderService();
+      });
     }
   }
 
@@ -126,18 +138,27 @@ export class CollabServiceComponent implements OnInit {
   }
 
   onClickEdit(service_id: number | undefined) {
+    console.log('Editing service with ID:', service_id);
+    if (service_id) {
+      this.serviceName = this.serviceData?.name;
+      this.serviceType = this.serviceData?.serviceType;
+      this.serviceCategory = this.serviceData?.category;
+      this.serviceDescription = this.serviceData?.description;
+    }
+  }
+
+  onClickSave(service_id: number | undefined) {
     if (service_id)
-    this.updateService(
-      this.serviceName,
-      this.serviceCategory,
-      this.serviceType,
-      this.serviceDescription,
-      service_id
-    );
+      this.updateService(
+        this.serviceName,
+        this.serviceCategory,
+        this.serviceType,
+        this.serviceDescription,
+        service_id
+      );
   }
 
   onClickDelete(service_id: number | undefined) {
-    if(service_id)
-    this.deleteService(service_id);
+    if (service_id) this.deleteService(service_id);
   }
 }

@@ -77,12 +77,15 @@
                   data-bs-toggle="modal"
                   data-bs-target="#editModal"
                   data-bs-whatever="@mdo"
+                  (click)="onClickEdit(service.service_id)"
                   ><i class="fa-regular fa-pen-to-square"></i> &nbsp; edit
                   service
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"
+                <a
+                  class="dropdown-item"
+                  (click)="onClickDelete(service.service_id)"
                   ><i class="fa-regular fa-trash-can"></i> &nbsp; delete service
                 </a>
               </li>
@@ -241,6 +244,7 @@
   tabindex="-1"
   aria-labelledby="editModal"
   aria-hidden="true"
+  *ngFor="let service of services"
 >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -338,7 +342,13 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">edit service</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onClickSave(service.service_id)"
+        >
+          edit service
+        </button>
       </div>
     </div>
   </div>
