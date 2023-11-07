@@ -19,15 +19,11 @@ export class CollabServiceComponent implements OnInit {
   collabData: Collaborator | null;
   serviceData: Service | null;
 
+  serviceID: number | undefined = 0;
   serviceName: string | undefined = '';
   serviceCategory: string | undefined = '';
   serviceType: string | undefined = 'business';
   serviceDescription: string | undefined = '';
-
-  modifiedServiceName: string | undefined = '';
-  modifiedServiceCategory: string | undefined = '';
-  modifiedServiceType: string | undefined = 'business';
-  modifiedServiceDescription: string | undefined = '';
 
   constructor(
     private serviceService: ServiceService,
@@ -146,6 +142,7 @@ export class CollabServiceComponent implements OnInit {
     console.log('Editing service with ID:', service_id);
     for (let i = 0; i < this.services.length; i++) {
       if (this.services[i].service_id == service_id) {
+        this.serviceID = service_id;
         this.serviceName = this.services[i].name;
         this.serviceType = this.services[i].serviceType;
         this.serviceCategory = this.services[i].category;
@@ -155,6 +152,7 @@ export class CollabServiceComponent implements OnInit {
   }
 
   onClickSave(service_id: number | undefined) {
+    console.log('Saving service with ID:', service_id);
     if (service_id)
       this.updateService(
         this.serviceName,
