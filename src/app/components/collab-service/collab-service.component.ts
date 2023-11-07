@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { ServiceService } from 'src/app/services/service.service';
 import { CollaboratorService } from 'src/app/services/collaborator.service';
 import { Collaborator } from 'src/app/models/collaborator.model';
 import { Service } from 'src/app/models/service.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-collab-service',
@@ -13,6 +14,8 @@ import { Service } from 'src/app/models/service.model';
 })
 export class CollabServiceComponent implements OnInit {
   data = localStorage.getItem('collabInfo');
+  services: Service[] = []
+
   collabData: Collaborator | null;
   serviceData: Service | null;
 
@@ -28,6 +31,8 @@ export class CollabServiceComponent implements OnInit {
     this.serviceData = null;
     this.collabData = null;
   }
+
+
   ngOnInit(): void {
     if (this.data) {
       const userInfo = JSON.parse(this.data);
@@ -36,7 +41,18 @@ export class CollabServiceComponent implements OnInit {
       this.collabService.loadUserCollabs(collab_name).then((data) => {
         this.collabData = data;
       });
+
+      this.renderService()
     }
+  }
+
+  renderService() {
+    if (this.data)
+    this.serviceService.loadServiceByCollabId(JSON.parse(this.data).collab_id)
+    .then((data) => {
+      this.services = data
+      console.log (this.services)
+    })
   }
 
   createService(
@@ -52,59 +68,52 @@ export class CollabServiceComponent implements OnInit {
     }
     if (this.data && this.collabService) {
       // Initialize serviceData
-      const serviceData: any = {
+      const serviceData: Service = {
         name: name,
         category: category,
         serviceType: serviceType,
         description: description,
       };
 
-      this.serviceService.createService(serviceData);
-      console.log(`method1 createService worked`);
+      this.serviceService.createServices(JSON.parse(this.data).collab_id, serviceData);
+      this.services.push(serviceData);
     }
-
-    console.log(`method createService worked`);
   }
 
   updateService(
     name: string,
     category: string | undefined,
     serviceType: string | undefined,
-    description: string | undefined
+    description: string | undefined,
+    service_id: number
   ) {
     console.log(name);
     if (!name) {
       console.error('The service must be have name.');
     }
     if (this.data && this.collabService) {
-      const collabInfo = JSON.parse(this.data);
-      const service_id = collabInfo.id;
-
       // Initialize serviceData
-      const serviceData: any = {
+      const serviceData: Service = {
         name: name,
         category: category,
         serviceType: serviceType,
         description: description,
       };
 
-      this.serviceService.updateService(service_id, serviceData);
-      console.log(`method1 createService worked`);
+      this.serviceService.updateService(service_id, serviceData)
+      .then(() =>{  
+        this.renderService()
+      })
     }
-    console.log(`method createService worked`);
-    window.location.reload();
   }
 
-  deleteService() {
+  deleteService(service_id: number) {
     if (this.data) {
-      const collabInfo = JSON.parse(this.data);
-      const service_id = collabInfo.id;
-
-      this.serviceService.deleteServiceById(service_id);
+      this.serviceService.deleteService(service_id)
+      .then(() => {
+        this.renderService()
+      })
     }
-
-    console.log(`method deleteService worked`);
-    window.location.reload();
   }
 
   onClickAdd() {
@@ -116,16 +125,19 @@ export class CollabServiceComponent implements OnInit {
     );
   }
 
-  onClickEdit() {
+  onClickEdit(service_id: number | undefined) {
+    if (service_id)
     this.updateService(
       this.serviceName,
       this.serviceCategory,
       this.serviceType,
-      this.serviceDescription
+      this.serviceDescription,
+      service_id
     );
   }
 
-  onClickDelete() {
-    this.deleteService();
+  onClickDelete(service_id: number | undefined) {
+    if(service_id)
+    this.deleteService(service_id);
   }
 }

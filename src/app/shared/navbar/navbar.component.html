@@ -3,15 +3,15 @@
         <a class="navbar-brand" href="#">
             <img src="../../../assets/icons/icon.png" class="icon">
         </a>
-        <div>
+        <div *ngIf="!onCollab">
             <p class="icon-text">POGATY</p>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" *ngIf="!onCollab">
             <i class="fa-solid fa-caret-down fa-sm" style="color: #ffffff;"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="" id="navbarNavDropdown" [class]="onCollab ? 'cor-flex' : 'collapse navbar-collapse'">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!onCollab">
                 <li class="nav-item mx-2">
                     <button class="btn btn-bg-custom" [routerLink]="['/home']">
                         <i class="fa-solid fa-house fa-sm" style="color: #ffffff;"></i>
@@ -42,7 +42,7 @@
                         </button>
                     </div>
 
-                    <div class="dropdown" *ngIf="isLogin">
+                    <div class="dropdown" *ngIf="isLogin && !onCollab">
                         <button class="btn hover" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="../../../assets/images/user-profile-samples/profile-1.png" class="user-profile-adjust">
                         </button>
@@ -52,11 +52,21 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </div>
+
+                    <div *ngIf="isLogin && onCollab">
+                        <button class="btn hover" type="button">
+                            <img src="../../../assets/images/user-profile-samples/profile-1.png" class="user-profile-adjust">
+                        </button>
+                    </div>
                     
                 </div>
                 <div class="d-flex px-0">
-                    <button class="btn btn-bg-custom">
+                    <button class="btn btn-bg-custom" *ngIf="!onCollab">
                         <i class="fa-solid fa-gear fa-sm" style="color: #ffffff;"></i>
+                        
+                    </button>
+                    <button class="btn btn-bg-custom" *ngIf="onCollab" (click)="logout()">
+                        <i class="fa-solid fa-x" style="color: #ffffff;"></i>
                     </button>
                 </div>
             </div>

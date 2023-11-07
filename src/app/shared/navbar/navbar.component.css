@@ -36,6 +36,12 @@
     transition: 0.3s;
 }
 
+.cor-flex {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
 .d-flex {
     justify-content: center;
     align-items: center;

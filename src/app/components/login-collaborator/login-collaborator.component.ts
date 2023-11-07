@@ -11,6 +11,7 @@ import { RegisterDialogComponent } from './register-dialog/register-dialog.compo
 })
 export class LoginCollaboratorComponent {
   isRegistered = true;
+  errorlog: string = ''
 
   constructor(
     private collaboratorService: CollaboratorService,
@@ -20,21 +21,17 @@ export class LoginCollaboratorComponent {
 
   authorization(collabName: string, password: string) {
     this.collaboratorService.loadUserCollabs(collabName).then((info) => {
-      console.log(info); // inthis line info.password is 123456789
+      console.log (info)
       if (info != null) {
-        info.password = password;
-        info.name = collabName;
-        console.log('in if 1');
-        console.log(info.password); // but in this line info.password is undefined
-        console.log(password);
         if (info.password == password) {
-          localStorage.setItem('collabInfo', JSON.stringify(info));
-          this.router.navigate(['/collab-service']);
+          localStorage.setItem('collabInfo', JSON.stringify(info))
+          this.router.navigate(['/collab-service'])
+          this.errorlog = ''
         } else {
-          console.log('password is incorrect!');
+          this.errorlog = 'password is incorrect!'
         }
       } else {
-        console.log('username is invalidated.');
+        this.errorlog = 'username is invalidated.'
       }
     });
   }
