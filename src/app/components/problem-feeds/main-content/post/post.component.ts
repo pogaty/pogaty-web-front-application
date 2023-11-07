@@ -31,13 +31,13 @@ export class PostComponent {
       }
     }
 
-    getClient(): string | undefined {
+    getClient(): string {
       if (this.data) {
-        const user = JSON.parse(this.data)
-        console.log(user.fileImage)
-        return `http://localhost:8000/clients/${user.client_id}/image`
+        const user = JSON.parse(this.data);
+        console.log(user.fileImage);
+        return `http://localhost:8000/clients/${user.client_id}/image`;
+      } else {
+        return '../../../../../assets/images/user-profile-samples/sample-unlogin.png';
       }
-  
-      return undefined
     }
 }
