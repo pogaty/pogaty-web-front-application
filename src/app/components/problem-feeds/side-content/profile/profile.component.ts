@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,8 +10,14 @@ import { Client } from 'src/app/models/client.model';
 })
 export class ProfileComponent implements OnInit {
   userData: Client | undefined
+  data = localStorage.getItem('userInfo')
 
-  constructor(private router: Router) {}
+  getImg = () => this.dataService.getClient((this.data) ? this.data : '')
+
+  constructor(
+    private router: Router,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
     const data = localStorage.getItem('userInfo')
@@ -21,4 +28,5 @@ export class ProfileComponent implements OnInit {
   profilePage() {
     this.router.navigate(['/profile'])
   }
+
 }

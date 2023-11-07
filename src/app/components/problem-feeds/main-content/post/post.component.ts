@@ -10,7 +10,8 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-
+    data = localStorage.getItem("userInfo")
+    
     constructor(
       private dataService: DataService,
       private router: Router
@@ -28,5 +29,15 @@ export class PostComponent {
       } else {
         this.router.navigate(['/login'])
       }
+    }
+
+    getClient(): string | undefined {
+      if (this.data) {
+        const user = JSON.parse(this.data)
+        console.log(user.fileImage)
+        return `http://localhost:8000/clients/${user.client_id}/image`
+      }
+  
+      return undefined
     }
 }

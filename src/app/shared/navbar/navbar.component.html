@@ -44,7 +44,7 @@
 
                     <div class="dropdown" *ngIf="isLogin">
                         <button class="btn hover" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../../../assets/images/user-profile-samples/profile-1.png" class="user-profile-adjust">
+                            <img src="{{getClient()}}" class="user-profile-adjust">
                         </button>
                         <ul class="menu">
                             <li><a class="dropdown-item" [routerLink]="['/profile']">My Profile</a></li>

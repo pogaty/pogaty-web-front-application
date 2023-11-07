@@ -4,6 +4,7 @@ import { Problem } from "../models/problem.model"
 import { Trend } from "../models/trend.model"
 import { dtsClient, dtsIdea } from "../components/application/app.component"
 import { Idea } from "../models/idea.model"
+import { NumberInput } from "@angular/cdk/coercion"
 
 @Injectable({
     providedIn: 'root'
@@ -204,5 +205,19 @@ export class DataService {
 
     getRecieveIdea() {
         return this.recieveIdea
+    }
+
+    getClient(data: string): string | undefined {
+        if (data) {
+          const user = JSON.parse(data)
+          console.log(user.fileImage)
+          return `http://localhost:8000/clients/${user.client_id}/image`
+        }
+    
+        return undefined
+    }
+
+    getClientById(data: number): string | undefined {
+         return `http://localhost:8000/clients/${data}/image`
     }
 }

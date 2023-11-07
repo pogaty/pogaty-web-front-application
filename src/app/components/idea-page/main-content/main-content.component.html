@@ -43,7 +43,11 @@
             <div class="parti">
                 <h3>Participants</h3>
                 <div class="d-flex">
-                    <div *ngFor="let participant of idea?.participants" class="profile-content">
+                    <div 
+                        *ngFor="let participant of idea?.participants" 
+                        class="profile-content"
+                        [ngStyle]="{'background-image': 'url(' + getImg(participant) + ')'}"
+                    >
                         <!-- Your content here -->
                       </div>
                 </div>

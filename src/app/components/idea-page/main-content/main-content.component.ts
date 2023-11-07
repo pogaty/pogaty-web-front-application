@@ -1,6 +1,7 @@
 import { Component, Renderer2, ElementRef, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Idea } from 'src/app/models/idea.model';
+import { Participant } from 'src/app/models/participant.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -80,5 +81,14 @@ export class MainContentIdeaComponent implements OnInit  {
   boardEnter(content: string) {
     this.dataService.getRecieveIdea()[2] = content
     console.log (content)
+  }
+
+  getImg (participant: Participant) {
+    const id = participant.client.client_id
+    console.log (id)
+    if (id) {
+      return this.dataService.getClientById(id)
+    }
+    return 
   }
 }

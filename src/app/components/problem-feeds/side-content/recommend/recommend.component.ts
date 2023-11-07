@@ -26,4 +26,13 @@ export class RecommendComponent implements OnInit {
     this.dataService.setProfileOpen({bool: true, username: username})
   }
 
+  getImg (client: Client) {
+    const id = client.client_id
+    console.log (id)
+    if (id) {
+      return this.dataService.getClientById(id)
+    }
+    return 
+  }
+
 }

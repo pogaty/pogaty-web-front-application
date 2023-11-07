@@ -42,6 +42,7 @@
                     class="btn" 
                     *ngFor="let participant of idea.participants"
                     (click)="profileSample(participant.client.username || '')"
+                    [ngStyle]="{'background-image': 'url(' + getImg(participant) + ')'}"
                 >
                 </button>
             </div>

@@ -8,6 +8,7 @@ import { Client } from 'src/app/models/client.model';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  data = localStorage.getItem("userInfo")
   isLogin = false
   CurrentUser: Client | undefined
 
@@ -20,6 +21,16 @@ export class NavbarComponent implements OnInit {
       this.isLogin = true
       this.CurrentUser == JSON.parse(userInfo)
     }
+  }
+
+  getClient(): string | undefined {
+    if (this.data) {
+      const user = JSON.parse(this.data)
+      console.log(user.fileImage)
+      return `http://localhost:8000/clients/${user.client_id}/image`
+    }
+
+    return undefined
   }
 
   logout() {

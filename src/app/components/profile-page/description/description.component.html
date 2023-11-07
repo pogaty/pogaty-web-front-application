@@ -1,9 +1,42 @@
-<h5>Description</h5>
-<div class="content">
-  <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the
-    1500s, when an unknown printer took a galley of type and scrambled it to
-    make a type specimen book. It has survived not only five centuries
-  </p>
+<div class="row" *ngIf="!isEdit">
+  <div class="col-sm-11">
+    <h5>Description</h5>
+  </div>
+  <div class="col-sm-1 d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-secondary btn-sm mb-2" (click)="onClickEdit()">
+      <i class="fa-regular fa-pen-to-square"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="isEdit">
+  <div class="col-sm-10">
+    <h5>Description</h5>
+  </div>
+  <div class="col-sm-2 d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-success btn-sm mb-2" (click)="onClickSave()">
+      <i class="fa-regular fa-floppy-disk"></i>
+    </button>
+    <button class="btn btn-danger btn-sm mb-2" (click)="onClickCancel()">
+      <i class="fa-solid fa-ban"></i>
+    </button>
+  </div>
+</div>
+
+<div class="content p-3">
+  <ng-template [ngIf]="isEdit" [ngIfElse]="isShow">
+    <form>
+      <div class="form-group">
+        <textarea
+          rows="3"
+          class="col-12 p-1"
+          name="description"
+          [(ngModel)]="modifiedDescription"
+        ></textarea>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #isShow>
+    {{ userData?.description }}
+  </ng-template>
 </div>

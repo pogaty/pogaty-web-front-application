@@ -262,6 +262,15 @@ export class AppComponent implements OnInit, OnDestroy {
       this.router.navigate(['/idea', idea.idea_id])
     }
   }
+
+  getImg () {
+    const id = this.client?.client_id
+    console.log (id)
+    if (id) {
+      return this.dataService.getClientById(id)
+    }
+    return 
+  }
 }
 
 export interface dtsIdea {

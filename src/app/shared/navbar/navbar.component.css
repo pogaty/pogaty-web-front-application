@@ -19,8 +19,6 @@
 .user-profile-adjust {
     width: 40px;
     height: 40px;
-
-    background-image: url('../../../assets/images/user-profile-samples/profile-1.png');
     background-size: cover; 
     border-radius: 100%;
 

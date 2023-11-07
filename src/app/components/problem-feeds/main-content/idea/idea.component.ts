@@ -203,4 +203,13 @@ export class IdeaComponent implements OnInit, OnChanges {
     this.dataService.setProfileOpen({bool: true, username: username})
   }
 
+  getImg (participant: Participant) {
+    const id = participant.client.client_id
+    console.log (id)
+    if (id) {
+      return this.dataService.getClientById(id)
+    }
+    return 
+  }
+
 }

@@ -80,7 +80,7 @@
     <div class="container-sm content">
         <div class="d-flex flex-column flex-adjust">
             <div class="profile-background d-flex">
-                <div class="profile"></div>
+                <div class="profile" [ngStyle]="{'background-image': 'url(' + getImg() + ')'}"></div>
                 <div class="corn-flex">
                     <div class="profile-header">
                         <p style="font-weight: bolder">{{client?.username}}</p>

@@ -40,6 +40,15 @@ export class FeedsComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
+  getImg (problem: Problem) {
+    const id = problem.client?.client_id
+    console.log (id)
+    if (id) {
+      return this.dataService.getClientById(id)
+    }
+    return 
+  }
+
   ngOnInit(): void {
     this.categorySubscription = this.dataService.getProblemsCategory()
       .subscribe((data) => {

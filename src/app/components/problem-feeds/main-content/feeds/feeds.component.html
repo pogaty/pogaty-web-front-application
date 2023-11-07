@@ -25,7 +25,7 @@
         <div class="container-md d-flex flex-column">
             <div class="row">
                 <div class="col-9 d-flex" style="align-items: center;">
-                    <div class="user-profile">
+                    <div class="user-profile" [ngStyle]="{'background-image': 'url(' + getImg(problem) + ')'}">
                     </div>
                     <div class="user-text">
                         <p style="font-weight: 500;">{{problem.client?.username}}</p>
