@@ -85,7 +85,7 @@
               <li>
                 <a
                   class="dropdown-item"
-                  (click)="onClickDelete(service.service_id)"
+                  (click)="onClickDelete(service)"
                   ><i class="fa-regular fa-trash-can"></i> &nbsp; delete service
                 </a>
               </li>
@@ -183,13 +183,12 @@
                 name="category"
                 [(ngModel)]="serviceCategory"
               >
-                <option selected>Open this select menu</option>
                 <option value="technology">technology</option>
                 <option value="agriculture">agriculture</option>
                 <option value="innovation">innovation</option>
                 <option value="manufacture">manufacture</option>
                 <option value="retail">retail</option>
-                <option value="any">any</option>
+                <option selected value="any">any</option>
               </select>
             </ng-container>
 
@@ -201,12 +200,11 @@
                 name="category"
                 [(ngModel)]="serviceCategory"
               >
-                <option selected>Open this select menu</option>
                 <option value="research">research</option>
                 <option value="software">software</option>
                 <option value="science">science</option>
                 <option value="ai">ai</option>
-                <option value="any">any</option>
+                <option selected value="any">any</option>
               </select>
             </ng-template>
           </div>
@@ -297,13 +295,12 @@
                 name="category"
                 [(ngModel)]="serviceCategory"
               >
-                <option selected>Open this select menu</option>
                 <option value="technology">technology</option>
                 <option value="agriculture">agriculture</option>
                 <option value="innovation">innovation</option>
                 <option value="manufacture">manufacture</option>
                 <option value="retail">retail</option>
-                <option value="any">any</option>
+                <option selected value="any">any</option>
               </select>
             </ng-container>
 
@@ -315,12 +312,11 @@
                 name="category"
                 [(ngModel)]="serviceCategory"
               >
-                <option selected>Open this select menu</option>
                 <option value="research">research</option>
                 <option value="software">software</option>
                 <option value="science">science</option>
                 <option value="ai">ai</option>
-                <option value="any">any</option>
+                <option selected value="any">any</option>
               </select>
             </ng-template>
           </div>
