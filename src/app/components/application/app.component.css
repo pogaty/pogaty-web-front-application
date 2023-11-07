@@ -315,6 +315,12 @@ button:focus {
     justify-content: space-between;
 }
 
+.corn-flex-left {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 @media only screen and (max-width: 768px) {
     .btn-custom {
         margin-top: 10px;
@@ -336,6 +342,6 @@ button:focus {
     }
 }
 
-/* div {
+div {
     border: 2px solid red;
-} */
+}
