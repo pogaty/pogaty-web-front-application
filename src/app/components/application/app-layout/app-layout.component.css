@@ -162,6 +162,7 @@
 
 .cover {
     padding: 10px;
+    overflow: hidden;
 }
 
 .service {

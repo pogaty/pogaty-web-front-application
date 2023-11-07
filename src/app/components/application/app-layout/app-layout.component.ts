@@ -1,6 +1,8 @@
 import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Subscription, filter } from 'rxjs';
+import { Service } from 'src/app/models/service.model';
 import { DataService } from 'src/app/services/data.service';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-app-layout',
@@ -19,6 +21,8 @@ export class AppLayoutComponent implements OnInit, OnDestroy, AfterViewChecked {
   pCategory: string = 'any'
   bCategory: string = 'any'
 
+  services: Service[] = []
+
   pAns1 = ['Yes!', 'No!']
   
   projectSubscription: Subscription | undefined
@@ -26,6 +30,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy, AfterViewChecked {
   
   constructor(
     private dataService: DataService,
+    private serviceService: ServiceService,
     private renderer: Renderer2, 
     private el: ElementRef,
   ) { }
@@ -111,6 +116,42 @@ export class AppLayoutComponent implements OnInit, OnDestroy, AfterViewChecked {
   choose() {
     if (this.spStep != 3) {
       this.spStep ++ 
+
+      
+      if (this.spStep == 3) {
+        if (this.isProjectOpen) {
+          if (this.pCategory == 'any') {
+            this.serviceService.loadServicesByType('project')
+            .then((data) => {
+              this.services = data
+              console.log (this.services)
+            }).catch(() => this.services = [])
+          } else {
+            this.serviceService.loadServicesByTypeAndCategory('project', this.pCategory)
+            .then((data) => {
+              this.services = data
+              console.log (this.services)
+            }).catch(() => this.services = [])
+          }
+        } 
+
+        else if (this.isBusinessOpen) {
+          if (this.bCategory == 'any') {
+            this.serviceService.loadServicesByType('business')
+            .then((data) => {
+              this.services = data
+              console.log (this.services)
+            }).catch(() => this.services = [])
+          } else {
+            this.serviceService.loadServicesByTypeAndCategory('business', this.bCategory)
+            .then((data) => {
+              this.services = data
+              console.log (this.services)
+            }).catch(() => this.services = [])
+          }
+        }
+      }
+
       return (this.spStep == 2 && this.pAns1[0] == 'No!') ? this.end() : null
     } else {
       return this.end()

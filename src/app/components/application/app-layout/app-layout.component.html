@@ -63,7 +63,7 @@
                     <div class="d-flex flex-column service-board container-fluid">
                         <div class="row service">
 
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover" *ngFor="let service of services">
                                 <div class="service-box container-fluid">
                                     <div class="row">
                                         <div class="col-md-4 corn-flex p-0">
@@ -78,8 +78,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="container my-2 p-0">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                                    <div class="container my-2 p-0" style="overflow: hidden">
+                                        {{service.description}}
                                     </div>
                                 </div>  
                             </div>
@@ -175,7 +175,7 @@
                     <div class="d-flex flex-column service-board container-fluid">
                         <div class="row service">
 
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 cover" *ngFor="let service of services">
                                 <div class="service-box container-fluid">
                                     <div class="row">
                                         <div class="col-md-4 corn-flex p-0">
@@ -191,7 +191,7 @@
                                         </div>
                                     </div>
                                     <div class="container my-2 p-0">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                                        {{service.description}}
                                     </div>
                                 </div>  
                             </div>

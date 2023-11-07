@@ -85,7 +85,6 @@ export class MainContentIdeaComponent implements OnInit  {
 
   getImg (participant: Participant) {
     const id = participant.client.client_id
-    console.log (id)
     if (id) {
       return this.dataService.getClientById(id)
     }

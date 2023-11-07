@@ -15,6 +15,42 @@ export class ServiceService {
     return res.json()
   }
 
+  async loadServicesByType(type: string): Promise<Service[]> {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          const res = await fetch(`${API_URLS.service}/type/${type}`)
+          if (res.ok) {
+            const data = await res.json()
+            resolve(data)
+          } else {
+            reject(new Error('Request failed'))
+          }
+        } catch (error) {
+          reject(error)
+        }
+      }, 500)
+    })
+  }
+
+  async loadServicesByTypeAndCategory(type: string, category: string): Promise<Service[]> {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          const res = await fetch(`${API_URLS.service}/type/${type}/category/${category}`)
+          if (res.ok) {
+            const data = await res.json()
+            resolve(data)
+          } else {
+            reject(new Error('Request failed'))
+          }
+        } catch (error) {
+          reject(error)
+        }
+      }, 500)
+    })
+  }
+
   async createServices(collab_id: number, service: Service) {
     await fetch(`${API_URLS.service}/by/${collab_id}`, 
     {
