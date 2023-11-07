@@ -210,7 +210,6 @@ export class DataService {
     getClient(data: string): string | undefined {
         if (data) {
           const user = JSON.parse(data)
-          console.log(user.fileImage)
           return `http://localhost:8000/clients/${user.client_id}/image`
         }
     

@@ -42,7 +42,6 @@ export class FeedsComponent implements OnInit, OnDestroy {
 
   getImg (problem: Problem) {
     const id = problem.client?.client_id
-    console.log (id)
     if (id) {
       return this.dataService.getClientById(id)
     }

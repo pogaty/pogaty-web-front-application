@@ -28,7 +28,6 @@ export class RecommendComponent implements OnInit {
 
   getImg (client: Client) {
     const id = client.client_id
-    console.log (id)
     if (id) {
       return this.dataService.getClientById(id)
     }

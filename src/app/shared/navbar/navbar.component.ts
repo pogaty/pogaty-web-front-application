@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   getClient(): string | undefined {
     if (this.data) {
       const user = JSON.parse(this.data)
-      console.log(user.fileImage)
       return `http://localhost:8000/clients/${user.client_id}/image`
     }
 
