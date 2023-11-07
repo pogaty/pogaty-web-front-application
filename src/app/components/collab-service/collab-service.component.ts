@@ -78,7 +78,7 @@ export class CollabServiceComponent implements OnInit {
       // Initialize serviceData
       const serviceData: Service = {
         name: name,
-        category: category,
+        category: category || 'any',
         serviceType: serviceType,
         description: description,
       };
@@ -86,8 +86,10 @@ export class CollabServiceComponent implements OnInit {
       this.serviceService.createServices(
         JSON.parse(this.data).collab_id,
         serviceData
-      );
-      this.services.push(serviceData);
+      ).then(() => {
+        this.services.push(serviceData);
+        this.renderService()
+      })
     }
 
     this.cleardata();
@@ -108,7 +110,7 @@ export class CollabServiceComponent implements OnInit {
       // Initialize serviceData
       const serviceData: Service = {
         name: name,
-        category: category,
+        category: category || 'any',
         serviceType: serviceType,
         description: description,
       };
@@ -121,9 +123,13 @@ export class CollabServiceComponent implements OnInit {
     window.location.reload();
   }
 
-  deleteService(service_id: number) {
-    if (this.data) {
-      this.serviceService.deleteService(service_id).then(() => {
+  deleteService(service: Service) {
+    if (this.data && service.service_id) {
+      this.serviceService.deleteService(service.service_id).then(() => {
+        const index = this.services.indexOf(service);
+        if (index !== -1) {
+          this.services.splice(index, 1);
+        }
         this.renderService();
       });
     }
@@ -163,7 +169,7 @@ export class CollabServiceComponent implements OnInit {
       );
   }
 
-  onClickDelete(service_id: number | undefined) {
-    if (service_id) this.deleteService(service_id);
+  onClickDelete(service: Service | undefined) {
+    if (service) this.deleteService(service);
   }
 }
