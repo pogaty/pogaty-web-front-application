@@ -13,3 +13,69 @@ p{
 button{
     font-weight: bold;
 }
+
+/* ---------- */
+
+.content {
+    color: white;
+
+}
+
+.corn-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 55px;
+    height: 55px;
+    border-radius: 8px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.box-e {
+    margin: 5px 0;
+}
+
+.box-e p {
+    color: white;
+    margin: 0;
+    font-weight: bolder;
+}
+
+.right {
+    justify-content: right;
+}
+
+.px-custom {
+    padding: 0 125px;
+}
+
+
+
+@media only screen and (max-width: 992px) {
+    .box-e {
+        margin: 5px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .collab {
+        padding-top: 5px !important;
+        padding-bottom: 50px;
+    }
+
+    .px-custom {
+        padding: 0 31px;
+    }
+}
+
