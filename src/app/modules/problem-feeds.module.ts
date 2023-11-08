@@ -5,6 +5,7 @@ import { MainContentModule } from "./main-content.module";
 import { SideContentModule } from "./side-content.module";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule ({
     declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from "@angular/forms";
         MainContentModule,
         SideContentModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        MatTooltipModule,
     ],
     exports: [
         ProblemFeedsComponent,

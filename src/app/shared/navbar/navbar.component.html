@@ -13,21 +13,21 @@
         <div class="" id="navbarNavDropdown" [class]="onCollab ? 'cor-flex' : 'collapse navbar-collapse'">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!onCollab">
                 <li class="nav-item mx-2">
-                    <button class="btn btn-bg-custom" [routerLink]="['/home']">
+                    <button class="btn btn-bg-custom" [routerLink]="['/home']" mat-raised-button matTooltip="Home">
                         <i class="fa-solid fa-house fa-sm" style="color: #ffffff;"></i>
                     </button>
                 </li>
                 <li class="nav-item mx-2">
-                    <button class="btn btn-bg-custom" [routerLink]="['/problem']">
+                    <button class="btn btn-bg-custom" [routerLink]="['/problem']" mat-raised-button matTooltip="Problem Feeds">
                         <i class="fa-solid fa-comment fa-sm" style="color: #ffffff;"></i>
                     </button>
                 </li>
                 <li class="nav-item mx-2">
-                    <button class="btn btn-bg-custom" [routerLink]="['/idea-dashboard']">
+                    <button class="btn btn-bg-custom" [routerLink]="['/idea-dashboard']" mat-raised-button matTooltip="Ideas Dashboard">
                         <i class="fa-solid fa-bars-progress fa-sm" style="color: #ffffff;"></i>
                     </button>
                 </li>
-                <li class="nav-item mx-2" *ngIf="!isLogin && !onCollab">
+                <li class="nav-item mx-2" *ngIf="!isLogin && !onCollab" mat-raised-button matTooltip="Collaborator">
                     <button class="btn btn-bg-custom" [routerLink]="['/login-collaborator']">
                         <i class="fa-solid fa-business-time fa-sm" style="color: #ffffff;"></i>
                     </button>

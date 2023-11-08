@@ -4,10 +4,12 @@ import { PostComponent } from "../components/problem-feeds/main-content/post/pos
 import { FeedsComponent } from "../components/problem-feeds/main-content/feeds/feeds.component";
 import { IdeaComponent } from "../components/problem-feeds/main-content/idea/idea.component";
 import { CommonModule } from "@angular/common";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MatTooltipModule,
     ],
     declarations: [
         MainContentComponent,
