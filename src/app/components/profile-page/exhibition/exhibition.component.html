@@ -1,21 +1,15 @@
 <div class="container-lg mt-3">
   <h5>Exhibition</h5>
   <div class="content p-3">
-    <div class="row p-3">
-      <div class="col-md-10 offset-1 p-4 mb-2 project">
+    <div class="row p-3 justify-content-md-center" *ngFor="let idea of ideas">
+      <div class="col-md-11 p-4 mb-2 project">
         <div class="row">
-          <div class="col-md-8">
-            <b>Carbon Capture and Storage Infrastructure</b>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries
-            </p>
+          <div class="col-md-9">
+            <b>{{ idea.ideaHeader }}</b>
+            <p>{{ sliceKey(idea.key || "") }}...</p>
           </div>
-          <div class="col-md-4 button-container">
-            <button>more detail</button>
+          <div class="col-md-3 button-container">
+            <button (click)="ideaPage(idea)">more detail</button>
           </div>
         </div>
       </div>
