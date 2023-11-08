@@ -1,6 +1,7 @@
-import { U } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { Client } from 'src/app/models/client.model';
 import { Idea } from 'src/app/models/idea.model';
@@ -47,6 +48,7 @@ export class ExhibitionComponent implements OnInit {
     private dataService: DataService,
     private clientService: ClientService,
     private participantService: ParticipantService,
+    private router: Router,
     private ideaService: IdeaService
   ) {
     this.userData = undefined;
@@ -84,5 +86,34 @@ export class ExhibitionComponent implements OnInit {
 
   sliceKey(key: string) {
     return key ? key.slice(0, 200) : key;
+  }
+
+  ideaPage(idea: Idea) {
+    this.isProfileOpen = false;
+    if (idea.publicState == false) {
+      const data = localStorage.getItem('userInfo');
+      if (data) {
+        console.log(data);
+        this.participantService
+          .getParticipantClient(idea.idea_id, JSON.parse(data).client_id)
+          .then(() => {
+            this.router.navigate(['/idea', idea.idea_id]);
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              footer: '<a href="">Why do I have this issue?</a>',
+              html: `
+              <div>This idea is an private you must be a participant to see the details and description of it.</div>
+            `,
+            });
+          });
+      } else {
+        this.router.navigate(['/login']);
+      }
+    } else {
+      this.router.navigate(['/idea', idea.idea_id]);
+    }
   }
 }
