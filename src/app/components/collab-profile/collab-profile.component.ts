@@ -34,6 +34,23 @@ export class CollabProfileComponent {
 
       this.collabService.loadUserCollabs(collab_name).then((data) => {
         this.collabData = data;
+
+        if (this.collabData) {
+          // Check if collabData is not null
+          this.variable = this.collabService.getPicture(
+            this.collabData.collab_id
+          );
+
+          if (this.collabData.fileImage == null) {
+            console.log('this method work');
+            this.collabData.fileImage = this.defaultImage;
+          } else if (this.variable) {
+            // Check if variable is not null
+            this.collabData.fileImage = this.variable;
+          }
+
+          console.log(this.collabData.fileImage);
+        }
       });
     }
   }

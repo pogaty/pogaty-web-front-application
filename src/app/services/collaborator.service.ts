@@ -36,7 +36,7 @@ export class CollaboratorService {
     });
   }
 
-  getPicture(collabs_id: number) {
+  getPicture(collabs_id: number | undefined) {
     return `${API_URLS.collaborators}/${collabs_id}/image`;
   }
 
@@ -49,6 +49,4 @@ export class CollaboratorService {
       formData
     );
   }
-
-
 }
