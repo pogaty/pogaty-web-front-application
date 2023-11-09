@@ -4,8 +4,12 @@ import { HomeComponent } from '../components/home/home.component';
 import { Content1Component } from '../components/home/content1/content1.component';
 import { Content2Component } from '../components/home/content2/content2.component';
 import { Content3Component } from '../components/home/content3/content3.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
+  imports: [
+    CommonModule
+  ],
   declarations: [
     HomeComponent,
     Content1Component,

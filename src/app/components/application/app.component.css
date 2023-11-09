@@ -102,8 +102,9 @@ button:focus {
     border: transparent;
 }
 
-.active i {
+.active span, .active i {
     color: white !important;
+
 }
 .form-check-input {
     width: 50px !important;

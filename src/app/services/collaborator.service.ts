@@ -36,4 +36,8 @@ export class CollaboratorService {
         })
     });
   }
+
+  getPicture(profilePath: string | undefined) {
+    return `${API_URLS.clients}/image/${profilePath}`;
+  }
 }

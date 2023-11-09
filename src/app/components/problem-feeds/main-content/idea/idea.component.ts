@@ -196,6 +196,7 @@ export class IdeaComponent implements OnInit, OnChanges {
         }
       } else {
         this.router.navigate(['/idea', idea.idea_id])
+        window.scrollTo(0, 0);
       }
   }
 

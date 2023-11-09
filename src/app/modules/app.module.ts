@@ -15,6 +15,7 @@ import { IdeaPageModule } from './idea-page.module';
 import { FormsModule } from '@angular/forms';
 import { IdeaDashboardModule } from './idea-dashboard.module';
 import { LoginCollaboratorModule } from './login-collaborator.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, AppLayoutComponent],
@@ -33,6 +34,7 @@ import { LoginCollaboratorModule } from './login-collaborator.module';
     IdeaPageModule,
     IdeaDashboardModule,
     LoginCollaboratorModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

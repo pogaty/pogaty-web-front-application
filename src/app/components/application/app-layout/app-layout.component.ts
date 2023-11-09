@@ -1,5 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Subscription, filter } from 'rxjs';
+import { Collaborator } from 'src/app/models/collaborator.model';
 import { Service } from 'src/app/models/service.model';
 import { DataService } from 'src/app/services/data.service';
 import { ServiceService } from 'src/app/services/service.service';
@@ -105,6 +106,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.logicExecuted = false
   }
 
+  
   setProjectCategory(category: string) {
     this.pCategory = category
   }
@@ -171,4 +173,13 @@ export class AppLayoutComponent implements OnInit, OnDestroy, AfterViewChecked {
     (pAns === "No!") ? this.pAns1 = [pAns, "Yes!"] : this.pAns1 = [pAns, "No!"]
   }
 
+  getImg (collab: Collaborator) {
+    console.log(collab)
+      const id = collab.collab_id
+      console.log (id)
+      if (id) {
+        return this.dataService.getCollabById(id)
+      }
+      return null
+    }
 }

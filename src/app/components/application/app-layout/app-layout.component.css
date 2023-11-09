@@ -173,8 +173,9 @@
 
 .profile-collab {
     padding: 0;
-    background-color: black;
     color: white;
+    background-image: url('../../../../assets/images/user-profile-samples/sample-unlogin.png');
+    background-size: cover;
 
     border-radius: 8px;
     height: 75px;

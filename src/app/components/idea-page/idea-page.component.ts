@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Idea } from 'src/app/models/idea.model';
 import { Participant } from 'src/app/models/participant.model';
@@ -45,6 +45,13 @@ export class IdeaPageComponent implements OnInit, OnDestroy {
     .pipe(filter(data => !!data)).subscribe(() => {
       this.renderIdea(ideaId)
     })
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top of the page when navigation is complete
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   renderIdea(ideaId: number) {

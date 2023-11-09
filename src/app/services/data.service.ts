@@ -220,4 +220,8 @@ export class DataService {
          return `http://localhost:8000/clients/${data}/image`
     }
 
+    getCollabById(data: number): string | undefined {
+        return `http://localhost:8100/collabs/${data}/image`
+    }
+
 }

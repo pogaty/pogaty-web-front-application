@@ -76,7 +76,7 @@ export class CollabServiceComponent implements OnInit {
     }
     if (this.data && this.collabService) {
       // Initialize serviceData
-      const serviceData: Service = {
+      const serviceData: any = {
         name: name,
         category: category || 'any',
         serviceType: serviceType,
@@ -108,7 +108,7 @@ export class CollabServiceComponent implements OnInit {
     }
     if (this.data && this.collabService) {
       // Initialize serviceData
-      const serviceData: Service = {
+      const serviceData: any = {
         name: name,
         category: category || 'any',
         serviceType: serviceType,

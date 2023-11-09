@@ -53,6 +53,7 @@ export class IdeaDashboardComponent implements OnInit {
       }
     } else {
       this.router.navigate(['/idea', idea.idea_id])
+      window.scrollTo(0, 0);
     }
 }
 }

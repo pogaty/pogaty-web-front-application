@@ -48,7 +48,7 @@
                         </button>
                         <ul class="menu">
                             <li><a class="dropdown-item" [routerLink]="['/profile']">My Profile</a></li>
-                            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+                            <li><a class="dropdown-item" (click)="logout('client')">Logout</a></li>
                         </ul>
                     </div>
 
@@ -64,7 +64,7 @@
                         <i class="fa-solid fa-gear fa-sm" style="color: #ffffff;"></i>
                         
                     </button>
-                    <button class="btn btn-bg-custom" *ngIf="onCollab" (click)="logout()">
+                    <button class="btn btn-bg-custom" *ngIf="onCollab" (click)="logout('collab')">
                         <i class="fa-solid fa-x" style="color: #ffffff;"></i>
                     </button>
                 </div>

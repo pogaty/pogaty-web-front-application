@@ -67,8 +67,8 @@
                                 <div class="service-box container-fluid">
                                     <div class="row">
                                         <div class="col-md-4 corn-flex p-0">
-                                            <div class="profile-collab">
-                                                <p class="m-0" style="font-weight: bolder">A</p>
+                                            <div class="profile-collab" [ngStyle]="{'background-image': 'url(' + getImg(service.collaborator) + ')'}">
+                                                <p class="m-0" style="font-weight: bolder"></p>
                                             </div>
                                         </div>
                                         <div class="col-md-8 p-0 corn-flex">
@@ -179,7 +179,7 @@
                                 <div class="service-box container-fluid">
                                     <div class="row">
                                         <div class="col-md-4 corn-flex p-0">
-                                            <div class="profile-collab">
+                                            <div class="profile-collab" [ngStyle]="{'background-image': 'url(' + getImg(service) + ')'}">
                                                 <p class="m-0" style="font-weight: bolder">A</p>
                                             </div>
                                         </div>

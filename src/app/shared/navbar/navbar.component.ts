@@ -44,12 +44,12 @@ export class NavbarComponent implements OnInit {
     return undefined
   }
 
-  logout() {
+  logout(type: string) {
     this.CurrentUser = undefined
     localStorage.clear()
     this.isLogin = false
     
-    if (this.onCollab = true) {
+    if (type == 'collab') {
       this.onCollab = false
       this.router.navigate(['/login-collaborator'])
     } else {

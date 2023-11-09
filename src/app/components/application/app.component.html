@@ -3,7 +3,7 @@
         
         <div class="container">
             <button class="btn exist" (click)="closePopup($event)">
-                <i class="fa-solid fa-square-xmark" style="color: #FF4155;"></i>
+                <i class="fa-solid fa-square-xmark" style="color: #FF4155;" (click)="closePopup($event)"></i>
             </button>
         </div>
         
@@ -17,16 +17,19 @@
                 <div class="row">
                     <div class="col-md-9 container">
                         <div class="d-flex flex-wrap">
-                            <button class="btn" [ngClass]="{'active': category === 'global'}">
-                                <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;" (click)="setCategory('global')"> Global</i>
+                            <button class="btn" [ngClass]="{'active': category === 'global'}" (click)="setCategory('global')">
+                                <i class="fa-solid fa-earth-asia fa-xl" style="color: #2279fc;" ></i>
+                                <span style="padding-left: 8px; color: #2279fc;">Global</span>
                             </button>
     
-                            <button class="btn" [ngClass]="{'active': category === 'environment'}">
-                                <i class="fa-solid fa-seedling fa-xl" style="color: #32cd75;" (click)="setCategory('environment')"> Environment</i>
+                            <button class="btn" [ngClass]="{'active': category === 'environment'}" (click)="setCategory('environment')">
+                                <i class="fa-solid fa-seedling fa-xl" style="color: #32cd75;"></i>
+                                <span style="padding-left: 8px; color: #32cd75;">Environment</span>
                             </button>
     
-                            <button class="btn" [ngClass]="{'active': category === 'innovation'}">
-                                <i class="fa-solid fa-lightbulb fa-xl" style="color: #ffb029;" (click)="setCategory('innovation')"> Innovation</i>
+                            <button class="btn" [ngClass]="{'active': category === 'innovation'}" (click)="setCategory('innovation')">
+                                <i class="fa-solid fa-lightbulb fa-xl" style="color: #ffb029;"></i>
+                                <span style="padding-left: 8px; color: #ffb029;">Innivation</span>
                             </button>
                         </div>
                     </div>
@@ -44,7 +47,7 @@
 <div class="popup" *ngIf="isIdeaOpen" (click)="closePopup($event)">
     <div class="container-sm content">
 
-        <div class="container">
+        <div class="container ">
             <button class="btn exist" (click)="closePopup($event)">
                 <i class="fa-solid fa-square-xmark" style="color: #FF4155;"></i>
             </button>
@@ -84,7 +87,7 @@
                 <div class="corn-flex">
                     <div class="profile-header">
                         <p style="font-weight: bolder">{{client?.username}}</p>
-                        <p>@demo00{{client?.client_id}}</p>
+                        <p>#demo00{{client?.client_id}}</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +153,7 @@
                                 <div class="profile-image m-0"></div>
                                 <div class="m-0 p-1 profile-detail">
                                     <p>{{client.username}}</p>
-                                    <p>@demo00{{client.client_id}}</p>
+                                    <p>#demo00{{client.client_id}}</p>
                                 </div>
                             </div>
                             <button class="btn add" (click)="addParticipant(client)">+</button>
@@ -163,7 +166,7 @@
                                 <div class="profile-image m-0"></div>
                                 <div class="m-0 p-1 profile-detail">
                                     <p>{{client.username}}</p>
-                                    <p>@demo00{{client.client_id}}</p>
+                                    <p>#demo00{{client.client_id}}</p>
                                 </div>
                             </div>
                             <button class="btn remove" (click)="removeParticipant(client)">-</button>
