@@ -1,0 +1,38 @@
+<div class="main p-3">
+  <div class="container-lg">
+    <!-- show organization data -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row my-3 profile-pic justify-content-md-center">
+          <img />
+        </div>
+        <div class="row my-3 upload justify-content-md-center" *ngIf="isedit">
+          <div class="col-md-5">
+            <div class="input-group px-5">
+              <input
+                class="form-control"
+                type="file"
+                (change)="handleFileInput($event)"
+              />
+
+              <button class="btn btn-primary" (click)="onClickUpload()">
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row my-3 upload text-center" *ngIf="!isedit">
+          <a (click)="onClickEdit()">edit profile picture</a>
+        </div>
+
+        <div class="row my-3 detail justify-content-md-center text-center">
+          <div class="col-md-4">
+            <h6>Username : {{ collabData?.name }}</h6>
+            <h6>Email : {{ collabData?.email }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- show organization data -->
+  </div>
+</div>

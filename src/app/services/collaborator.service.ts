@@ -24,16 +24,29 @@ export class CollaboratorService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(collab)
-      })
-        .then((res) => {
-          if (res.ok) {
-            console.log("created collab")
-            resolve()
-          } else {
-            reject("User duplicated on database!")
-          }
-        })
+        body: JSON.stringify(collab),
+      }).then((res) => {
+        if (res.ok) {
+          console.log('created collab');
+          resolve();
+        } else {
+          reject('User duplicated on database!');
+        }
+      });
     });
+  }
+
+  getPicture(collabs_id: number) {
+    return `${API_URLS.collaborators}/${collabs_id}/image`;
+  }
+
+  updateCollabsImage(collabs_id: number, imageFile: File) {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    return this.http.put(
+      `${API_URLS.collaborators}/${collabs_id}/image`,
+      formData
+    );
   }
 }

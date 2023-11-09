@@ -1,0 +1,27 @@
+.main{
+    border-radius: 0 0 30px 0;
+    background-color: #F3F3F3;
+}
+
+.profile-pic img{
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.profile-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload a{
+    color: #CF0A0A;
+    cursor: pointer;
+}
+
+.upload a:hover{
+    color: #CF0A0A;
+    text-decoration: underline;
+    cursor: pointer;
+}
