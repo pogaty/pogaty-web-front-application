@@ -210,18 +210,18 @@ export class DataService {
     getClient(data: string): string | undefined {
         if (data) {
           const user = JSON.parse(data)
-          return `http://localhost:8000/clients/${user.client_id}/image`
+          return `http://pogaty-web-back-client.azurewebsites.net/clients/${user.client_id}/image`
         }
     
         return undefined
     }
 
     getClientById(data: number): string | undefined {
-         return `http://localhost:8000/clients/${data}/image`
+         return `http://pogaty-web-back-client.azurewebsites.net/clients/${data}/image`
     }
 
     getCollabById(data: number): string | undefined {
-        return `http://localhost:8100/collabs/${data}/image`
+        return `http://pogaty-web-back-partner.azurewebsites.net/collabs/${data}/image`
     }
 
 }

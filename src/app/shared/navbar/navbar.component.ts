@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
   getClient(): string | undefined {
     if (this.data) {
       const user = JSON.parse(this.data)
-      return `http://localhost:8000/clients/${user.client_id}/image`
+      return `http://pogaty-web-back-client.azurewebsites.net/clients/${user.client_id}/image`
     }
 
     return undefined

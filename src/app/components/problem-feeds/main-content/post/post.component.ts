@@ -34,7 +34,7 @@ export class PostComponent {
     getClient(): string {
       if (this.data) {
         const user = JSON.parse(this.data);
-        return `http://localhost:8000/clients/${user.client_id}/image`;
+        return `http://pogaty-web-back-client.azurewebsites.net/clients/${user.client_id}/image`;
       } else {
         return '../../../../../assets/images/user-profile-samples/sample-unlogin.png';
       }
